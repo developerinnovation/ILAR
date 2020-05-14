@@ -767,3 +767,7 @@ $databases['default']['default'] = array (
 );
 $settings['config_sync_directory'] = 'sites/default/files/config_inqd3tLA7XNFl4FuUioCWDqbyTb2oFtwVKmnDqmJaXWPK_Q0M-Zn2VECvAk_R9O1Tb5egJWenA/sync';
 $settings['file_private_path'] = '/sites/default/privateFile';
+
+$settings['s3fs.access_key'] = 'YOUR ACCESS KEY';
+$settings['s3fs.secret_key'] = 'YOUR SECRET KEY';
+$settings['s3fs.upload_as_private'] = TRUE;
