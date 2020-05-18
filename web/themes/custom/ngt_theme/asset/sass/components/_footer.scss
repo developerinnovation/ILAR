@@ -41,11 +41,11 @@ footer{
                     padding: 0;
                     border: 0;
                     border-radius: 20px;
-                    background: #FFA41B;
+                    background: $amarillo;
                     font: {
                         size: 13px;
                     }
-                    color: #0A2952;
+                    color: $azul;
                 }
             }
         }
@@ -60,8 +60,14 @@ footer{
             line-height: 1.3em;
             color: #fff;
             text-align: center;
+            &.copyright{
+                font: {
+                    size: 12px;
+                }
+            }
         }
         nav{
+            margin: 40px 0;
             li{
                 list-style: none;
                 text-align: center;
