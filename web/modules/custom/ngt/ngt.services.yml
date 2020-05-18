@@ -1,0 +1,10 @@
+services:
+  ngt.course_main:
+    class: Drupal\ngt\Plugin\Config\Block\CourseMainBlockClass
+    arguments: []
+  ngt.course_category:
+    class: Drupal\ngt\Plugin\Config\Block\CourseCategoryBlockClass
+    arguments: []
+  ngt.course_category_logic:
+    class: Drupal\ngt\Services\Rest\CourseCategoryRestLogic
+    arguments: []

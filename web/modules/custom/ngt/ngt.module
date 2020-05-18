@@ -1,0 +1,48 @@
+
+<?php
+
+/**
+ * @file
+ * Contains ngt.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormState;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ngt_help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the ngt module.
+        case 'help.page.ngt':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('ngt') . '</p>';
+        return $output;
+
+    default:
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ngt_theme() {
+  return [
+    'course_main' => [
+      'variables' => [
+        'course' => NULL,
+      ],
+      'template' => 'block--course-main',
+    ],
+    'course_category' => [
+      'variables' => [
+        'category' => NULL,
+      ],
+      'template' => 'block--course-category',
+    ],
+  ];
+}
+

@@ -1,0 +1,8 @@
+ngt.settings:
+  path: '/admin/config/ngt/settings'
+  defaults:
+    _title: 'Configuraciones NGT'
+  requirements:
+    _permission: 'access NGT settings'
+  options:
+    _admin_route: TRUE

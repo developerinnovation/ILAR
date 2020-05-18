@@ -1,0 +1,18 @@
+global-styling:
+  version: '1.0'
+  js:
+    ./asset/js/global.js: {}
+
+ngt:
+  version: '1.0'
+  css:
+    theme:
+      ./asset/external/jquery-ui.min.css: {}
+      ./asset/js/owlcarrousel/owl-carousel/owl.carousel.css: {}
+  js:
+    ./asset/external/jquery-ui.min.js: {}
+    ./asset/js/owlcarrousel/owl-carousel/owl.carousel.js: {}
+    ./asset/external/angular.min.js: {}
+    ./asset/external/angular-touch.js: {}
+    ./asset/external/angular-route.min.js: {}
+    ./asset/js/ngt.js: {}

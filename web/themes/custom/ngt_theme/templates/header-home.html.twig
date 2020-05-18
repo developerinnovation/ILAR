@@ -1,0 +1,37 @@
+<header>
+    <div class="box">
+        <div class="elements">
+            <div class="left">
+                <div class="menu">
+                {# Get menu items #}
+                    {% set items = simplify_menu('menu-header') %}
+                    {# Iterate menu tree #}
+                    <nav class="navigation__items">
+                        {% for menu_item in items.menu_tree %}
+                            <li class="navigation__item">
+                                <a href="{{ menu_item.url }}">{{ menu_item.text }}</a>
+                            </li>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+            <div class="right">
+                <div class="search">
+                    <form action="">
+                        <labe class="form-control input header">
+                            <img src="" alt="" class="class-ico-search">
+                            <input type="search" name="search" id="search" placeholder="Buscar">
+                        </labe>
+                    </form>
+                </div>
+                <div class="login">
+                    <a href="" class="link-sign-in">Iniciar sesión</a>
+                    <a href="" class="link-sign-up">Registrarte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <figure>
+        <img src="" alt="">
+    </figure>
+</header>

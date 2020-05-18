@@ -1,0 +1,47 @@
+<div class="item-news course-main home">
+    <div class="picture">
+        <figure>
+            <picture>
+                <source srcset="{{ course[0].foto_portada.uri | image_style('313x156') }}" 
+                    media="(max-width: 767px)" 
+                    alt="{{ course[0].foto_portada.alt }}" 
+                    title="{{ course[0].foto_portada.title }}">
+                <img srcset="{{ course[0].foto_portada.uri | image_style('604x476') }}" 
+                    alt="{{ course[0].foto_portada.alt }}" 
+                    title="{{ course[0].foto_portada.title }}">
+            </picture>
+        </figure>
+    </div>
+    <div class="text">
+        <h3 class="title desktop">{{ course[0].title }}</h3>
+        <div class="author multiple">
+            <figure>
+                {% for key, item in course[0].expertos %}
+                    <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}">
+                {% endfor %}
+            </figure>
+        </div>
+        <h3 class="title mobile">{{ course[0].title }}</h3>
+        <div class="info">
+            <div class="name author">
+                {% for key, item in course[0].expertos %}
+                    <a href="{{ item.uri }}" class="link author">{{ item.name_author }}</a>
+                {% endfor %}
+            </div>
+            <div class="hour">
+                <i></i>
+                <span> {{ course[0].horas }} horas</span>
+            </div>
+            <div class="date start">
+                <span>Inicio: {{ course[0].fecha_inicio }} </span>
+            </div>
+            <div class="rating">
+                {{ drupal_field('field_calificacion', 'node', course[0].nid) }}
+            </div>
+        </div>
+        <div class="action">
+            <button class="show-course">ver curso</button>
+            <button class="save">guardar</button>
+        </div>
+    </div>
+</div>
