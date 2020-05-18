@@ -1,0 +1,112 @@
+.item-news{
+    margin: 0 auto 40px;
+    border-radius: 6px;
+    -webkit-box-shadow: $sombra;
+    box-shadow: $sombra;
+    overflow: hidden;
+    .text{
+        position: relative;
+        padding: 40px 20px 20px;
+        >.author{
+            position: absolute;
+            top: -34px;
+            left: 20px;
+            figure{
+                display: flex;
+                img{
+                    width: 68px;
+                    height: 68px;
+                    border: 3px solid #fff;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            &.multiple{
+                top: -24px;
+                figure{
+                    img{
+                        width: 48px;
+                        height: 48px;
+                        margin: 0 -10px 0 0;
+                        &:first-child{
+                            z-index: 3;
+                        }
+                        &:nth-child(2){
+                            z-index: 2;
+                        }
+                        &:nth-child(3){
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .title{
+            font: {
+                size: 16px;
+            }
+            color: #535353;
+        }
+        .info{
+            .name{
+                margin: 0 0 10px;
+                display: flex;
+                flex-wrap: wrap;
+                a{
+                    font: {
+                        size: 13px;
+                    }
+                    color: #747474;
+                    white-space: nowrap;
+                    margin: 0 5px 0 0;
+                }
+                ul{
+                    display: flex;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+            .hour, .date {
+                margin: 0 0 10px;
+                span{
+                    font: {
+                        size: 13px;
+                    }
+                    color: #747474;
+                }
+            }
+            .hour{
+                &:before{
+                    content: '';
+                }
+            }
+        }
+        .action{
+            display: flex;
+            button{
+                -webkit-appearance: none;
+                height: 28px;
+                padding: 0;
+                border-radius: 15px;
+                &.show-course{
+                    margin: 0 20px 0 0;
+                    width: 84px;
+                    border: 0;
+                    background: #FFA41B;
+                    font: {
+                        size: 13px;
+                    }
+                    color: #0A2952;
+                }
+                &.save{
+                    width: 28px;
+                    border: 1px solid #00A8CC;
+                    font: {
+                        size: 0;
+                    }
+                }
+            }
+        }
+    }
+}
