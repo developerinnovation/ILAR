@@ -8,11 +8,14 @@ ngt:
   css:
     theme:
       ./asset/external/jquery-ui.min.css: {}
-      ./asset/js/owlcarrousel/owl-carousel/owl.carousel.css: {}
+      ./asset/js/owl-carousel/assets/owl.carousel.min.css: {}
+      ./asset/js/owl-carousel/assets/owl.theme.default.min.css: {}
   js:
     ./asset/external/jquery-ui.min.js: {}
-    ./asset/js/owlcarrousel/owl-carousel/owl.carousel.js: {}
+    ./asset/js/owl-carousel/owl.carousel.min.js: {}
     ./asset/external/angular.min.js: {}
     ./asset/external/angular-touch.js: {}
     ./asset/external/angular-route.min.js: {}
     ./asset/js/ngt.js: {}
+  dependencies:
+    - core/jquery

@@ -28,7 +28,6 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
         
         var config_data = {};
         var url = `/ngt/api/v1/course/${tid}/${rangeInitial}/${rangeStop}`;
-        console.log(url);
         $http.get(url, config_data).then(function (resp) {
             if (resp.data !== undefined && resp.data !== '' && resp.data.length > 0) {
                 ngt.loading = false;
@@ -52,4 +51,14 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
 
 }]);
 
-
+(function($) {
+    $(document).ready(function() {
+         $("#main.page-front .top .slider").owlCarousel({
+            nav: true,
+            loop: false,
+            navRewind: false,
+            center: true,
+            items: 1,
+        });
+    });
+})(jQuery);
