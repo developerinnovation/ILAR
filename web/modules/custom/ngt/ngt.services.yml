@@ -5,6 +5,9 @@ services:
   ngt.course_category:
     class: Drupal\ngt\Plugin\Config\Block\CourseCategoryBlockClass
     arguments: []
+  ngt.content_dest:
+    class: Drupal\ngt\Plugin\Config\Block\ContentDestBlockClass
+    arguments: []
   ngt.course_category_logic:
     class: Drupal\ngt\Services\Rest\CourseCategoryRestLogic
     arguments: []

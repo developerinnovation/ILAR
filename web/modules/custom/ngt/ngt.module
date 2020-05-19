@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -42,6 +41,12 @@ function ngt_theme() {
         'category' => NULL,
       ],
       'template' => 'block--course-category',
+    ],
+    'course_content_dest' => [
+      'variables' => [
+        'contents' => NULL,
+      ],
+      'template' => 'block--contenido-destacado',
     ],
   ];
 }
