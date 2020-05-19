@@ -8,9 +8,7 @@
             <div class="text">
                 <h2>{{ content.title }}</h2>
                 <p>{{ content.body|striptags|raw }}</p>
-                <div class="action">
-                    <a href="{{ content.enlace.uri }}">{{ content.enlace.text }}</a>
-                </div>
+                <a class="action" href="{{ content.enlace.uri }}">{{ content.enlace.text }}</a>
             </div>
         </div>
     {% endfor %}    

@@ -4,6 +4,7 @@
             .destacado{
                 .slider{
                     .item-sd{
+                        position: relative;
                         figure{
                             height: calc(100vh - 40px);
                             img{
@@ -11,6 +12,122 @@
                                 height: 100%;
                                 object-fit: cover;
                             }
+                        }
+                        .text{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            padding: 30px;
+                            background: rgba(0, 0, 0, 0.2);
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;
+                            h2{
+                                font: {
+                                    size: 23px;
+                                }
+                                color: #fff;
+                                text-align: center;
+                                text-transform: uppercase;
+                                margin: 0 0 30px;
+                            }
+                            p{
+                                font: {
+                                    size: 17px;
+                                }
+                                line-height: 1.3em;
+                                color: #fff;
+                                text-align: center;
+                                margin: 0 0 60px;
+                            }
+                            .action{
+                                display: block;
+                                margin: 0 auto;
+                                padding: 0 25px;
+                                border: 0;
+                                border-radius: 30px;
+                                background: $amarillo;
+                                font: {
+                                    size: 14px;
+                                }
+                                line-height: 45px;
+                                color: $azul;
+                            }
+                        }
+                    }
+                    .owl-dots{
+                        position: absolute;
+                        right: 0;
+                        bottom: 60px;
+                        left: 0;
+                        margin: auto;
+                        width: 60px;
+                        display: flex;
+                        justify-content: space-between;
+                        .owl-dot{
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 4px;
+                            background: $amarillo;
+                            -webkit-transition: all 0.15s linear;
+                            transition: all 0.15s linear;
+                            &.active{
+                                width: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+            .benefits{
+                margin: 0 0 60px;
+                padding: 60px 30px;
+                -webkit-box-shadow: $sombra;
+                box-shadow: $sombra;
+                .list{
+                    width: 230px;
+                    padding: 0;
+                    margin: 0 auto;
+                    list-style: none;
+                    li{
+                        font: {
+                            size: 15px;
+                        }
+                        line-height: 1.3em;
+                        color: #535353;
+                        position: relative;
+                        padding: 0 0 0 60px;
+                        margin: 0 0 40px;
+                        &:before{
+                            content: '';
+                            display: block;
+                            width: 44px;
+                            height: 44px;
+                            border: 2px solid $aqua;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        }
+                        &:after{
+                            content: '';
+                            display: block;
+                            width: 8px;
+                            height: 20px;
+                            border: {
+                                width: 0 2px 2px 0;
+                                style: solid;
+                                color: $aqua;
+                            }
+                            position: absolute;
+                            top: 10px;
+                            left: 18px;
+                            -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                        &:last-child{
+                            margin: 0;
                         }
                     }
                 }

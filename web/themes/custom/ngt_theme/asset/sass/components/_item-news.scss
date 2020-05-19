@@ -67,18 +67,17 @@
                     margin: 0;
                 }
             }
-            .hour, .date {
+            time {
+                display: block;
                 margin: 0 0 10px;
-                span{
-                    font: {
-                        size: 13px;
-                    }
-                    color: #747474;
+                font: {
+                    size: 13px;
                 }
-            }
-            .hour{
-                &:before{
-                    content: '';
+                color: #747474;
+                &.hour{
+                    &:before{
+                        content: '';
+                    }
                 }
             }
         }
@@ -101,7 +100,7 @@
                 }
                 &.save{
                     width: 28px;
-                    border: 1px solid #00A8CC;
+                    border: 1px solid $aqua;
                     font: {
                         size: 0;
                     }

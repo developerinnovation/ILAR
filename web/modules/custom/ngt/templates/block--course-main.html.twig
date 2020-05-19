@@ -21,20 +21,14 @@
                 {% endfor %}
             </figure>
         </div>
-        <h3 class="title mobile">{{ course[0].title }}</h3>
         <div class="info">
             <div class="name author">
                 {% for key, item in course[0].expertos %}
                     <a href="{{ item.uri }}" class="link author">{{ item.name_author }}</a>
                 {% endfor %}
             </div>
-            <div class="hour">
-                <i></i>
-                <span> {{ course[0].horas }} horas</span>
-            </div>
-            <div class="date start">
-                <span>Inicio: {{ course[0].fecha_inicio }} </span>
-            </div>
+            <time class="hour">{{ course[0].horas }} horas</time>
+            <time class="date">Inicio: {{ course[0].fecha_inicio }}</time>
             <div class="rating">
                 {{ drupal_field('field_calificacion', 'node', course[0].nid) }}
             </div>
