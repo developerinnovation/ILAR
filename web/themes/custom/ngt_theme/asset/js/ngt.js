@@ -60,5 +60,6 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
             center: true,
             items: 1,
         });
+        $("#main.page-front .top .slider").addClass('owl-carousel');
     });
 })(jQuery);

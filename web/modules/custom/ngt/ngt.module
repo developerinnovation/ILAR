@@ -51,3 +51,11 @@ function ngt_theme() {
   ];
 }
 
+// $tree = \Drupal::entityTypeManager()
+//       ->getStorage('taxonomy_term')
+//       ->loadTree(
+//         'some_vocabulary', // This is your taxonomy term vocabulary (machine name).
+//         0,                 // This is "tid" of parent. Set "0" to get all.
+//         1,                 // Get only 1st level.
+//         TRUE               // Get full load of taxonomy term entity.
+//       );
