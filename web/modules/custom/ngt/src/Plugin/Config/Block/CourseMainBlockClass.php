@@ -44,10 +44,12 @@ class CourseMainBlockClass {
      * @param $config
      */
     public function build(CourseMainBlock &$instance, $configuration){
-
+        $config = \Drupal::config('ngt.adminSettingsGeneral');  
+        
         $build = [
             '#theme' => 'course_main',
             '#course' => $this->getLastcouseMain(),
+            '#txt_curso' => $config->get('txt_curso'),
         ];
 
         return $build;

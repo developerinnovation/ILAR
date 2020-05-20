@@ -2,7 +2,7 @@
     <div class="newsetter">
         <div class="left">
             <h3>suscríbete a nuestro newsletter</h3>
-            <p>Do nostrud laborum ea Lorem officia esse cupidatat consectetur esse elit deserunt nostrud aliqua veniam.</p>
+            <p>{{ general_txt_newsletter }}</p>
         </div>
         <div class="right">
             <form action="">
@@ -15,10 +15,10 @@
     </div>
     <div class="box">
         <figure>
-            <img class="logo-footer" src="" alt="">
+            <img class="logo-footer" src="{{ file_url(general_logo) }}">
         </figure>
         
-        <p class="description">Commodo aliqua labore et sint Lorem ut officia occaecat labore voluptate fugiat laboris fugiat. Cupidatat eu ipsum Lorem fugiat nostrud officia. Esse anim minim magna enim mollit. Laboris incididunt enim veniam cupidatat Lorem laboris elit. Quis do magna magna aliquip do adipisicing excepteur cupidatat nulla.</p>
+        <p class="description">{{ general_txt_footer }}</p>
 
         <div class="menu">
             {# Get menu items #}

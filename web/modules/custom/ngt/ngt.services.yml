@@ -11,3 +11,14 @@ services:
   ngt.course_category_logic:
     class: Drupal\ngt\Services\Rest\CourseCategoryRestLogic
     arguments: []
+  ngt.benefit_home:
+    class: Drupal\ngt\Plugin\Config\Block\BenefitHomeBlockClass
+    arguments: []
+  ngt.benefit_config:
+    class: Drupal\ngt\Plugin\Config\Form\BenefitConfigFormClass
+    arguments: []
+  ngt.general_config:
+    class: Drupal\ngt\Plugin\Config\Form\GeneralConfigFormClass
+    arguments: []
+   
+    

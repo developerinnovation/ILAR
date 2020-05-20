@@ -6,11 +6,20 @@ ngt.settings:
     _permission: 'access NGT settings'
   options:
     _admin_route: TRUE
-ngt.admin_settings_form:  
+ngt.admin_benefit_form:  
   path: '/admin/config/ngt/beneficios/adminsettings'  
   defaults:  
-    _form: '\Drupal\ngt\Plugin\Form\BenefitForm'  
+    _form: '\Drupal\ngt\Plugin\Form\BenefitConfigForm'  
     _title: 'Asignación de beneficios'  
+  requirements:  
+    _permission: 'access administration pages'  
+  options:  
+    _admin_route: TRUE  
+ngt.admin_general_form:  
+  path: '/admin/config/ngt/general/adminsettings'  
+  defaults:  
+    _form: '\Drupal\ngt\Plugin\Form\GeneralConfigForm'  
+    _title: 'Configuración general de la plataforma'  
   requirements:  
     _permission: 'access administration pages'  
   options:  

@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
 
 /**
  * Implements hook_help().
@@ -26,6 +27,28 @@ function ngt_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+ * Prepares variables for the html.html.twig template.
+ */
+function ngt_preprocess_html(&$variables) {
+
+  // build uri logo
+  $image_src = '';
+  $conf = \Drupal::config('ngt.adminSettingsGeneral');
+  $img = $conf->get('img_logo');
+  if ( is_array($img) ) {
+    $fid = reset($img);  
+    $file = File::load($fid);
+    isset($file) ? $image_src = $file->getFileUri() : '';
+  }
+
+  // global variables
+  $variables['general_logo'] = $image_src;
+  $variables['general_txt_curso'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_curso');
+  $variables['general_txt_newsletter'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_newsletter');
+  $variables['general_txt_footer'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_footer');
+}
+
+/**
  * Implements hook_theme().
  */
 function ngt_theme() {
@@ -33,6 +56,7 @@ function ngt_theme() {
     'course_main' => [
       'variables' => [
         'course' => NULL,
+        'txt_curso' => NULL,
       ],
       'template' => 'block--course-main',
     ],
@@ -47,6 +71,14 @@ function ngt_theme() {
         'contents' => NULL,
       ],
       'template' => 'block--contenido-destacado',
+    ],
+    'benefit_home' => [
+      'variables' => [
+        'benefit_1' => NULL,
+        'benefit_2' => NULL,
+        'benefit_3' => NULL,
+      ],
+      'template' => 'block--benefit-home',
     ],
   ];
 }
