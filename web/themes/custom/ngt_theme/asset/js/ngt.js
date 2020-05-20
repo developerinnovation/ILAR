@@ -53,7 +53,9 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
 
 (function($) {
     $(document).ready(function() {
-         $("#main.page-front .top .slider").owlCarousel({
+        
+        // owl menu home
+        $("#main.page-front .top .slider").owlCarousel({
             nav: true,
             loop: false,
             navRewind: false,
@@ -61,5 +63,16 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
             items: 1,
         });
         $("#main.page-front .top .slider").addClass('owl-carousel');
+    
+        // scroll show menu
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 197) {
+                $("nav#menu-fixed").addClass("scroll");
+            } else {
+                $("nav#menu-fixed").removeClass("scroll");
+            }
+        });
+    
     });
 })(jQuery);
