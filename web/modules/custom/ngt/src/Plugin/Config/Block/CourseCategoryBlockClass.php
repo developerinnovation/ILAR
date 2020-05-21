@@ -38,6 +38,7 @@ class CourseCategoryBlockClass {
 
         $build = [
             '#theme' => 'course_category',
+            '#main_category' => \Drupal::config('ngt.adminSettingsCategory')->getRawData(),
         ];
 
         return $build;

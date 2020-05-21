@@ -20,5 +20,7 @@ services:
   ngt.general_config:
     class: Drupal\ngt\Plugin\Config\Form\GeneralConfigFormClass
     arguments: []
-   
+  ngt.category_config:
+    class: Drupal\ngt\Plugin\Config\Form\CategoryConfigFormClass
+    arguments: []
     

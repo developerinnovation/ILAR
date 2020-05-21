@@ -2,13 +2,25 @@
     <div class="desktop">
         <nav>
             <li class="active">Últimos cursos</li>
-            <li>Categoria de prueba</li>
+            {% for key, category in main_category %}   
+                {% if category == 1 %}
+                    {% set item = key|split('_') %}
+                        {% set text %} {{ drupal_field('name', 'taxonomy_term', item[1]) }} {% endset %}
+                        <li ng-click="ngt.loadCourseCategory('{{ item[1] }}','0','4')">{{ text|striptags|trim|capitalize }}</li>
+                {% endif %} 
+            {% endfor %}
         </nav>
     </div>
     <div class="mobile">
         <select name="select">
-            <option value="value1" selected>Últimos cursos</option> 
-            <option value="value2">Categoria de prueba</option>
+            <option value="value1" ng-selected="ngt.selectedCategory">Últimos cursos</option> 
+            {% for key, category in main_category %}   
+                {% if category == 1 %}
+                    {% set item = key|split('_') %}
+                        {% set text %} {{ drupal_field('name', 'taxonomy_term', item[1]) }} {% endset %}
+                        <option value="{{ item[1] }}">{{ text|striptags|trim|capitalize }}</option>
+                {% endif %} 
+            {% endfor %}
         </select>
     </div>
 </div>

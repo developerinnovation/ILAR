@@ -46,6 +46,7 @@ function ngt_preprocess_html(&$variables) {
   $variables['general_txt_curso'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_curso');
   $variables['general_txt_newsletter'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_newsletter');
   $variables['general_txt_footer'] = \Drupal::config('ngt.adminSettingsGeneral')->get('txt_footer');
+
 }
 
 /**
@@ -62,7 +63,7 @@ function ngt_theme() {
     ],
     'course_category' => [
       'variables' => [
-        'category' => NULL,
+        'main_category' => NULL,
       ],
       'template' => 'block--course-category',
     ],
@@ -82,12 +83,3 @@ function ngt_theme() {
     ],
   ];
 }
-
-// $tree = \Drupal::entityTypeManager()
-//       ->getStorage('taxonomy_term')
-//       ->loadTree(
-//         'some_vocabulary', // This is your taxonomy term vocabulary (machine name).
-//         0,                 // This is "tid" of parent. Set "0" to get all.
-//         1,                 // Get only 1st level.
-//         TRUE               // Get full load of taxonomy term entity.
-//       );
