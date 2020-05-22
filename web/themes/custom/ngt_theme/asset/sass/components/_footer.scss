@@ -82,4 +82,109 @@ footer{
             }
         }
     }
+    #menu-fixed{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        -webkit-box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
+        z-index: 2;
+        .icon{
+            width: 20%;
+            font: {
+                size: 0;
+            }
+            -webkit-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+            &:before{
+                content: '';
+                display: block;
+                margin: 10px auto;
+                width: 30px;
+                height: 30px;
+                background:{
+                    image: url(../img/sprite-icon-menu.svg);
+                    size: 150px;
+                    repeat: no-repeat;
+                }
+            }
+            &.icon-gal{
+                &:before{
+                    background: {
+                        position: 0 0;
+                    }
+                }
+                &.acitve{
+                    &:before{
+                        background: {
+                            position: 0 -30px;
+                        }
+                    }
+                }
+            }
+            &.icon-home{
+                &:before{
+                    background: {
+                        position: -30px 0;
+                    }
+                }
+                &.acitve{
+                    &:before{
+                        background: {
+                            position: -30px -30px;
+                        }
+                    }
+                }
+            }
+            &.icon-search{
+                &:before{
+                    background: {
+                        position: -60px 0;
+                    }
+                }
+                &.acitve{
+                    &:before{
+                        background: {
+                            position: -60px -30px;
+                        }
+                    }
+                }
+            }
+            &.icon-media{
+                &:before{
+                    background: {
+                        position: -90px 0;
+                    }
+                }
+                &.acitve{
+                    &:before{
+                        background: {
+                            position: -90px -30px;
+                        }
+                    }
+                }
+            }
+            &.icon-logout{
+                &:before{
+                    background: {
+                        position: -120px 0;
+                    }
+                }
+                &.acitve{
+                    &:before{
+                        background: {
+                            position: -120px -30px;
+                        }
+                    }
+                }
+            }
+            &.active{
+                border-bottom: 4px solid $aqua;
+            }
+        }
+    }
 }
