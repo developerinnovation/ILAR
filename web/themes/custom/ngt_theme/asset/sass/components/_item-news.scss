@@ -110,6 +110,13 @@
                     font: {
                         size: 0;
                     }
+                    background:{
+                        image: url(../img/sprite-icon-generales.svg);
+                        size: 240px;
+                        position: -152px -1px;
+                        repeat: no-repeat;
+                        color: transparent;
+                    }
                 }
             }
         }
