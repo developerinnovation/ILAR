@@ -7,6 +7,10 @@
                         position: relative;
                         figure{
                             height: calc(100vh - 40px);
+                            @media only screen and ($desktop){
+                                height: 100vh;
+                                min-height: 600px;
+                            }
                             img{
                                 width: 100%;
                                 height: 100%;
@@ -24,6 +28,9 @@
                             display: flex;
                             justify-content: center;
                             flex-direction: column;
+                            @media only screen and ($desktop){
+                                padding: 40px;
+                            }
                             h2{
                                 font: {
                                     size: 23px;
@@ -50,7 +57,9 @@
                                 border-radius: 30px;
                                 background: $amarillo;
                                 font: {
+                                    family: 'Montserrat', sans-serif;
                                     size: 14px;
+                                    weight: 600;
                                 }
                                 line-height: 45px;
                                 color: $azul;
@@ -85,11 +94,19 @@
                 padding: 60px 30px;
                 -webkit-box-shadow: $sombra;
                 box-shadow: $sombra;
+                @media only screen and ($desktop){
+                    padding: 80px 40px;
+                }
                 .list{
                     width: 230px;
                     padding: 0;
                     margin: 0 auto;
                     list-style: none;
+                    @media only screen and ($tablet){
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-evenly;
+                    }
                     li{
                         font: {
                             size: 15px;
@@ -99,6 +116,14 @@
                         position: relative;
                         padding: 0 0 0 60px;
                         margin: 0 0 40px;
+                        @media only screen and ($desktop){
+                            font: {
+                                size: 25px;
+                            }
+                            width: 30%;
+                            padding: 0 0 0 110px;
+                            margin: 0;
+                        }
                         &:before{
                             content: '';
                             display: block;
@@ -109,6 +134,11 @@
                             position: absolute;
                             top: 0;
                             left: 0;
+                            @media only screen and ($desktop){
+                                -webkit-transform: scale(2);
+                                transform: scale(2);
+                                transform-origin: top left;
+                            }
                         }
                         &:after{
                             content: '';
@@ -125,6 +155,13 @@
                             left: 18px;
                             -webkit-transform: rotate(45deg);
                             transform: rotate(45deg);
+                            @media only screen and ($desktop){
+                                -webkit-transform: rotate(45deg) scale(2);
+                                transform: rotate(45deg) scale(2);
+                                transform-origin: top left;
+                                top: 20px;
+                                left: 58px;
+                            }
                         }
                         &:last-child{
                             margin: 0;
@@ -136,6 +173,28 @@
         >.center, .bottom{
             padding: 0 24px;
         }
+        >.center{
+            .course{
+                h3{
+                    font: {
+                        size: 21px;
+                    }
+                    text-align: center;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    color: $azul;
+                    margin: 0 0 20px;
+                }
+                p{
+                    font: {
+                        size: 15px;
+                    }
+                    color: #535353;
+                    text-align: center;
+                    margin: 0 0 30px;
+                }
+            }
+        }
         >.bottom{
             .select{
                 margin: 0 0 40px;
@@ -143,7 +202,9 @@
                     select{
                         -webkit-appearance: none;
                         font: {
+                            family: 'Montserrat', sans-serif;
                             size: 15px;
+                            weight: 700;
                         }
                         line-height: 30px;
                         color: $azul;

@@ -5,7 +5,7 @@ footer{
         .left{
             h3{
                 font: {
-                    size: 21px;
+                    size: 18px;
                 }
                 color: $azul;
                 text-align: center;
@@ -74,7 +74,9 @@ footer{
                 margin: 0 0 15px;
                 a{
                     font: {
+                        family: 'Montserrat', sans-serif;
                         size: 15px;
+                        weight: 400;
                     }
                     line-height: 1.3em;
                     color: #fff;
@@ -93,6 +95,9 @@ footer{
         -webkit-box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
         box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
         z-index: 2;
+        @media only screen and ($desktop){
+            display: none;
+        }
         .icon{
             width: 20%;
             font: {

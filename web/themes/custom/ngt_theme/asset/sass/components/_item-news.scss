@@ -79,6 +79,12 @@
                         content: '';
                     }
                 }
+                &.date{
+                    font: {
+                        weight: 500;
+                    }
+                    color: #747474;
+                }
             }
         }
         .action{
