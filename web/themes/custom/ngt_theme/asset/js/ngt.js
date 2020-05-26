@@ -64,6 +64,14 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
         });
         $("#main.page-front .top .slider").addClass('owl-carousel');
         
+
+        // node curso cover
+        $( "picture.cover-video" ).click(function() {
+           $(this).removeClass('active');
+        });
+        
+
+        // mobile
         if(screenWidth < 769){
             // scroll show menu
             $(window).scroll(function() {
