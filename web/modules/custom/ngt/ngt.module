@@ -81,5 +81,30 @@ function ngt_theme() {
       ],
       'template' => 'block--benefit-home',
     ],
+    'node_top_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--top-course',
+    ],
+    'node_left_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--left-course',
+    ],
+    'node_right_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--right-course',
+    ],
+    'node_more_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--more-course',
+    ],
   ];
 }
+

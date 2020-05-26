@@ -1,0 +1,40 @@
+<div class="box">
+    <div class="video">
+        <figure>
+            <picture class="cover-video">
+                <source srcset="{{ data[0].foto_portada.uri | image_style('360x196') }}" 
+                    media="(max-width: 767px)" 
+                    alt="{{ data[0].foto_portada.alt }}" 
+                    title="{{ data[0].foto_portada.title }}">
+                <img srcset="{{ data[0].foto_portada.uri | image_style('604x476') }}" 
+                    alt="{{ data[0].foto_portada.alt }}" 
+                    title="{{ data[0].foto_portada.title }}">
+            </picture>
+            <video src="https://ilar.s3.sa-east-1.amazonaws.com/cursos/videos/2020-05-25/Grabacio%CC%81n%20de%20pantalla%202020-05-25%20a%20la%28s%29%205.51.24%20p.%C2%A0m..mov" controls>
+                Tu navegador no implementa el elemento <code>video</code>.
+            </video>
+        </figure>
+    </div>
+    <div class="presentation">
+        <h3>Presentación</h3>
+        <div class="description">
+            {{ data[0].body|raw }}
+        </div>
+    </div>
+    <div class="experts">
+        <h3>Expertos</h3>
+        <div class="list">
+            {% for key, item in data[0].expertos %}
+                <div class="name author">
+                    <figure>
+                        <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}" class="author">
+                    </figure>
+                    <div class="info">
+                        <a href="{{ item.uri }}" class="link">{{ item.name_author }}</a>
+                        <p class="profile">{{ item.profile }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

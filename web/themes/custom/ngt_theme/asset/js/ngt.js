@@ -53,7 +53,7 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
 
 (function($) {
     $(document).ready(function() {
-        
+        var screenWidth = window.screen.width;
         // owl menu home
         $("#main.page-front .top .slider").owlCarousel({
             nav: true,
@@ -63,16 +63,30 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
             items: 1,
         });
         $("#main.page-front .top .slider").addClass('owl-carousel');
-    
-        // scroll show menu
-        $(window).scroll(function() {
-            var scroll = $(window).scrollTop();
-            if (scroll >= 197) {
-                $("nav#menu-fixed").addClass("scroll");
-            } else {
-                $("nav#menu-fixed").removeClass("scroll");
-            }
-        });
+        
+        if(screenWidth < 769){
+            // scroll show menu
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 197) {
+                    $("nav#menu-fixed").addClass("active");
+                } else {
+                    $("nav#menu-fixed").removeClass("active");
+                }
+            });
+
+            // slider node curso
+            $(".main.node-course .right .box .other-course .more").owlCarousel({
+                nav: true,
+                loop: false,
+                navRewind: false,
+                center: true,
+                items: 1.5,
+            });
+            $(".main.node-course .right .box .other-course .more").addClass('owl-carousel');
+            
+        }
+        
     
     });
 })(jQuery);
