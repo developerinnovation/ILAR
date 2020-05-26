@@ -69,9 +69,9 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
             $(window).scroll(function() {
                 var scroll = $(window).scrollTop();
                 if (scroll >= 197) {
-                    $("nav#menu-fixed").addClass("active");
+                    $("nav#menu-fixed").addClass("scroll");
                 } else {
-                    $("nav#menu-fixed").removeClass("active");
+                    $("nav#menu-fixed").removeClass("scroll");
                 }
             });
 
