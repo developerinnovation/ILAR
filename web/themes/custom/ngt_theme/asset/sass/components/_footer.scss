@@ -5,7 +5,7 @@ footer{
         .left{
             h3{
                 font: {
-                    size: 21px;
+                    size: 18px;
                 }
                 color: $azul;
                 text-align: center;
@@ -74,7 +74,9 @@ footer{
                 margin: 0 0 15px;
                 a{
                     font: {
+                        family: 'Montserrat', sans-serif;
                         size: 15px;
+                        weight: 400;
                     }
                     line-height: 1.3em;
                     color: #fff;
@@ -93,6 +95,9 @@ footer{
         -webkit-box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
         box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
         z-index: 2;
+        @media only screen and ($desktop){
+            display: none;
+        }
         .icon{
             width: 20%;
             font: {
@@ -118,7 +123,7 @@ footer{
                         position: 0 0;
                     }
                 }
-                &.acitve{
+                &.scroll{
                     &:before{
                         background: {
                             position: 0 -30px;
@@ -132,7 +137,7 @@ footer{
                         position: -30px 0;
                     }
                 }
-                &.acitve{
+                &.scroll{
                     &:before{
                         background: {
                             position: -30px -30px;
@@ -146,7 +151,7 @@ footer{
                         position: -60px 0;
                     }
                 }
-                &.acitve{
+                &.scroll{
                     &:before{
                         background: {
                             position: -60px -30px;
@@ -160,7 +165,7 @@ footer{
                         position: -90px 0;
                     }
                 }
-                &.acitve{
+                &.scroll{
                     &:before{
                         background: {
                             position: -90px -30px;
@@ -174,7 +179,7 @@ footer{
                         position: -120px 0;
                     }
                 }
-                &.acitve{
+                &.scroll{
                     &:before{
                         background: {
                             position: -120px -30px;
@@ -182,7 +187,7 @@ footer{
                     }
                 }
             }
-            &.active{
+            &.scroll{
                 border-bottom: 4px solid $aqua;
             }
         }
