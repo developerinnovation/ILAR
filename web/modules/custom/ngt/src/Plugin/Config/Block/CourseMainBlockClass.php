@@ -128,6 +128,18 @@ class CourseMainBlockClass {
         }
         return $url;
     }
+
+    /**
+     * load_url_file
+     *
+     * @param  int $media_field
+     * @return string url
+     */
+    public function load_url_file($media_field){
+        $file = File::load($media_field);
+        $url = $file->getFileUri();
+        return $url;
+    }
     
     /**
      * load_author
@@ -144,6 +156,7 @@ class CourseMainBlockClass {
                 'name_author' => ucfirst($user->get('field_nombre')->getValue()[0]['value'])." ".ucfirst($user->get('field_apellidos')->getValue()[0]['value']),
                 'picture_uri' => $this->load_image($user->get('user_picture')->getValue()[0]['target_id'],'98x98'),
                 'uri' => \Drupal::service('path.alias_manager')->getAliasByPath('/user/'.$user->get('uid')->getValue()[0]['value']),
+                'profile' => $user->get('field_perfil')->getValue()[0]['value'],
             ];
             array_push($expertos,$experto);
         }

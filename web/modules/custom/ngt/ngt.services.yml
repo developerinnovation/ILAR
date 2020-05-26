@@ -23,4 +23,17 @@ services:
   ngt.category_config:
     class: Drupal\ngt\Plugin\Config\Form\CategoryConfigFormClass
     arguments: []
+
+  ngt.node_top_course:
+    class: Drupal\ngt\Plugin\Config\Block\NodeTopCourseBlockClass
+    arguments: []
+  ngt.node_left_course:
+    class: Drupal\ngt\Plugin\Config\Block\NodeLeftCourseBlockClass
+    arguments: []
+  ngt.node_right_course:
+    class: Drupal\ngt\Plugin\Config\Block\NodeRightCourseBlockClass
+    arguments: []
+  ngt.node_more_course:
+    class: Drupal\ngt\Plugin\Config\Block\NodeMoreCourseBlockClass
+    arguments: []
     

@@ -77,6 +77,18 @@
                 &.hour{
                     &:before{
                         content: '';
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin: 0 4px 0 0;
+                        width: 16px;
+                        height: 16px;
+                        background:{
+                            image: url(../img/sprite-icon-generales.svg);
+                            size: 240px;
+                            position: -7px -7px;
+                            repeat: no-repeat;
+                            color: transparent;
+                        }
                     }
                 }
                 &.date{
@@ -84,6 +96,62 @@
                         weight: 500;
                     }
                     color: #747474;
+                }
+            }
+        }
+        .rating{
+            margin: 0 0 15px;
+            .form-item{
+                display: flex;
+                .fivestar-widget{
+                    margin: 0 10px 0 0;
+                    .star{
+                        margin: 0 2px 0 0;
+                        height: 16px;
+                        background: transparent;
+                        a{
+                            display: block;
+                            width: 18px;
+                            height: 16px;
+                            background:{
+                                image: url(../img/sprite-icon-generales.svg);
+                                size: 240px;
+                                position: -126px -37px;
+                                repeat: no-repeat;
+                                color: #fff;
+                            }
+                        }
+                        &.on{
+                            a{
+                                background: {
+                                    position: -126px -7px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .description{
+                    .fivestar-summary{
+                        line-height: 16px;
+                        height: 16px;
+                        .average-rating{
+                            font: {
+                                size: 0;
+                            }
+                            span{
+                                font: {
+                                    size: 13px;
+                                }
+                                color: #747474;
+                            }
+                        }
+                        .total-votes{
+                            font: {
+                                size: 13px;
+                            }
+                            color: #747474;
+                        }
+                    }
                 }
             }
         }
@@ -95,7 +163,7 @@
                 padding: 0;
                 border-radius: 15px;
                 &.show-course{
-                    margin: 0 20px 0 0;
+                    margin: 0 15px 0 0;
                     width: 84px;
                     border: 0;
                     background: #FFA41B;
