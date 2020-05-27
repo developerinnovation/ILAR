@@ -56,7 +56,7 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
         var screenWidth = window.screen.width;
         // owl menu home
         $("#main.page-front .top .slider").owlCarousel({
-            nav: true,
+            nav: false,
             loop: false,
             navRewind: false,
             center: true,
@@ -85,7 +85,7 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
 
             // slider node curso
             $(".main.node-course .right .box .other-course .more").owlCarousel({
-                nav: true,
+                nav: false,
                 loop: false,
                 navRewind: false,
                 center: true,
