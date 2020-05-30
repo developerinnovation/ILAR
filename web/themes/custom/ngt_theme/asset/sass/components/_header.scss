@@ -1,7 +1,10 @@
 header{
+    display: none;
+    @media only screen and ($desktop){
+        display: block;
+    }
     .box{
         .elements{
-            display: none;
         }
     }
 }

@@ -1,0 +1,12 @@
+.node-course{
+    section{
+        &.top{
+            h1{
+                font: {
+                    size: 18px;
+                }
+                color: $azul;
+            }
+        }
+    }
+}
