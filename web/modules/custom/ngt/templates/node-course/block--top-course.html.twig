@@ -2,11 +2,13 @@
     <h1 class="title">{{ data[0].title }}</h1>
     <p class="summary">Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.</p>
     <picture class="author">
-        <figcaption>
+        <figure>
             {% for key, item in data[0].expertos %}
                 <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}">
             {% endfor %}
-
+        </figure>
+           
+        <figcaption>
             {% for key, item in data[0].expertos %}
                 <a href="{{ item.uri }}" class="link">{{ item.name_author }}</a>
             {% endfor %}
