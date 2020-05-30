@@ -77,6 +77,18 @@
                 &.hour{
                     &:before{
                         content: '';
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin: 0 4px 0 0;
+                        width: 16px;
+                        height: 16px;
+                        background:{
+                            image: url(../img/sprite-icon-generales.svg);
+                            size: 240px;
+                            position: -7px -7px;
+                            repeat: no-repeat;
+                            color: transparent;
+                        }
                     }
                 }
                 &.date{
@@ -95,7 +107,7 @@
                 padding: 0;
                 border-radius: 15px;
                 &.show-course{
-                    margin: 0 20px 0 0;
+                    margin: 0 15px 0 0;
                     width: 84px;
                     border: 0;
                     background: #FFA41B;
