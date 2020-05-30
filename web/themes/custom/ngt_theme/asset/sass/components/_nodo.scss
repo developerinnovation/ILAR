@@ -1,11 +1,48 @@
 .node-course{
     section{
         &.top{
-            h1{
-                font: {
-                    size: 18px;
+            margin: 0 30px;
+            .info{
+                padding: 30px 0;
+                border-bottom: 1px solid #c2c2c2;
+                h1{
+                    font: {
+                        size: 18px;
+                    }
+                    color: $azul;
+                    text-align: center;
+                    margin: 0 0 15px;
                 }
-                color: $azul;
+                .summary{
+                    font: {
+                        size: 15px;
+                    }
+                    color: #535353;
+                    text-align: center;
+                }
+                .author{
+                    figure{
+                        display: flex;
+                        justify-content: center;
+                        img{
+                            width: 48px;
+                            height: 48px;
+                            margin: 0 -10px 0 0;
+                            border: 3px solid #fff;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            &:first-child{
+                                z-index: 3;
+                            }
+                            &:nth-child(2){
+                                z-index: 2;
+                            }
+                            &:nth-child(3){
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

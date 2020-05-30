@@ -1,37 +1,25 @@
-<div class="box">
+<div class="info">
     <h1 class="title">{{ data[0].title }}</h1>
     <p class="summary">Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.</p>
-    <div class="info">
-        <div class="picture author">
-            <figure>
-                {% for key, item in data[0].expertos %}
-                    <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}">
-                {% endfor %}
-            </figure>
-        </div>
-
-        <div class="time">
-            <time class="hour">{{ data[0].horas }} horas</time>
-            <time class="date">Inicio: {{ data[0].fecha_inicio }}</time>
-        </div>
-
-        <div class="capacity">
-            <div class="module">
-                <span> {{ data[0].cnt_moulos }} Módulos</span>
-            </div>
-            <div class="students">
-                <span>{{ data[0].cnt_alumnos }} Alumnos</span>
-            </div>
-        </div>
-        
-        <div class="language-rating">
-            <div class="language">
-                <span>Español</span>
-            </div>
-            <div class="rating">
-                {{ drupal_field('field_calificacion', 'node',  data[0].nid) }}
-            </div>
-        </div>
-    
+    <picture class="author">
+        <figure>
+            {% for key, item in data[0].expertos %}
+                <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}">
+            {% endfor %}
+        </figure>
+    </picture>
+</div>
+<div class="details">
+    <time class="hour">{{ data[0].horas }} horas</time>
+    <time class="item date">Inicio: {{ data[0].fecha_inicio }}</time>
+    <span class="item module"> {{ data[0].cnt_moulos }} Módulos</span>
+    <span class="item students">{{ data[0].cnt_alumnos }} Alumnos</span>
+    <span class="item language">Español</span>
+    <div class="rating">
+        {{ drupal_field('field_calificacion', 'node',  data[0].nid) }}
+    </div>
+    <div class="action">
+        <button class="show-course">Reservar cupo</button>
+        <button class="save">guardar</button>
     </div>
 </div>
