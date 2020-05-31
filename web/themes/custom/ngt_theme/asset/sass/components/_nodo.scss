@@ -2,8 +2,8 @@
     position: relative;
     padding: 56vw 0 0;
     section{
+        margin: 0 30px;
         &.top{
-            margin: 0 30px;
             .info{
                 padding: 30px 0;
                 border-bottom: 1px solid #c2c2c2;
@@ -127,91 +127,189 @@
             }
         }
         &.left{
+            display: none;
+            @media only screen and ($desktop){
+                display: block;
+            }
             .course-action{
-                &.mobile{
-                    @media only screen and ($desktop){
-                        display: none;
-                    }
-                }
-                &.desktop{
-                    display: none;
-                    @media only screen and ($desktop){
-                        display: block;
-                    }
-                }
             }
             .action{
-                display: none;
-                @media only screen and ($desktop){
-                    display: block;
-                }
             }
             .share{
-                display: none;
-                @media only screen and ($desktop){
-                    display: block;
-                }
             }
         }
         &.right{
-            .content-video{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 56vw;
-                .cover-video{
-                    display: none;
+            .main-content{
+                padding: 30px 0 50px;
+                border-bottom: 1px solid #c2c2c2;
+                margin: 0 0 50px;
+                .course-action{
+                    margin: 0 0 30px;
+                    @media only screen and ($desktop){
+                        display: none;
+                    }
+                    select{
+                        -webkit-appearance: none;
+                        font: {
+                            family: 'Montserrat', sans-serif;
+                            size: 15px;
+                            weight: 700;
+                        }
+                        line-height: 30px;
+                        color: $azul;
+                        display: block;
+                        border: 0;
+                        border-bottom: 3px solid $azul;
+                        border-radius: 0;
+                        margin: 0 auto;
+                    }
+                }
+                .content-video{
                     position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
-                    height: 100%;
-                    z-index: 1;
-                    img{
-                        display: block;
+                    height: 56vw;
+                    .cover-video{
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;
-                    }
-                    &:before{
-                        content: '';
-                        display: block;
-                        width: 36px;
-                        height: 36px;
-                        border-radius: 50%;
-                        background: rgba(0, 0, 0, 0.4);
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 0;
-                        margin: auto;
-                    }
-                    &:after{
-                        content: '';
-                        width: 0;
-                        height: 0;
-                        border: {
-                            style: solid;
-                            width: 8px 0 8px 13.9px;;
-                            color: transparent transparent transparent #fff;
+                        z-index: 2;
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                         }
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 5px;
-                        margin: auto;
+                        &:before{
+                            content: '';
+                            display: block;
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: rgba(0, 0, 0, 0.4);
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            margin: auto;
+                        }
+                        &:after{
+                            content: '';
+                            width: 0;
+                            height: 0;
+                            border: {
+                                style: solid;
+                                width: 8px 0 8px 13.9px;;
+                                color: transparent transparent transparent #fff;
+                            }
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 5px;
+                            margin: auto;
+                        }
+                        &.active{
+                            display: block;
+                        }
                     }
-                    &.active{
+                    video, iframe{
                         display: block;
+                        width: 100%;
+                        height: 56vw;
                     }
                 }
-                video, iframe{
-                    display: block;
-                    width: 100%;
-                    height: 56vw;
+                .content-tab{
+                    h2{
+                        display: none;
+                        @media only screen and ($desktop){
+                            display: block;
+                        }
+                    }
+                    p{
+                        font: {
+                            size: 15px;
+                        }
+                        line-height: 1.5em;
+                        color: #2B2B2B;
+                        margin: 0 0 25px;
+                        &:last-child{
+                            margin: 0;
+                        }
+                    }
+                    .description{
+                        margin: 0 0 50px;
+                    }
+                    h3{
+                        font: {
+                            weight: 600;
+                        }
+                        color: #535353;
+                        letter-spacing: 0.05em;
+                        text-align: center;
+                        text-transform: uppercase;
+                        margin: 0 0 30px;
+                        &:after{
+                            content: '';
+                            display: block;
+                            margin: 15px auto 0;
+                            width: 35px;
+                            height: 5px;
+                            border-radius: 4px;
+                            background: $amarillo;
+                        }
+                    }
+                    .list{
+                        .author{
+                            margin: 0 0 40px;
+                            figure{
+                                margin: 0 0 20px;
+                                img{
+                                    margin: 0 auto;
+                                    width: 80px;
+                                    height: 80px;
+                                    border: 3px solid #fff;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                }
+                            }
+                            .info{
+                                text-align: center;
+                                .name{
+                                    font: {
+                                        weight: 700;
+                                        size: 15px;
+                                    }
+                                    color: $azul;
+                                    display: inline-block;
+                                    margin: 0 0 10px;
+                                }
+                            }
+                            &:last-child{
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .other-course{
+                h3{
+                    font: {
+                        weight: 600;
+                    }
+                    color: #535353;
+                    letter-spacing: 0.05em;
+                    text-align: center;
+                    text-transform: uppercase;
+                    margin: 0 0 30px;
+                }
+                .more{
+                    
                 }
             }
         }
