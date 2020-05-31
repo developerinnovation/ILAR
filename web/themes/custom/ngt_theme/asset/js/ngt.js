@@ -68,6 +68,8 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
         // node curso cover
         $( "picture.cover-video" ).click(function() {
            $(this).removeClass('active');
+           var vid = document.getElementById('presentation');
+           vid.play();
         });
         
 
@@ -84,18 +86,14 @@ app.controller("AppCtrl", ['$scope', '$http', function($scope,$http){
             });
 
             // slider node curso
-            $(".main.node-course .right .box .other-course .more").owlCarousel({
-<<<<<<< HEAD
-                nav: true,
-=======
+            $(".main.node-course .right .other-course .more").owlCarousel({
                 nav: false,
->>>>>>> 835ebdbcda1e6b9d993ba2a0b90756d6b1d7569e
-                loop: false,
+                loop: true,
                 navRewind: false,
                 center: true,
                 items: 1.5,
             });
-            $(".main.node-course .right .box .other-course .more").addClass('owl-carousel');
+            $(".main.node-course .right .other-course .more").addClass('owl-carousel');
             
         }
         

@@ -16,7 +16,7 @@
                 alt="{{ data[0].foto_portada.alt }}" 
                 title="{{ data[0].foto_portada.title }}">
         </picture>
-        <video src="https://ilar.s3.sa-east-1.amazonaws.com/cursos/videos/2020-05-25/Grabacio%CC%81n%20de%20pantalla%202020-05-25%20a%20la%28s%29%205.51.24%20p.%C2%A0m..mov" controls>
+        <video id="presentation" src="https://ilar.s3.sa-east-1.amazonaws.com/cursos/videos/2020-05-25/Grabacio%CC%81n%20de%20pantalla%202020-05-25%20a%20la%28s%29%205.51.24%20p.%C2%A0m..mov" controls>
             Tu navegador no implementa el elemento <code>video</code>.
         </video>
     </figure>
@@ -41,47 +41,4 @@
         </div>
     </div>
 </div>
-<div class="other-course">
-    <h3>Otros cursos</h3>
-    <div class="more">
-    {% for course in data %}
-        <div class="item-news">
-            <div class="picture">
-                <figure>
-                    <picture>
-                        <source srcset="{{ course.foto_portada.uri | image_style('235x156') }}" 
-                            media="(max-width: 767px)" 
-                            alt="{{ course.foto_portada.alt }}" 
-                            title="{{ course.foto_portada.title }}">
-                        <img srcset="{{ course.foto_portada.uri | image_style('349x210') }}" 
-                            alt="{{ course.foto_portada.alt }}" 
-                            title="{{ course.foto_portada.title }}">
-                    </picture>
-                </figure>
-            </div>
-            <div class="text">
-                <h3 class="title desktop">{{ course.title }}</h3>
-                <div class="author multiple">
-                    <figure>
-                        <img src="{{ course.autor[0].picture_uri }}" alt="{{ course.autor[0].name_author }}">
-                    </figure>
-                </div>
-                <div class="info">
-                    <div class="name author">
-                        <a href="{{ course.autor[0].uri }}" class="link author">{{ course.autor[0].name_author }}</a>
-                    </div>
-                    <time class="hour">{{ course.horas }} horas</time>
-                    <time class="date">Inicio: {{ course.fecha_inicio }}</time>
-                    <div class="rating">
-                        {{ drupal_field('field_calificacion', 'node', course.nid) }}
-                    </div>
-                </div>
-                <div class="action">
-                    <button class="show-course">ver curso</button>
-                    <button class="save">guardar</button>
-                </div>
-            </div>
-        </div>
-    {% endfor %}   
-    </div>
-</div>
+{{ drupal_block('ngt_node_more_course', {'node' : node.id }) }}
