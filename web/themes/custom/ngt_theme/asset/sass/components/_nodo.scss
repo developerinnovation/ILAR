@@ -127,7 +127,31 @@
             }
         }
         &.left{
-            
+            .course-action{
+                &.mobile{
+                    @media only screen and ($desktop){
+                        display: none;
+                    }
+                }
+                &.desktop{
+                    display: none;
+                    @media only screen and ($desktop){
+                        display: block;
+                    }
+                }
+            }
+            .action{
+                display: none;
+                @media only screen and ($desktop){
+                    display: block;
+                }
+            }
+            .share{
+                display: none;
+                @media only screen and ($desktop){
+                    display: block;
+                }
+            }
         }
         &.right{
             .content-video{
