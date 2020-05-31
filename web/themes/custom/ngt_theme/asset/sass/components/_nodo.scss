@@ -1,4 +1,6 @@
 .node-course{
+    position: relative;
+    padding: 56vw 0 0;
     section{
         &.top{
             margin: 0 30px;
@@ -19,11 +21,14 @@
                     }
                     color: #535353;
                     text-align: center;
+                    margin: 0 0 25px;
                 }
                 .author{
+                    display: block;
                     figure{
                         display: flex;
                         justify-content: center;
+                        margin: 0 0 10px;
                         img{
                             width: 48px;
                             height: 48px;
@@ -39,6 +44,24 @@
                             }
                             &:nth-child(3){
                                 z-index: 1;
+                            }
+                        }
+                    }
+                    figcaption{
+                        text-align: center;
+                        a{
+                            font: {
+                                size: 13px;
+                            }
+                            color: #747474;
+                            white-space: nowrap;
+                            &:after{
+                                content: ',';
+                            }
+                            &:last-child{
+                                &:after{
+                                    content: '.';
+                                }
                             }
                         }
                     }
@@ -64,6 +87,107 @@
                     }
                     color: #747474;
                     margin: 0 0 10px;
+                }
+                .rating{
+                    margin: 0 0 35px;
+                }
+                .action{
+                    display: flex;
+                    button{
+                        -webkit-appearance: none;
+                        height: 34px;
+                        padding: 0;
+                        border-radius: 20px;
+                        &.show-course{
+                            margin: 0 15px 0 0;
+                            width: 134px;
+                            border: 0;
+                            background: #FFA41B;
+                            font: {
+                                size: 13px;
+                            }
+                            color: #0A2952;
+                        }
+                        &.save{
+                            width: 34px;
+                            border: 1px solid $aqua;
+                            font: {
+                                size: 0;
+                            }
+                            background:{
+                                image: url(../img/sprite-icon-generales.svg);
+                                size: 240px;
+                                position: -149px 2px;
+                                repeat: no-repeat;
+                                color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.left{
+            
+        }
+        &.right{
+            .content-video{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 56vw;
+                .cover-video{
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    img{
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    &:before{
+                        content: '';
+                        display: block;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background: rgba(0, 0, 0, 0.4);
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        margin: auto;
+                    }
+                    &:after{
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border: {
+                            style: solid;
+                            width: 8px 0 8px 13.9px;;
+                            color: transparent transparent transparent #fff;
+                        }
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 5px;
+                        margin: auto;
+                    }
+                    &.active{
+                        display: block;
+                    }
+                }
+                video, iframe{
+                    display: block;
+                    width: 100%;
+                    height: 56vw;
                 }
             }
         }
