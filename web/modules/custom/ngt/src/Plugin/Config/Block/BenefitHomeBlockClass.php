@@ -29,7 +29,6 @@ class BenefitHomeBlockClass {
         return [];
     }
 
-  
     /**
      * @param \Drupal\ngt\Plugin\Block\BenefitHomeBlock $instance
      * @param $config
