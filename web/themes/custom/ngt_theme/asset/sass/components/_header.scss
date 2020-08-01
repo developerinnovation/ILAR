@@ -4,7 +4,50 @@ header{
         display: block;
     }
     .box{
-        .elements{
+        @media only screen and ($desktop){
+            display: flex;
+            justify-content: space-between;
+            background: $azul;
+            padding: 10px;
+        }
+        >div{
+            display: flex;
+            &.left{
+                figure{
+                    img{
+                        height: 50px;
+                    }
+                }
+                .menu{
+                    display: flex;
+                    li{
+                        list-style: none;
+                        padding: 10px 24px;
+                        a{
+                            font: {
+                                family: 'Montserrat', sans-serif;
+                            }
+                            color: #fff;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+            &.right{
+                .search{
+                    input{
+                        border: 0;
+                        border-radius: 30px;
+                    }
+                }
+                .link{
+                    font: {
+                        family: 'Montserrat', sans-serif;
+                        weight: 600;
+                    }
+                    margin: 0 24px;
+                }
+            }
         }
     }
 }

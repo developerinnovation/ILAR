@@ -2,6 +2,10 @@ footer{
     .newsetter{
         padding: 50px 30px;
         background: #F7F7F7;
+        @media only screen and ($desktop){
+            display: flex;
+            justify-content: space-between;
+        }
         .left{
             h3{
                 font: {

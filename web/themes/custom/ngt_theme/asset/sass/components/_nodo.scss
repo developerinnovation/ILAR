@@ -1,12 +1,23 @@
 .node-course{
     position: relative;
     padding: 56vw 0 0;
+    @media only screen and ($desktop){
+        padding: 0 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
     section{
         margin: 0 30px;
+        @media only screen and ($desktop){
+            margin: 0;
+        }
         &.top{
+            @media only screen and ($desktop){
+                width: 100%;
+            }
             .info{
-                padding: 30px 0;
-                border-bottom: 1px solid #c2c2c2;
+                padding: 30px 0 0;
                 h1{
                     font: {
                         size: 18px;
@@ -21,10 +32,30 @@
                     }
                     color: #535353;
                     text-align: center;
-                    margin: 0 0 25px;
+                    margin: 0;
+                }
+            }
+            .details{
+                padding: 30px 0;
+                border-bottom: 1px solid #c2c2c2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                @media only screen and ($desktop){
+                    border: 0;
+                    flex-direction: row;
+                    justify-content: center;
                 }
                 .author{
                     display: block;
+                    padding: 0 0 30px;
+                    border-bottom: 1px solid #c2c2c2;
+                    margin: 0 0 30px;
+                    @media only screen and ($desktop){
+                        padding: 0;
+                        border: 0;
+                        margin: 0;
+                    }
                     figure{
                         display: flex;
                         justify-content: center;
@@ -44,11 +75,15 @@
                             }
                             &:nth-child(3){
                                 z-index: 1;
+                                margin: 0;
                             }
                         }
                     }
                     figcaption{
                         text-align: center;
+                        @media only screen and ($desktop){
+                            display: none;
+                        }
                         a{
                             font: {
                                 size: 13px;
@@ -66,33 +101,51 @@
                         }
                     }
                 }
-            }
-            .details{
-                padding: 30px 0;
-                border-bottom: 1px solid #c2c2c2;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                .date{
-                    font: {
-                        weight: 500;
-                        size: 13px;
+                .box-elements{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    @media only screen and ($desktop){
+                        width: 50%;
+                        height: 50px;
+                        flex-wrap: wrap;
                     }
-                    color: #747474;
-                    margin: 0 0 10px;
-                }
-                .item{
-                    font: {
-                        size: 13px;
+                    .date{
+                        font: {
+                            weight: 500;
+                            size: 13px;
+                        }
+                        color: #747474;
+                        margin: 0 0 10px;
+                        @media only screen and ($desktop){
+                            width: 33%;
+                            margin: 0;
+                        }
                     }
-                    color: #747474;
-                    margin: 0 0 10px;
-                }
-                .rating{
-                    margin: 0 0 35px;
+                    .item{
+                        font: {
+                            size: 13px;
+                        }
+                        color: #747474;
+                        margin: 0 0 10px;
+                        @media only screen and ($desktop){
+                            width: 33%;
+                            margin: 0;
+                        }
+                    }
+                    .rating{
+                        margin: 0 0 35px;
+                        @media only screen and ($desktop){
+                            width: 33%;
+                            margin: 0;
+                        }
+                    }
                 }
                 .action{
                     display: flex;
+                    @media only screen and ($desktop){
+                        display: none;
+                    }
                     button{
                         -webkit-appearance: none;
                         height: 34px;
@@ -130,6 +183,7 @@
             display: none;
             @media only screen and ($desktop){
                 display: block;
+                width: 25%;
             }
             .course-action{
             }
@@ -139,6 +193,9 @@
             }
         }
         &.right{
+            @media only screen and ($desktop){
+                width: 70%;
+            }
             .main-content{
                 padding: 30px 0 50px;
                 border-bottom: 1px solid #c2c2c2;
@@ -170,6 +227,12 @@
                     left: 0;
                     width: 100%;
                     height: 56vw;
+                    @media only screen and ($desktop){
+                        position: relative;
+                        top: auto;
+                        left: auto;
+                        height: auto;
+                    }
                     .cover-video{
                         display: none;
                         position: absolute;
