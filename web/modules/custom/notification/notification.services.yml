@@ -1,0 +1,7 @@
+services:
+  notification.send:
+    class: Drupal\notification\SendNotification
+    arguments: []
+  notification.notification_settings_form:
+    class: Drupal\notification\Plugin\Config\Form\notificationSettingsFormClass
+    arguments: []

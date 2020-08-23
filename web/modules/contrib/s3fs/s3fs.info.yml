@@ -4,7 +4,7 @@ description: Adds an Amazon Simple Storage Service-based remote file system to D
 type: module
 configure: s3fs.admin_settings
 
-# Information added by Drupal.org packaging script on 2020-02-19
-version: '8.x-3.0-alpha15'
+# Information added by Drupal.org packaging script on 2020-07-14
+version: '8.x-3.0-alpha16'
 project: 's3fs'
-datestamp: 1582114488
+datestamp: 1594732483

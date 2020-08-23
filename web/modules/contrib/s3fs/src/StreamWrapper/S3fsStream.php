@@ -10,6 +10,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StreamWrapper\StreamWrapperInterface;
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\s3fs\S3fsException;
@@ -373,7 +374,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
     // If this is a private:// file, it must be served through the
     // system/files/$path URL, which allows Drupal to restrict access
     // based on who's logged in.
-    if (\Drupal::service('file_system')->uriScheme($this->uri) == 'private') {
+    if (StreamWrapperManager::getScheme($this->uri) == 'private') {
       return Url::fromRoute('system.private_file_download', ['filepath' => $s3_key], ['absolute' => TRUE])
         ->toString();
     }
@@ -395,7 +396,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
     }
 
     // Deal with public:// files.
-    if (\Drupal::service('file_system')->uriScheme($this->uri) == 'public') {
+    if (StreamWrapperManager::getScheme($this->uri) == 'public') {
       // Rewrite all css/js file paths unless the user has told us not to.
       if (!$this->config['no_rewrite_cssjs']) {
         if (substr($s3_key, -4) == '.css') {
@@ -580,7 +581,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
 
     if (
           !$this->uploadAsPrivate
-      &&  \Drupal::service('file_system')->uriScheme($this->uri) !== 'private'
+      &&  StreamWrapperManager::getScheme($this->uri) !== 'private'
     ) {
       // All non-private files uploaded to S3 must be set to public-read, or
       // users' browsers will get PermissionDenied errors, and torrent URLs
@@ -700,7 +701,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
    */
   public function rename($from_uri, $to_uri) {
     // Set access for new item in stream context.
-    if (\Drupal::service('file_system')->uriScheme($from_uri) != 'private') {
+    if (StreamWrapperManager::getScheme($from_uri) != 'private') {
       stream_context_set_option($this->context, 's3', 'ACL', 'public-read');
     }
 
@@ -739,7 +740,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
     if (!isset($uri)) {
       $uri = $this->uri;
     }
-    $scheme = \Drupal::service('file_system')->uriScheme($uri);
+    $scheme = StreamWrapperManager::getScheme($uri);
     $dirname = dirname($this->streamWrapperManager::getTarget($uri));
 
     // When the dirname() call above is given '$scheme://', it returns '.'.
@@ -885,7 +886,7 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
       return FALSE;
     }
 
-    $scheme = \Drupal::service('file_system')->uriScheme($uri);
+    $scheme = StreamWrapperManager::getScheme($uri);
     $base_path = rtrim($uri, '/');
     $slash_path = $base_path . '/';
 
@@ -1302,15 +1303,18 @@ class S3fsStream extends StreamWrapper implements StreamWrapperInterface {
     // Remove the protocol.
     $parts = explode('://', $uri);
 
+    // Remove erroneous leading or trailing, forward-slashes and backslashes.
+    $parts[1] = trim($parts[1], '\\/');
+
     if (!empty($parts[1])) {
       // public:// file are all placed in the s3fs_public_folder.
       $public_folder = !empty($this->config['public_folder']) ? $this->config['public_folder'] : 's3fs-public';
       $private_folder = !empty($this->config['private_folder']) ? $this->config['private_folder'] : 's3fs-private';
-      if (\Drupal::service('file_system')->uriScheme($uri) == 'public') {
+      if (StreamWrapperManager::getScheme($uri) == 'public') {
         $parts[1] = "$public_folder/{$parts[1]}";
       }
       // private:// file are all placed in the s3fs_private_folder.
-      elseif (\Drupal::service('file_system')->uriScheme($uri) == 'private') {
+      elseif (StreamWrapperManager::getScheme($uri) == 'private') {
         $parts[1] = "$private_folder/{$parts[1]}";
       }
 

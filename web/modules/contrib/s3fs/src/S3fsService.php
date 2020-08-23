@@ -12,6 +12,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\SchemaObjectExistsException;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Site\Settings;
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\s3fs\StreamWrapper\S3fsStream;
 
@@ -435,7 +436,7 @@ class S3fsService implements S3fsServiceInterface {
 
         // Add the ancestor folders of this file to the $folders array.
         $uri = \Drupal::service('file_system')->dirname($metadata['uri']);
-        $root = \Drupal::service('file_system')->uriScheme($uri) . '://';
+        $root = StreamWrapperManager::getScheme($uri) . '://';
         // Loop through each ancestor folder until we get to the root uri.
         while ($uri != $root) {
           $folders[$uri] = TRUE;
