@@ -1,0 +1,5 @@
+name: reserver now
+type: module
+description: Permite reservar un curso
+core: 8.x
+package: NGT

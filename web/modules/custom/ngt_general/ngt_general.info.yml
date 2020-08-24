@@ -1,0 +1,5 @@
+name: NGT General
+type: module
+description: Módulo con las funciones transversales a los demas módulos
+core: 8.x
+package: NGT

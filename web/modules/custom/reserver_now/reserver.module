@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * reserver_now_help
+ *
+ * @param  mixed $route_name
+ * @param  mixed $route_match
+ * @return void
+ */
+function reserver_now_help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the reserver_now module.
+        case 'help.page.reserver_now':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Permite reservar cursos') . '</p>';
+        return $output;
+
+    default:
+    }
+}

@@ -1,0 +1,6 @@
+name: Login Popup
+type: module
+description: Module for adding a field for site information 
+core: '8.x'
+configure: login_popup.config
+package: NGT

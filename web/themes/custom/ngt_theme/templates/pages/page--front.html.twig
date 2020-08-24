@@ -1,5 +1,8 @@
 <!-- ______________________ MAIN _______________________ -->
 <div id="main" class="page-front" ng-cloak>
+    {% if not logged_in %}
+        {{ drupal_block('user_login_block_poppup') }}
+    {% endif %}
     <div class="top">
         <div class="destacado">
             {{ drupal_block('ngt_contenido_destacado') }}
@@ -17,4 +20,6 @@
         {{ drupal_block('ngt_course_category') }}
     </div>
 </div>
+
+
 <!-- /#main -->

@@ -1,0 +1,4 @@
+services:
+  ngt_general.cardBlockBase:
+    class: Drupal\ngt_general\CardBlockBase
+    arguments: []

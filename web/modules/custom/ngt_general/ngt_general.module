@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains ngt_general_general.module..
+ */
+
+
+use Drupal\File\Entity\File;
+use Drupal\User\Entity\Role;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\Unicode;
+
+
+/**
+ * Implements hook_help().
+ */
+function ngt_general_help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        // Main module help for the ngt_general module.
+        case 'help.page.ngt_general':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Módulo con las funciones transversales a los demas módulos') . '</p>';
+        return $output;
+
+    default:
+    }
+}
+
+/**
+ * Implements hook_preprocess().
+ * 
+ * Inlcuye la directiva de angular la etiqueta html
+ * 
+ */
+function ngt_general_preprocess_html(&$variables){
+    $variables['html_attributes']['data.ng-app'] = 'ngtApp';
+}

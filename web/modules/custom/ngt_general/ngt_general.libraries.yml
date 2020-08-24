@@ -1,0 +1,19 @@
+angular.angularjs:
+  remote: https://github.com/angular/angular.js
+  version: 1.5.8
+  license:
+    name: MIT
+    url: https://github.com/angular/angular.js/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    js/vendor/angular/angular.js: { minified: true }
+    js/vendor/angular/angular-sanitize.js: { minified: true }
+
+angular.request:
+  version: 1.5.8
+  license:
+    name: MIT
+    url: https://github.com/angular/angular.js/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    js/vendor/angular/angular-resource.js: { minified: true }
