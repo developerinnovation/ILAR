@@ -1,0 +1,7 @@
+services:
+  ngt.send:
+    class: Drupal\ngt_notification\SendNotification
+    arguments: []
+  ngt.notification_settings_form:
+    class: Drupal\ngt_notification\Plugin\Config\Form\notificationSettingsFormClass
+    arguments: []

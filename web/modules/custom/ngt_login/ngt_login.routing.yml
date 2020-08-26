@@ -1,0 +1,9 @@
+login.login_form:
+  path: '/admin/config/ngt/login'
+  defaults:
+    _form: '\Drupal\ngt_login\Plugin\Form\LoginForm'
+    _title: 'Configuración login y restablecer contraseña'
+  requirements:
+    _permission: 'access administration pages'
+  option:
+    _admin_route: TRUE

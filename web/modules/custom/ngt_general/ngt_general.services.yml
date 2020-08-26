@@ -1,4 +1,42 @@
 services:
-  ngt_general.cardBlockBase:
+  ngt.course_main:
+    class: Drupal\ngt_general\Plugin\Config\Block\CourseMainBlockClass
+    arguments: []
+  ngt.course_category:
+    class: Drupal\ngt_general\Plugin\Config\Block\CourseCategoryBlockClass
+    arguments: []
+  ngt.content_dest:
+    class: Drupal\ngt_general\Plugin\Config\Block\ContentDestBlockClass
+    arguments: []
+  ngt.course_category_logic:
+    class: Drupal\ngt_general\Services\Rest\CourseCategoryRestLogic
+    arguments: []
+  ngt.benefit_home:
+    class: Drupal\ngt_general\Plugin\Config\Block\BenefitHomeBlockClass
+    arguments: []
+  ngt.benefit_config:
+    class: Drupal\ngt_general\Plugin\Config\Form\BenefitConfigFormClass
+    arguments: []
+  ngt.general_config:
+    class: Drupal\ngt_general\Plugin\Config\Form\GeneralConfigFormClass
+    arguments: []
+  ngt.category_config:
+    class: Drupal\ngt_general\Plugin\Config\Form\CategoryConfigFormClass
+    arguments: []
+
+  ngt.node_top_course:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeTopCourseBlockClass
+    arguments: []
+  ngt.node_left_course:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeLeftCourseBlockClass
+    arguments: []
+  ngt.node_right_course:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeRightCourseBlockClass
+    arguments: []
+  ngt.node_more_course:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeMoreCourseBlockClass
+    arguments: []
+  ngt.cardBlockBase:
     class: Drupal\ngt_general\CardBlockBase
     arguments: []
+    

@@ -2,42 +2,104 @@
 
 /**
  * @file
- * Contains ngt_general_general.module..
+ * Contains ngt_general.module..
  */
 
-
-use Drupal\File\Entity\File;
-use Drupal\User\Entity\Role;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Template\Attribute;
-use Drupal\Core\Url;
+use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Component\Utility\Unicode;
-
+use Drupal\file\Entity\File;
 
 /**
  * Implements hook_help().
  */
 function ngt_general_help($route_name, RouteMatchInterface $route_match) {
     switch ($route_name) {
-        // Main module help for the ngt_general module.
+        // Main module help for the ngt module.
         case 'help.page.ngt_general':
             $output = '';
             $output .= '<h3>' . t('About') . '</h3>';
-            $output .= '<p>' . t('Módulo con las funciones transversales a los demas módulos') . '</p>';
+            $output .= '<p>' . t('ngt general') . '</p>';
         return $output;
 
     default:
     }
 }
 
+
 /**
  * Implements hook_preprocess().
  * 
+ * Prepares variables for the html.html.twig template.
  * Inlcuye la directiva de angular la etiqueta html
  * 
  */
 function ngt_general_preprocess_html(&$variables){
-    $variables['html_attributes']['data.ng-app'] = 'ngtApp';
+  $variables['html_attributes']['data.ng-app'] = 'ngtApp';
+  // global variables
+  $variables['general_logo'] = \Drupal::service('ngt.general_config')->renderLogo();
+  $variables['general_txt_curso'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_curso'];
+  $variables['general_txt_newsletter'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_newsletter'];
+  $variables['general_txt_footer'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_footer'];
 }
+
+
+/**
+ * Implements hook_theme().
+ */
+function ngt_general_theme() {
+  return [
+    'course_main' => [
+      'variables' => [
+        'course' => NULL,
+        'txt_curso' => NULL,
+      ],
+      'template' => 'block--course-main',
+    ],
+    'course_category' => [
+      'variables' => [
+        'main_category' => NULL,
+      ],
+      'template' => 'block--course-category',
+    ],
+    'course_content_dest' => [
+      'variables' => [
+        'contents' => NULL,
+      ],
+      'template' => 'block--contenido-destacado',
+    ],
+    'benefit_home' => [
+      'variables' => [
+        'benefit_1' => NULL,
+        'benefit_2' => NULL,
+        'benefit_3' => NULL,
+      ],
+      'template' => 'block--benefit-home',
+    ],
+    'node_top_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--top-course',
+    ],
+    'node_left_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--left-course',
+    ],
+    'node_right_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--right-course',
+    ],
+    'node_more_course' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-course/block--more-course',
+    ],
+  ];
+}
+

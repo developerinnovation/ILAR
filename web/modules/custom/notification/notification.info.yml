@@ -1,8 +1,0 @@
-name: notification
-type: module
-description: Customización para envio de correos
-core: 8.x
-package: NGT
-dependencies:
-  - smtp
-  - mailsystem
