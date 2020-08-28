@@ -39,4 +39,7 @@ services:
   ngt.cardBlockBase:
     class: Drupal\ngt_general\CardBlockBase
     arguments: []
+  ngt.methodGeneral:
+    class: Drupal\ngt_general\methodGeneral
+    arguments: []
     

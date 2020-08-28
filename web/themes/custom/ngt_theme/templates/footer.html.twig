@@ -13,7 +13,10 @@
     </div>
     <div class="box">
         <figure>
-            <img class="logo-footer" src="{{ file_url(general_logo) }}">
+            <img class="logo-footer" src="{{ file_url(logo_general_url) }}">
+            {% if activate_img_logo_second == 1 %}
+                <img class="logo-footer" src="{{ file_url(logo_second_url) }}">
+            {% endif %}
         </figure>
         
         <p class="description">{{ general_txt_footer }}</p>
@@ -30,6 +33,12 @@
                 {% endfor %}
             </nav>
         </div>
+
+        {% if logo_design_url != '' %}
+            <div class="design-by">
+                <img class="logo-design-by" src="{{ file_url(logo_design_url) }}">
+            </div>
+        {% endif %}
         <p class="copyright">© Copyright, {{ "now"|date("Y") }}.</p>
     </div>
     <nav id="menu-fixed">

@@ -1,5 +1,1 @@
 services:
-  ngt.general_config_login:
-    class: Drupal\ngt_login\Plugin\Config\Form\LoginFormClass
-    arguments: []
-    

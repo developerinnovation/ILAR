@@ -37,12 +37,27 @@ function ngt_general_help($route_name, RouteMatchInterface $route_match) {
 function ngt_general_preprocess_html(&$variables){
   $variables['html_attributes']['data.ng-app'] = 'ngtApp';
   // global variables
-  $variables['general_logo'] = \Drupal::service('ngt.general_config')->renderLogo();
-  $variables['general_txt_curso'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_curso'];
-  $variables['general_txt_newsletter'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_newsletter'];
-  $variables['general_txt_footer'] = \Drupal::config('ngt.adminSettingsGeneral')->get('general')['txt_footer'];
-}
+  $config = \Drupal::config('ngt_general.settings');  
+  
+  $logo_general_fid = reset($config->get('general_settings')['img_logo']);
+  $logo_general_file = File::load($logo_general_fid);
+  $logo_general_url = isset($logo_general_file) ? $logo_general_file->getFileUri() : '';
 
+  $logo_second_fid = reset($config->get('general_settings')['img_logo_second']);
+  $logo_second_file = File::load($logo_second_fid);
+  $logo_second_url = isset($logo_second_file) ? $logo_second_file->getFileUri() : '';
+
+  $logo_design_fid = reset($config->get('general_settings')['img_logo_design_by']);
+  $logo_design_file = File::load($logo_design_fid);
+  $logo_design_url = isset($logo_design_file) ? $logo_design_file->getFileUri() : '';
+
+  $activate_img_logo_second = $config->get('general_settings')['activate_img_logo_second'];
+
+  $variables['logo_general_url'] = $logo_general_url;
+  $variables['logo_second_url'] = $logo_second_url;
+  $variables['logo_design_url'] = $logo_design_url;
+  $variables['activate_img_logo_second'] = $activate_img_logo_second;
+}
 
 /**
  * Implements hook_theme().

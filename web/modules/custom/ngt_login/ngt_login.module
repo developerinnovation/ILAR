@@ -1,7 +1,88 @@
 <?php 
 
-function ngt_login_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-    if ($hook == 'form' & !empty($variables['element']['#id'])) {
-      $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
-    }
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\UserInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * ngt_login_help
+ *
+ * @param  mixed $route_name
+ * @param  mixed $route_match
+ * @return void
+ */
+function ngt_login_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+      // Main module help for the ngt_login module.
+      case 'help.page.ngt_login':
+          $output = '';
+          $output .= t('<h3>' . 'About') . '</h3>';
+          $output .= t('<p>' . 'Customización para el login') . '</p>';
+      return $output;
+
+  default:
+  }
+}
+
+/**
+* Implements hook_form_BASE_FORM_ID_alter().
+*/
+function ngt_login_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  switch ($form_id) {
+      case 'user_login_form':
+        // Do your code here to alter login form.
+        $config = \Drupal::config('ngt_login.settings');  
+        $configGeneral = \Drupal::config('ngt_general.settings'); 
+
+        $logo_general_fid = reset($configGeneral->get('general_settings')['img_logo']);
+        $logo_general_file = File::load($logo_general_fid);
+        $logo_general_url = isset($logo_general_file) ? $logo_general_file->getFileUri() : '';
+        
+        $form['#logo_general_url'] = $logo_general_url;
+        $form['#titleLogin'] = $config->get('ngt_login')['title'];
+        $form['#message'] = $config->get('ngt_login')['message'];
+        $form['#forgot_password'] = $config->get('ngt_login')['forgot_password'];
+        $form['#new_user_message'] = $config->get('ngt_login')['new_user_message'];
+        $form['#new_user_text'] = $config->get('ngt_login')['new_user_text'];
+     
+        $form['actions']['submit']['#value'] = $config->get('ngt_login')['btn_login'];
+        $form['actions']['submit']['#attributes'] = [
+          'class' => ['disabled'],
+        ];
+        
+        $form['name']['#title'] = $config->get('ngt_login')['input_mail'];
+        $form['name']['#attributes'] = [
+          'placeholder' => $config->get('ngt_login')['input_mail'],
+          'ng-model' => 'user',
+          'ng-change' => 'validateLoginForm()',
+        ];
+
+        $form['pass']['#title'] = $config->get('ngt_login')['input_pass'];
+        $form['pass']['#attributes'] = [
+          'placeholder' => $config->get('ngt_login')['input_pass'],
+          'ng-model' => 'pass',
+          'ng-change' => 'validateLoginForm()',
+        ];
+
+        $form['#attached']['library'] = 'ngt_login/login-form';
+        $form['#theme'] = 'edit_user_login';
+        
+      break;
+      
+    } 
+}
+
+
+
+/**
+ * Implements hook_theme()
+ */
+function ngt_login_theme() {
+  return [
+    'edit_user_login' => [
+      'render element' => 'form',
+      'template' => 'form--login-user',
+    ],
+  ];
 }

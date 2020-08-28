@@ -1,4 +1,5 @@
 parameters:
+  tempstore.expire: 300
   session.storage.options:
     # Default ini options for sessions.
     #

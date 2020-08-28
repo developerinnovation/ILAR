@@ -1,0 +1,7 @@
+login-form:
+  version: 1.x
+  js:
+    js/directive/login_form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
