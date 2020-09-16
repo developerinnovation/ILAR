@@ -10,7 +10,7 @@ class CategoryConfigFormClass{
      */  
     protected function getEditableConfigNames() {  
         return [  
-            'ngt.adminSettingsCategory',  
+            'ngt_general.adminSettingsCategory',  
         ];  
     }  
 
@@ -25,7 +25,7 @@ class CategoryConfigFormClass{
      * {@inheritdoc}  
      */  
     public function buildForm(array $form, FormStateInterface $form_state) {  
-        $config = \Drupal::config('ngt.adminSettingsCategory');  
+        $config = \Drupal::config('ngt_general.adminSettingsCategory');  
         $categorys = $this->load_taxonomy('categorias');
         
         foreach ($categorys as $category) {
@@ -47,7 +47,7 @@ class CategoryConfigFormClass{
      */  
     public function submitForm(array &$form, FormStateInterface $form_state) {  
 
-        $config = \Drupal::configFactory()->getEditable('ngt.adminSettingsCategory');
+        $config = \Drupal::configFactory()->getEditable('ngt_general.adminSettingsCategory');
 
         $categorys = $this->load_taxonomy('categorias');
         foreach ($categorys as $category) {

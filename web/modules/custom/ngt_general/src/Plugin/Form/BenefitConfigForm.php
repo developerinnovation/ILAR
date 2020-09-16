@@ -18,7 +18,7 @@ class BenefitConfigForm extends ConfigFormBase {
      */
     public function __construct(ConfigFactoryInterface $config_factory){
         parent::__construct($config_factory);
-        $this->instance = \Drupal::service('ngt.benefit_config');
+        $this->instance = \Drupal::service('ngt_general.benefit_config');
     }
 
 

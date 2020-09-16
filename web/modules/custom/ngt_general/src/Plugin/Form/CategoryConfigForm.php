@@ -18,7 +18,7 @@ class CategoryConfigForm extends ConfigFormBase {
      */
     public function __construct(ConfigFactoryInterface $config_factory){
         parent::__construct($config_factory);
-        $this->instance = \Drupal::service('ngt.category_config');
+        $this->instance = \Drupal::service('ngt_general.category_config');
     }
 
 

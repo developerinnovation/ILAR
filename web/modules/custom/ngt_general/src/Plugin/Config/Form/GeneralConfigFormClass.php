@@ -10,7 +10,7 @@ class GeneralConfigFormClass{
      */  
     protected function getEditableConfigNames() {  
         return [  
-            'ngt.adminSettingsGeneral',  
+            'ngt_general.adminSettingsGeneral',  
         ];  
     }  
 
@@ -25,7 +25,7 @@ class GeneralConfigFormClass{
      * {@inheritdoc}  
      */  
     public function buildForm(array $form, FormStateInterface $form_state) {  
-        $config = \Drupal::config('ngt.adminSettingsGeneral');  
+        $config = \Drupal::config('ngt_general.adminSettingsGeneral');  
 
         $form['general'] = [  
             '#type' => 'details',
@@ -132,7 +132,7 @@ class GeneralConfigFormClass{
      */  
     public function submitForm(array &$form, FormStateInterface $form_state) {  
 
-        $config = \Drupal::configFactory()->getEditable('ngt.adminSettingsGeneral');
+        $config = \Drupal::configFactory()->getEditable('ngt_general.adminSettingsGeneral');
         $config
             ->set('general', $form_state->getValue('general'))  
             ->set('terms_conditions', $form_state->getValue('terms_conditions'))  

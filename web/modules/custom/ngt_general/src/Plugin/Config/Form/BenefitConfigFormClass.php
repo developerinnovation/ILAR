@@ -10,7 +10,7 @@ class BenefitConfigFormClass{
      */  
     protected function getEditableConfigNames() {  
         return [  
-            'ngt.adminSettingsBenefit',  
+            'ngt_general.adminSettingsBenefit',  
         ];  
     }  
 
@@ -25,7 +25,7 @@ class BenefitConfigFormClass{
      * {@inheritdoc}  
      */  
     public function buildForm(array $form, FormStateInterface $form_state) {  
-        $config = \Drupal::config('ngt.adminSettingsBenefit');  
+        $config = \Drupal::config('ngt_general.adminSettingsBenefit');  
         
         $form['beneficio_1'] = [  
             '#type' => 'textarea',  
@@ -56,7 +56,7 @@ class BenefitConfigFormClass{
      */  
     public function submitForm(array &$form, FormStateInterface $form_state) {  
 
-        $config = \Drupal::configFactory()->getEditable('ngt.adminSettingsBenefit');
+        $config = \Drupal::configFactory()->getEditable('ngt_general.adminSettingsBenefit');
         $config
             ->set('beneficio_1', $form_state->getValue('beneficio_1'))  
             ->set('beneficio_2', $form_state->getValue('beneficio_2'))  

@@ -1,23 +1,20 @@
 <!-- ______________________ MAIN _______________________ -->
 <div id="main" class="page-front" ng-cloak>
-    {% if not logged_in %}
-        {{ drupal_block('user_login_block_poppup') }}
-    {% endif %}
     <div class="top">
         <div class="destacado">
-            {{ drupal_block('ngt_contenido_destacado') }}
+            {{ drupal_block('ngt_general_contenido_destacado') }}
         </div>
         <div class="benefits">
-            {{ drupal_block('ngt_benefit_home') }}
+            {{ drupal_block('ngt_general_benefit_home') }}
         </div>
     </div>
 
     <div class="center">
-        {{ drupal_block('ngt_course_main') }}
+        {{ drupal_block('ngt_general_course_main') }}
     </div>
 
     <div class="bottom">
-        {{ drupal_block('ngt_course_category') }}
+        {{ drupal_block('ngt_general_course_category') }}
     </div>
 </div>
 
