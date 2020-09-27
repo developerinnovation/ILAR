@@ -5,9 +5,9 @@ namespace Drupal\ngt_general\Plugin\Block;
 use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\ngt_general\Plugin\Config\Block\CourseMainBlockClass;
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Block\BlockBase;
+use Drupal\ngt_general\Plugin\Config\Block\CourseMainBlockClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Access\AccessResult;
 

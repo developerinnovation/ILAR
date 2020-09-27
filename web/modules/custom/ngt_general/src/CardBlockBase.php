@@ -15,7 +15,7 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
 
     protected $build = [];
     protected $class = 'block-white';
-    protected $config_name = 'ngt';
+    protected $config_name = 'ngtBlock';
     protected $directive = '';
     protected $uuid = NULL;
     protected $dataAngular;
@@ -27,10 +27,10 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
      * @param  mixed $others
      * @return void
      */
-    public function cardBuildVarBuild($parameters = [], $others = []){
+    public function cardBuilVarBuild($parameters = [], $others = []){
         
         $build = [
-            '#theme' => $parameters['benefit_home'],
+            '#theme' => $parameters['theme'],
             '#uuid' => $this->uuid,
             '#directive' => $this->directive,
             '#class' => $this->class,
@@ -66,7 +66,7 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
 
         $other_config = [
             'url' => $endPoint,
-            'uuid' => '',
+            'uuid' => $this->uuid,
             'config_name' => $this->config_name,
         ];
 
@@ -86,7 +86,7 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
      * @param  mixed $others
      * @return void
      */
-    public function cardBuilAddConfigDirective($config = [], $name = NULL, $others = []){
+    public function cardBuildAddConfigDirective($config = [], $name = NULL, $others = []){
         if(isset($name)){
             $this->build['#attached']['drupalSettings'][$name][$this->uuid] = $config;
         }else{

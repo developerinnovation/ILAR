@@ -26,7 +26,6 @@ function ngt_general_help($route_name, RouteMatchInterface $route_match) {
     }
 }
 
-
 /**
  * Implements hook_preprocess().
  * 
@@ -35,7 +34,16 @@ function ngt_general_help($route_name, RouteMatchInterface $route_match) {
  * 
  */
 function ngt_general_preprocess_html(&$variables){
-  $variables['html_attributes']['data.ng-app'] = 'ngtApp';
+  $variables['html_attributes']['data-ng-app'] = 'ngtApp';
+
+  $routeName = \Drupal::routeMatch()->getRouteName();
+  $showHeaderAndFooter = true;
+  if($routeName == 'user.login' || $routeName == 'user.register' || $routeName == 'user.pass'){
+    $showHeaderAndFooter = false;
+  }
+  $variables['showHeaderAndFooter'] = $showHeaderAndFooter;
+  $variables['route_name'] = \Drupal::routeMatch()->getRouteName();
+
   // global variables
   $config = \Drupal::config('ngt_general.settings');  
   
@@ -74,6 +82,11 @@ function ngt_general_theme() {
     'course_category' => [
       'variables' => [
         'main_category' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
       ],
       'template' => 'block--course-category',
     ],

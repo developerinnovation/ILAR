@@ -13,9 +13,6 @@ ngt:
   js:
     ./asset/external/jquery-ui.min.js: {}
     ./asset/js/owl-carousel/owl.carousel.min.js: {}
-    ./asset/external/angular.min.js: {}
-    ./asset/external/angular-touch.js: {}
-    ./asset/external/angular-route.min.js: {}
     ./asset/js/ngt.js: {}
   dependencies:
     - core/jquery

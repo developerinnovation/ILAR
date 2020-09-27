@@ -89,7 +89,9 @@
 
 
     <!-- ______________________ FOOTER _______________________ -->
-        {% include '@ngt_theme/footer.html.twig' %}
+        {% if showHeaderAndFooter %}
+          {% include '@ngt_theme/footer.html.twig' %}
+        {% endif %}
     <!-- __________________ END FOOTER _______________________ -->
 
     <js-bottom-placeholder token="{{ placeholder_token }}">
