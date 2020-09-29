@@ -47,6 +47,18 @@ class LoginForm extends ConfigFormBase {
             '#open' => false,  
         ]; 
 
+        $form['ngt_login']['image'] = [
+            '#type' => 'managed_file',
+            '#title' => t('Foto background'),
+            '#default_value' => isset($config->get('ngt_login')['image']) ? $config->get('ngt_login')['image'] : '',
+            '#description' => t('Foto fondo, de extension png jpg jpeg, tamaño no superior a 1300x820 px'),
+            '#upload_location' => 's3://file-project',
+            '#upload_validators' => [
+              'file_validate_image_resolution' => ['1300x820'],
+              'file_validate_extensions' => ['png jpg jpeg'],
+            ],
+        ];
+
         $form['ngt_login']['btn_login'] = [  
             '#type' => 'textfield',
             '#title' => t('Texto para botón de login'),   
@@ -377,7 +389,7 @@ class LoginForm extends ConfigFormBase {
         $form['ngt_new_user']['message_new_user_success'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje cuenta creada'),   
-            '#default_value' => isset($config->get('ngt_new_user')['message_new_user_success']) ? $config->get('ngt_new_user')['message_new_user_success'] : t('Tu cuenta se cré correctamente'),
+            '#default_value' => isset($config->get('ngt_new_user')['message_new_user_success']) ? $config->get('ngt_new_user')['message_new_user_success'] : t('Tu cuenta se generó correctamente'),
             '#required' => true
         ]; 
 
@@ -416,6 +428,11 @@ class LoginForm extends ConfigFormBase {
         ->set('ngt_forgot_password', $form_state->getValue('ngt_forgot_password'))
         ->set('ngt_new_user', $form_state->getValue('ngt_new_user'))
         ->save();   
+
+        $fid_logo_design = $form_state->getValue('ngt_login')['image'];
+        if ($fid_logo_design) {
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_design);
+        }
 
     }  
 

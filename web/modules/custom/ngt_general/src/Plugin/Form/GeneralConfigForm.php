@@ -193,13 +193,13 @@ class GeneralConfigForm extends ConfigFormBase {
         $fid_logo_second = $form_state->getValue('general_settings')['img_logo_second'];
         $fid_logo_design = $form_state->getValue('general_settings')['img_logo_design_by'];
         if ($fid_logo_general_settings) {
-            \Drupal::service('ngt.methodGeneral')->setFileAsPermanent($fid_logo_general_settings);
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_general_settings);
         }
         if ($fid_logo_second) {
-            \Drupal::service('ngt.methodGeneral')->setFileAsPermanent($fid_logo_second);
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_second);
         }
         if ($fid_logo_design) {
-            \Drupal::service('ngt.methodGeneral')->setFileAsPermanent($fid_logo_design);
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_design);
         }
     }  
 

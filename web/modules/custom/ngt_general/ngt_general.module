@@ -38,11 +38,24 @@ function ngt_general_preprocess_html(&$variables){
 
   $routeName = \Drupal::routeMatch()->getRouteName();
   $showHeaderAndFooter = true;
+  $menuActiveUser = 'no-active';
+  $menuActiveNode = 'no-active';
+
   if($routeName == 'user.login' || $routeName == 'user.register' || $routeName == 'user.pass'){
     $showHeaderAndFooter = false;
+    $menuActiveUser = 'active';
   }
+
+  if($routeName == 'entity.node.canonical'){
+    $menuActiveNode = 'active';
+  }
+
   $variables['showHeaderAndFooter'] = $showHeaderAndFooter;
   $variables['route_name'] = \Drupal::routeMatch()->getRouteName();
+  $variables['menuActiveUser'] = $menuActiveUser;
+  $variables['menuActiveSearch'] = 'no-active'; // pendiente ajustar cuando se genere el buscador
+  $variables['menuActiveNode'] = $menuActiveNode;
+
 
   // global variables
   $config = \Drupal::config('ngt_general.settings');  

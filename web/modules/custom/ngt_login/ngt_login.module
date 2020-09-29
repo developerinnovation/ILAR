@@ -35,11 +35,16 @@ function ngt_login_form_alter(&$form, FormStateInterface &$form_state, $form_id)
         $config = \Drupal::config('ngt_login.settings');  
         $configGeneral = \Drupal::config('ngt_general.settings'); 
 
-        $logo_general_fid = reset($configGeneral->get('general_settings')['img_logo']);
-        $logo_general_file = File::load($logo_general_fid);
-        $logo_general_url = isset($logo_general_file) ? $logo_general_file->getFileUri() : '';
+        $image_logo_fid = reset($configGeneral->get('general_settings')['img_logo']);
+        $image_logo_file = File::load($image_logo_fid);
+        $image_logo_url = isset($image_logo_file) ? $image_logo_file->getFileUri() : '';
+
+        $image_login_background_fid = reset($config->get('ngt_login')['image']);
+        $image_login_background_file = File::load($image_login_background_fid);
+        $image_login_background_url = isset($image_login_background_file) ? $image_login_background_file->getFileUri() : '';
         
-        $form['#logo_general_url'] = $logo_general_url;
+        $form['#image_logo_url'] = $image_logo_url;
+        $form['#image_login_background_url'] = $image_login_background_url;
         $form['#titleLogin'] = $config->get('ngt_login')['title'];
         $form['#message'] = $config->get('ngt_login')['message'];
         $form['#forgot_password'] = $config->get('ngt_login')['forgot_password'];
@@ -72,6 +77,23 @@ function ngt_login_form_alter(&$form, FormStateInterface &$form_state, $form_id)
       
     } 
 }
+
+
+/**
+ * Implements hook_preprocess().
+ * 
+ * Prepares variables for the html.html.twig template.
+ * Inlcuye la directiva de angular la etiqueta html
+ * 
+ */
+// function ngt_login_preprocess_html(&$variables){
+//   // global variables
+//   $config = \Drupal::config('ngt_login.settings');  
+//   $image_login_background_fid = reset($config->get('ngt_login')['image']);
+//   $image_login_background_file = File::load($image_login_background_fid);
+//   $image_login_background_url = isset($image_login_background_file) ? $image_login_background_file->getFileUri() : '';
+//   $variables['image_login_background'] = $image_login_background_url;
+// }
 
 
 
