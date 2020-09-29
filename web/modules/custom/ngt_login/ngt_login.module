@@ -78,25 +78,6 @@ function ngt_login_form_alter(&$form, FormStateInterface &$form_state, $form_id)
     } 
 }
 
-
-/**
- * Implements hook_preprocess().
- * 
- * Prepares variables for the html.html.twig template.
- * Inlcuye la directiva de angular la etiqueta html
- * 
- */
-// function ngt_login_preprocess_html(&$variables){
-//   // global variables
-//   $config = \Drupal::config('ngt_login.settings');  
-//   $image_login_background_fid = reset($config->get('ngt_login')['image']);
-//   $image_login_background_file = File::load($image_login_background_fid);
-//   $image_login_background_url = isset($image_login_background_file) ? $image_login_background_file->getFileUri() : '';
-//   $variables['image_login_background'] = $image_login_background_url;
-// }
-
-
-
 /**
  * Implements hook_theme()
  */
