@@ -87,5 +87,18 @@ function ngt_login_theme() {
       'render element' => 'form',
       'template' => 'form--login-user',
     ],
+    'recovery_pass' => [
+      'variables' => [
+        'dataAngular' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
+        'image_logo_url' => NULL,
+        'image_login_background_url' => NULL,
+      ],
+      'template' => 'block--recovery-pass',
+    ],
   ];
 }

@@ -7,3 +7,12 @@ login.login_form:
     _permission: 'access administration pages'
   option:
     _admin_route: TRUE
+
+login.recovery_pass:
+  path: 'recovery/pass'
+  defaults:
+    _controller: '\Drupal\ngt_login\Controller\LoginController::RecoveryPass'
+    _title: 'Recuperar contraseña'
+  requirements:
+    _access: 'TRUE'
+    _role: 'anonymous'

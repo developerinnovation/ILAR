@@ -1,0 +1,76 @@
+
+{% set directive_new = directive|replace({'-':'_'}) %}
+<div class="{{ class }}" {{ directive }} ng-cloak ng-init="uuid_{{ directive_new }} = '{{ uuid }}'">
+    <div class="main-form-recovery-pass"  style="background-image:url({{ file_url(image_login_background_url) }}); background-repeat: no-repeat;">
+        <div class="image-logo__wrapper">
+            <figure> 
+                <img src="{{ file_url(image_logo_url) }}">
+            </figure>
+        </div>
+        <div class="recovery-form login-form__wrapper recovery-pass">
+            <form>
+                <div class="recovery-form__top recovery">
+                    <h3 ng-if="step != 4">{{ config.title }}</h3>
+
+                    <div ng-if="step == 4">
+                        <i ng-class="(status_pass == true) ? 'icon-ready' : 'icon-failed'"></i>
+                        <h4>{[{ status_pass_label }]}</h4>
+                    </div>
+
+                    <ul class="nav-step">
+                        <li ng-class="(step == 1) ? 'active' : ''">step1</li>
+                        <li ng-class="(step == 2) ? 'active' : ''">step2</li>
+                        <li ng-class="(step == 3) ? 'active' : ''">step3</li>
+                        <li ng-class="(step == 4) ? 'active' : ''">step4</li>
+                    </ul>
+                    
+                    <div class="input-form">
+                        <p class="message_login">{[{ message }]}</p>
+                        
+                        <div class="cards" ng-if="step == 1">
+                            <div>
+                                <input type="email" placeholder="{{ config.mail }}">
+                            </div>
+                        </div>
+
+                        <div class="cards" ng-if="step == 2">
+                            <div>
+                                <input type="text" placeholder="{{ config.placeholder_code }}">
+                                <i ng-class="(statusCode == true) ? 'success' : 'failed'"></i>
+                            </div>
+                        </div>
+
+                        <div class="cards" ng-if="step == 3">
+                            <div>
+                                <input type="password" placeholder="{{ config.password }}">
+                                <ul>
+                                    <li ng-class="criteriar-{[{ key }]}" class="validate" ng-repeat="(key, value) in pass_criteriar">{[{ value }]}</li>
+                                </ul>
+                                <input type="password" placeholder="{{ config.repeat_password }}">
+                            </div>
+                        </div>
+
+                        <div class="cards" ng-if="step == 4">
+                            <div>
+                                <p class="message_status_recovery">{[{ messageStatusRecovery }]}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recovery-form__submit">
+                        <div class="action-next">
+                            <button 
+                                ng-click="(step <= 3) ? actionNext() : actionLogin()"
+                                ng-disabled="btnDisabled">{[{ txtBtnNext }]}</button>
+                        </div>
+                        <div class="action-return">
+                            <button 
+                                ng-if="step <= 3"
+                                ng-click="(step <= 3) ? actionCancell() : actionReturn()"
+                                ng-disabled="btnDisabled">{[{ txtBtnReturn }]}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

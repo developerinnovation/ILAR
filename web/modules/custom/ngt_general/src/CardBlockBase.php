@@ -28,7 +28,6 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
      * @return void
      */
     public function cardBuilVarBuild($parameters = [], $others = []){
-        
         $build = [
             '#theme' => $parameters['theme'],
             '#uuid' => $this->uuid,
@@ -131,5 +130,16 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
 
     public function getCacheMaxAge(){
         return 0;
+    }
+    
+    /**
+     * uuid
+     *
+     * @param  string $name
+     * @return hash
+     */
+    public function uuid($name){
+        $hash = $this->uuid = md5($name);
+        return $hash;
     }
 }

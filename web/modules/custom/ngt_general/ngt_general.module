@@ -41,7 +41,8 @@ function ngt_general_preprocess_html(&$variables){
   $menuActiveUser = 'no-active';
   $menuActiveNode = 'no-active';
 
-  if($routeName == 'user.login' || $routeName == 'user.register' || $routeName == 'user.pass'){
+  // ocultando elementos del header y footer donde no aplican
+  if($routeName == 'user.login' || $routeName == 'login.recovery_pass' || $routeName == 'login.register'){
     $showHeaderAndFooter = false;
     $menuActiveUser = 'active';
   }

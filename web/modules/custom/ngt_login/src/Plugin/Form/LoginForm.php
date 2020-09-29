@@ -123,6 +123,13 @@ class LoginForm extends ConfigFormBase {
             '#open' => false,  
         ]; 
 
+        $form['ngt_forgot_password']['mail'] = [  
+            '#type' => 'textfield',
+            '#title' => t('Placeholder correo electrónico'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['mail']) ? $config->get('ngt_forgot_password')['mail'] : t('Correo electrónico'),
+            '#required' => true
+        ]; 
+
         $form['ngt_forgot_password']['continue'] = [  
             '#type' => 'textfield',
             '#title' => t('Texto botón continuar'),   
@@ -155,6 +162,13 @@ class LoginForm extends ConfigFormBase {
             '#type' => 'textfield',
             '#title' => t('Título'),   
             '#default_value' => isset($config->get('ngt_forgot_password')['title']) ? $config->get('ngt_forgot_password')['title'] : t('Restablecer contraseña'),
+            '#required' => true
+        ]; 
+
+        $form['ngt_forgot_password']['msj_mail'] = [  
+            '#type' => 'Mensaje ingrese su email registrado',
+            '#title' => t('Título'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['msj_mail']) ? $config->get('ngt_forgot_password')['msj_mail'] : t('Ingresa el correo electrónico con el que creaste tu cuenta'),
             '#required' => true
         ]; 
 
@@ -201,10 +215,24 @@ class LoginForm extends ConfigFormBase {
             '#required' => true
         ];
 
+        $form['ngt_forgot_password']['new_pass_success_label'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Label contraseña restablecida correctamente'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['new_pass_success_label']) ? $config->get('ngt_forgot_password')['new_pass_success_label'] : t('¡Listo!'),
+            '#required' => true
+        ]; 
+
         $form['ngt_forgot_password']['new_pass_success'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje contraseña restablecida correctamente'),   
             '#default_value' => isset($config->get('ngt_forgot_password')['new_pass_success']) ? $config->get('ngt_forgot_password')['new_pass_success'] : t('Tu contraseña se restableció correctamente'),
+            '#required' => true
+        ]; 
+
+        $form['ngt_forgot_password']['new_pass_failed_label'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Label error al restablecer contraseña'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['new_pass_failed_label']) ? $config->get('ngt_forgot_password')['new_pass_failed_label'] : t('¡Algo salió mal!'),
             '#required' => true
         ]; 
 
