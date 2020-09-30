@@ -100,5 +100,19 @@ function ngt_login_theme() {
       ],
       'template' => 'block--recovery-pass',
     ],
+    'register_user' => [
+      'variables' => [
+        'dataAngular' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
+        'image_logo_url' => NULL,
+        'image_login_background_url' => NULL,
+        'terms_text' => NULL,
+      ],
+      'template' => 'block--register-user',
+    ],
   ];
 }

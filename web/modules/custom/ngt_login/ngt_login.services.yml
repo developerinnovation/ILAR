@@ -2,3 +2,6 @@ services:
   ngt_login.recovery_pass:
     class: Drupal\ngt_login\Plugin\Config\Block\RecoveryPassBlockClass
     arguments: []
+  ngt_login.register_user:
+    class: Drupal\ngt_login\Plugin\Config\Block\RegisterUserBlockClass
+    arguments: []

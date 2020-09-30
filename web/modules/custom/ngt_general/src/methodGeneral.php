@@ -146,5 +146,32 @@ class methodGeneral{
         }
         return new ResourceResponse($data);
     }
+    
+    /**
+     * loadTermByCategory
+     *
+     * @param  string $name
+     * @return array
+     */
+    public function loadTermByCategory($name){
+        
+        $term = [];
+        
+        $query = \Drupal::entityQuery('taxonomy_term');
+        $query->condition('vid', $name);
+        $tids = $query->execute();
+
+        if($tids){
+            $terms = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
+            foreach ($terms as $value) {
+                array_push($term,[
+                    'tid' => $value->tid->value,
+                    'name' => $value->name->value
+                ]); 
+            }
+        }
+        
+        return $term;
+    }
 
 }

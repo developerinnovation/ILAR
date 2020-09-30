@@ -364,6 +364,13 @@ class LoginForm extends ConfigFormBase {
             '#required' => true
         ];
 
+        $form['ngt_new_user']['password'] = [  
+            '#type' => 'textfield',
+            '#title' => t('Texto placeholder input contraseña'),   
+            '#default_value' => isset($config->get('ngt_new_user')['password']) ? $config->get('ngt_new_user')['password'] : t('Contraseña'),
+            '#required' => true
+        ]; 
+
         $form['ngt_new_user']['repeat_password'] = [  
             '#type' => 'textfield',
             '#title' => t('Texto placeholder input confirmar contraseña'),   
@@ -417,7 +424,7 @@ class LoginForm extends ConfigFormBase {
         $form['ngt_new_user']['message_new_user_success'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje cuenta creada'),   
-            '#default_value' => isset($config->get('ngt_new_user')['message_new_user_success']) ? $config->get('ngt_new_user')['message_new_user_success'] : t('Tu cuenta se generó correctamente'),
+            '#default_value' => isset($config->get('ngt_new_user')['message_new_user_success']) ? $config->get('ngt_new_user')['message_new_user_success'] : t('Tu cuenta se creó correctamente'),
             '#required' => true
         ]; 
 

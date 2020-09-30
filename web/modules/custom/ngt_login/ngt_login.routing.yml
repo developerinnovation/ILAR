@@ -16,3 +16,12 @@ login.recovery_pass:
   requirements:
     _access: 'TRUE'
     _role: 'anonymous'
+
+ngt_login.register_user:
+  path: 'register/user'
+  defaults:
+    _controller: '\Drupal\ngt_login\Controller\LoginController::RegisterUser'
+    _title: 'Registro de usuario'
+  requirements:
+    _access: 'TRUE'
+    _role: 'anonymous'
