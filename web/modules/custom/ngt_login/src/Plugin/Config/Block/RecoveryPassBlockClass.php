@@ -71,13 +71,13 @@ class RecoveryPassBlockClass {
         ];
 
         $other_config = [
-            'url' => '/prueba',
+            'pathGetCode' => '/ngt/api/v1/login/recovery/pass/get/code',
+            'pathVerifyCode' => '/ngt/api/v1/login/recovery/pass/verify/code',
             'config' => $config->get('ngt_forgot_password'),
             'pass_criteriar' => explode(PHP_EOL, $config->get('ngt_forgot_password')['help_text_new_pass']),
         ];
 
-        $url = '/api/v1/';
-        $config_block = $instance->cardBuildConfigBlock($url, $other_config);
+        $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
         $instance->cardBuilVarBuild($parameters, $others);
         $instance->cardBuildAddConfigDirective($config_block);
 

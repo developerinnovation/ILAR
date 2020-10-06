@@ -56,6 +56,8 @@ class notificationSettingsForm extends ConfigFormBase {
             '#description' => t('Logo general para correos'),
         ];
 
+        // temple new user
+
         $form['notification_new_user'] = [
             '#type' => 'details',
             '#title' => t('Template para notificar la creación de un nuevo usuario'),
@@ -76,6 +78,30 @@ class notificationSettingsForm extends ConfigFormBase {
             '#default_value' => $config->get('notification_new_user')['body']['value'],
             '#description' => t('Mensaje en formato HTMl.'),
         ];
+
+        // temple recovery pass - get code
+        
+        $form['notification_get_code'] = [
+            '#type' => 'details',
+            '#title' => t('Template para notificar código temporal para recuperar contraseña'),
+            '#open' => FALSE,
+        ];
+
+        $form['notification_get_code']['subject'] = [
+            '#type' => 'textfield',
+            '#maxlength' => 180,
+            '#title' => t('Asunto'),
+            '#default_value' => isset($config->get('notification_get_code')['subject']) ? $config->get('notification_get_code')['subject'] : t('Recuperar contraseña'),
+        ];
+
+        $form['notification_get_code']['body'] = [
+            '#type' => 'text_format',
+            '#title' => t('Body'),
+            '#format' => 'full_html',
+            '#default_value' => $config->get('notification_get_code')['body']['value'],
+            '#description' => t('Mensaje en formato HTMl.'),
+        ];
+
 
         return parent::buildForm($form, $form_state);
     }
@@ -98,6 +124,7 @@ class notificationSettingsForm extends ConfigFormBase {
         $this->config('ngt_notification.settings')
             ->set('notification_images', $form_state->getValue('notification_images'))  
             ->set('notification_new_user', $form_state->getValue('notification_new_user'))
+            ->set('notification_get_code', $form_state->getValue('notification_get_code'))
             ->save();   
 
     }

@@ -186,6 +186,20 @@ class LoginForm extends ConfigFormBase {
             '#required' => true
         ]; 
 
+        $form['ngt_forgot_password']['error_code_send'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje error al enviar código'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['error_code_send']) ? $config->get('ngt_forgot_password')['error_code_send'] : t('Se presentó un error al enviar el código de verificación al correo ingresado, por favor verifica que sea el mismo con el cual te registraste en la plataforma.'),
+            '#required' => true
+        ]; 
+
+        $form['ngt_forgot_password']['error_code'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje error al verificar código'),   
+            '#default_value' => isset($config->get('ngt_forgot_password')['error_code']) ? $config->get('ngt_forgot_password')['error_code'] : t('el código de verificación ingresado no es válido o ya ha caducado , por favor verifica el código recibido p intenta nuevamente obtener un nuevo.'),
+            '#required' => true
+        ]; 
+
         $form['ngt_forgot_password']['new_pass'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje ingrese nueva contraseña'),   

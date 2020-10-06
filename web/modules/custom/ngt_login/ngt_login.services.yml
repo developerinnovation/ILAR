@@ -5,3 +5,12 @@ services:
   ngt_login.register_user:
     class: Drupal\ngt_login\Plugin\Config\Block\RegisterUserBlockClass
     arguments: []
+  ngt_login.methodGeneralLogin:
+    class: Drupal\ngt_login\methodGeneralLogin
+    arguments: []
+  ngt_login.get_code_recovery_pass:
+    class: Drupal\ngt_login\Services\Rest\GetCodeRecoveryPassRestLogic
+    arguments: []
+  ngt_login.verify_code_recovery_pass:
+    class: Drupal\ngt_login\Services\Rest\VerifyCodeRecoveryPassRestLogic
+    arguments: []
