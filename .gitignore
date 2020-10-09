@@ -34,7 +34,7 @@ web/sites/default/settings.php
 gitignore
 error_log
 .vscode/
-
+.DS_Store
 
 web/themes/custom/ngt_theme/.sass-cache/*
 /web/themes/custom/ngt_theme/.sass-cache/*
