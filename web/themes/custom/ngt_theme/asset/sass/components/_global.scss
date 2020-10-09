@@ -3,7 +3,8 @@ $tablet: 'min-width: 768px';
 $desktop: 'min-width: 1180px';
 
 $sombra: 0 3px 6px rgba(0, 0, 0, 0.16);
-$azul: #0A2952;
+$azul: #3e54d3;
+$turqui: #0B2152;
 $amarillo: #FFA41B;
 $aqua: #15CDCA;
 // FIN VARIABLES ----------------------------------------
@@ -35,5 +36,6 @@ figure{
     img{
         display: block;
         max-width: 100%;
+        width: 100%;
     }
 }

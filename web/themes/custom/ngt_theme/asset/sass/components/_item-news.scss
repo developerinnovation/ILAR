@@ -108,17 +108,17 @@
                 border-radius: 15px;
                 &.show-course{
                     margin: 0 15px 0 0;
-                    width: 84px;
+                    width: 120px;
                     border: 0;
-                    background: #FFA41B;
+                    background: $aqua;
                     font: {
-                        size: 13px;
+                        size: 15px;
                     }
-                    color: #0A2952;
+                    color: #fff;
                 }
                 &.save{
                     width: 28px;
-                    border: 1px solid $aqua;
+                    border: 1px solid $turqui;
                     font: {
                         size: 0;
                     }
