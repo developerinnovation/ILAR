@@ -11,6 +11,17 @@
                                 height: 100vh;
                                 min-height: 600px;
                             }
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
+                                top: 0;
+                                left: 0;
+                                background: linear-gradient(#3E54D3, #24338A, #0B2152);
+                                opacity: .9;
+                                border-radius: 5px;
+                            }
                             img{
                                 width: 100%;
                                 height: 100%;
@@ -205,6 +216,8 @@
                             family: 'Montserrat', sans-serif;
                             size: 15px;
                             weight: 700;
+                            width: inherit;
+                            padding: 0px;
                         }
                         &::after{
                             content: "";

@@ -39,3 +39,94 @@ figure{
         width: 100%;
     }
 }
+input{
+    outline: none;
+}
+.input-form{
+    select{
+        -webkit-appearance: none;
+        display: block;
+        width: 100%;
+        height: 50px;
+        padding: 0 10px 0 40px;
+        background-color: #fff;
+        border: 1px solid #b9b9b9;
+        border-radius: 30px;
+        margin-bottom: 15px;
+        color: #747474;
+        outline: none;
+    }
+}
+
+ul.nav-step{
+    display: flex;
+    padding: 0;
+    text-align: center;
+    width: 30%;
+    margin: 30px auto;
+    justify-content: space-between;
+    list-style: none;
+    color: transparent;
+    li{
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background: $azul;
+        -webkit-transition: all .15s linear;
+        transition: all .15s linear;
+        &.active{
+            width: 30px;
+        }
+    }
+
+}
+
+
+i.icon{
+    content: "";
+    margin: 10px auto;
+    width: 30px;
+    height: 30px;
+    background-image: url(../img/sprite-icon-internos.svg);
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    top: 1px;
+    line-height: 1;
+
+    .user{
+        background-position: 0px 0px;
+    }
+    .mail{
+        background-position: 0px 0px;
+    }
+    .pass{
+        background-position: 0px 0px;
+    }
+    .date{
+        background-position: 0px 0px;
+    }
+    .profesion{
+        background-position: 0px 0px;
+    }
+    .ubicacion{
+        background-position: 0px 0px;
+    }
+    .camara{
+        background-position: 0px 0px;
+    }
+    .check{
+        background-position: 0px 0px;
+    }
+    .fall{
+        background-position: 0px 0px;
+    }
+}
+
+
+
+
+
