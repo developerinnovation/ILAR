@@ -31,55 +31,94 @@
                         
                         <div class="cards" ng-if="step == 1">
                             <div>
-                                <input class="input-name" type="text" ng-model="name" id="name" name="name" maxlength="100" placeholder="{{ config.name }}">
-                                <input class="input-mail" type="text" ng-model="email" id="email" name="email" maxlength="100" placeholder="{{ config.email }}">
-                                <input class="input-date" type="date" ng-model="date" id="date" name="date" placeholder="{{ config.date }}">
-                                <select class="select-profession"  ng-model="profession" name="profession" id="profession">
-                                    <option selected disabled>{{ config.profession }}</option>
-                                    <option value="{[{ value.tid }]}" ng-repeat="(key, value) in profession">{[{ value.name }]}</option>
-                                </select>
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon user"></i>
+                                    <input class="input-name" type="text" ng-model="name" id="name" name="name" maxlength="100" placeholder="{{ config.name }}">
+                                </div>
+                                
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon mail"></i>
+                                    <input class="input-mail" type="text" ng-model="email" id="email" name="email" maxlength="100" placeholder="{{ config.email }}">
+                                </div>
+                                
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon date"></i>
+                                    <input class="input-date" type="date" ng-model="date" id="date" name="date" placeholder="{{ config.date }}">
+                                </div>
+                                
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon profesion"></i>
+                                    <select class="select-profession"  name="profession" id="profession">
+                                        <option selected disabled>{{ config.profession }}</option>
+                                        <option value="{[{ value.tid }]}" ng-repeat="(key, value) in profession">{[{ value.name }]}</option>
+                                    </select>
+                                </div>
+                                
                             </div>
                         </div>
 
                         <div class="cards" ng-if="step == 2">
                             <div>
-                                <select class="select-country place-select" ng-model="country" name="country" id="country" ng-disabled="enableCountry">
-                                    <option disabled>{{ config.profession }}</option>
-                                    <option value="{[{ value.tid }]}" ng-repeat="(key, value) in country">{[{ value.name }]}</option>
-                                </select>
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon ubicacion"></i>
+                                    <select class="select-country place-select" name="country" id="country" ng-disabled="enableCountry">
+                                        <option selected disabled>{{ config.country }}</option>
+                                        <option value="{[{ value.tid }]}" ng-repeat="(key, value) in country">{[{ value.name }]}</option>
+                                    </select>
+                                </div>  
 
-                                <select class="select-state place-select" ng-model="state" name="state" id="state" ng-disabled="enableState">
-                                    <option disabled>{{ config.state }}</option>
-                                    <option value="{[{ value.tid }]}" ng-repeat="(key, value) in state">{[{ value.name }]}</option>
-                                </select>
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon ubicacion"></i>
+                                    <select class="select-state place-select" name="state" id="state" ng-disabled="enableState">
+                                        <option selected disabled>{{ config.state }}</option>
+                                        <option value="{[{ value.tid }]}" ng-repeat="(key, value) in state">{[{ value.name }]}</option>
+                                    </select>
+                                </div>  
 
-                                <select class="select-city place-select" ng-model="city" name="city" id="city" ng-disabled="enableCity">
-                                    <option disabled>{{ config.city }}</option>
-                                    <option value="{[{ value.tid }]}" ng-repeat="(key, value) in city">{[{ value.name }]}</option>
-                                </select>
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon ubicacion"></i>
+                                    <select class="select-city place-select" name="city" id="city" ng-disabled="enableCity">
+                                        <option selected disabled>{{ config.city }}</option>
+                                        <option value="{[{ value.tid }]}" ng-repeat="(key, value) in city">{[{ value.name }]}</option>
+                                    </select>
+                                </div>    
 
                             </div>
                         </div>
 
                         <div class="cards" ng-if="step == 3">
                             <div>
-                                
-                                <input class="input-username" type="text" ng-model="username" name="username" id="username" maxlength="100" placeholder="{{ config.user_name }}">
-                                <input class="input-password" type="password" ng-model="password" name="password" id="password" maxlength="10" placeholder="{{ config.password }}">
-                                <ul>
-                                    <li ng-class="criteriar-{[{ key }]}" class="validate" ng-repeat="(key, value) in pass_criteriar">{[{ value }]}</li>
-                                </ul>
-                                <input class="input-password" type="password" ng-model="repeatPassword" name="repeatPassword" id="repeatPassword" maxlength="10" placeholder="{{ config.repeat_password }}">
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon user"></i>
+                                    <input class="input-username" type="text" ng-model="username" name="username" id="username" maxlength="100" placeholder="{{ config.user_name }}">
+                                </div>
+
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon pass"></i>
+                                    <input class="input-password" type="password" ng-model="password" name="password" id="password" maxlength="10" placeholder="{{ config.password }}">
+                                </div>
+
+                                <div class="inner-addon leftaddon">
+                                    <ul>
+                                        <li ng-class="criteriar-{[{ key }]}" class="validate" ng-repeat="(key, value) in pass_criteriar">{[{ value }]}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="inner-addon leftaddon">
+                                    <i class="icon pass"></i>
+                                    <input class="input-password" type="password" ng-model="repeatPassword" name="repeatPassword" id="repeatPassword" maxlength="10" placeholder="{{ config.repeat_password }}">
+                                </div>
+                               
                                 <div class="term-and-conditions">
-                                    <input type="radio" name="" id="">
-                                    {{ terms_text|raw }}
+                                    <input type="radio" name="term-condition-check" id="term-condition-check">
+                                    <label for="term-condition-check">{{ terms_text|raw }}</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="cards" ng-if="step == 4">
                             <div>
-                                <img src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" width="72"; height="72" alt="">
+                                <img class="icon camera" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" width="72"; height="72" alt="">
                                 <p class="message_status_load_pic">{[{ messageStatusLoadPic }]}</p>
                                 <button ng-click="omitLoadPic()">{[{ txtBtnOmit }]}</button>
                             </div>
@@ -87,12 +126,13 @@
 
                         <div class="cards" ng-if="step == 5">
                             <div>
-                                <p class="message_status_register" ng-class="(status_register == true) ? 'ready' : 'failed'" >{[{ messageStatusRegister }]}</p>
+                                <p class="message_status_register" ng-class="(status_register == true) ? 'icon check' : 'icon fall'" >{[{ messageStatusRegister }]}</p>
                                 <h4>{[{ labelStatusRegister }]}</h4>
                             </div>
                         </div>
 
                     </div>
+
                     <div class="register-user-form__submit">
                         <div class="action-next">
                             <button 
