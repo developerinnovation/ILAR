@@ -28,24 +28,33 @@
                         <p class="message_login">{[{ message }]}</p>
                         
                         <div class="cards" ng-if="step == 1">
-                            <div>
-                                <input type="email" placeholder="{{ config.mail }}">
+                            <div class="inner-addon leftaddon">
+                                    <i class="icon mail"></i>
+                                    <input type="email" placeholder="{{ config.mail }}">
                             </div>
                         </div>
 
                         <div class="cards" ng-if="step == 2">
                             <div>
                                 <input type="text" placeholder="{{ config.placeholder_code }}">
-                                <i ng-class="(statusCode == true) ? 'success' : 'failed'"></i>
+                                <i ng-class="(statusCode == true) ? 'icon check' : 'icon fall'"></i>
                             </div>
                         </div>
 
                         <div class="cards" ng-if="step == 3">
-                            <div>
+                            <div class="inner-addon leftaddon">
+                                <i class="icon pass"></i>
                                 <input type="password" placeholder="{{ config.password }}">
+                            </div>
+
+                            <div class="inner-addon leftaddon">
                                 <ul>
                                     <li ng-class="criteriar-{[{ key }]}" class="validate" ng-repeat="(key, value) in pass_criteriar">{[{ value }]}</li>
                                 </ul>
+                            </div>
+
+                            <div class="inner-addon leftaddon">
+                                <i class="icon pass"></i>
                                 <input type="password" placeholder="{{ config.repeat_password }}">
                             </div>
                         </div>
