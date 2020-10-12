@@ -166,8 +166,8 @@ class LoginForm extends ConfigFormBase {
         ]; 
 
         $form['ngt_forgot_password']['msj_mail'] = [  
-            '#type' => 'Mensaje ingrese su email registrado',
-            '#title' => t('Título'),   
+            '#type' => 'textfield',
+            '#title' => t('Mensaje ingrese su email registrado'),   
             '#default_value' => isset($config->get('ngt_forgot_password')['msj_mail']) ? $config->get('ngt_forgot_password')['msj_mail'] : t('Ingresa el correo electrónico con el que creaste tu cuenta'),
             '#required' => true
         ]; 
