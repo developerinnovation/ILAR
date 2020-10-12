@@ -14,8 +14,12 @@
                     <h3 ng-if="step == 4">{{ config.title_picture }}</h3>
 
                     <div ng-if="step == 5">
-                        <i ng-class="(status_register == true) ? 'icon-ready' : 'icon-failed'"></i>
-                        <h4>{[{ status_register_label }]}</h4>
+                        <div class="inner-addon leftaddon">
+                            <i ng-class="(status_register == true) ? 'icon ready' : 'icon failed'"></i>
+                        </div>
+                        <div class="mensaje">
+                            <h4>{[{ status_register_label }]}</h4>
+                        </div>
                     </div>
 
                     <ul class="nav-step">
