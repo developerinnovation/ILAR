@@ -22,7 +22,7 @@
                     font: {
                         size: 18px;
                     }
-                    color: $azul;
+                    color: $turqui;
                     text-align: center;
                     margin: 0 0 15px;
                 }
@@ -33,6 +33,8 @@
                     color: #535353;
                     text-align: center;
                     margin: 0;
+                    font-weight: 300;
+                    letter-spacing: 1px;
                 }
             }
             .details{
@@ -131,8 +133,42 @@
                         @media only screen and ($desktop){
                             width: 33%;
                             margin: 0;
+                        }  
+                          &:before{
+                            content: '';
+                            display: inline-block;
+                            vertical-align: text-top;
+                            margin: 0 4px 0 0;
+                            width: 16px;
+                            height: 16px;
+                            background:{
+                                image: url(../img/sprite-icon-generales.svg);
+                                size: 240px;
+                                position: -7px -7px;
+                                repeat: no-repeat;
+                                color: transparent;
+                                }
+                            }  
+
+                        &.module{
+                          &:before{
+                            background-position:-37px -7px;
+                            }  
+                        } 
+                        &.students{
+                            &:before{
+                            background-position:-67px -7px;
+                            }
                         }
+                        &.language{
+                            &:before{
+                            background-position:-98px -7px;
+                            }
+                        }
+                        
+
                     }
+
                     .rating{
                         margin: 0 0 35px;
                         @media only screen and ($desktop){
@@ -155,15 +191,15 @@
                             margin: 0 15px 0 0;
                             width: 134px;
                             border: 0;
-                            background: #FFA41B;
+                            background: $aqua;
                             font: {
                                 size: 13px;
                             }
-                            color: #0A2952;
+                            color: #fff;
                         }
                         &.save{
                             width: 34px;
-                            border: 1px solid $aqua;
+                            border: 1px solid $turqui;
                             font: {
                                 size: 0;
                             }
@@ -213,10 +249,11 @@
                             weight: 700;
                         }
                         line-height: 30px;
-                        color: $azul;
+                        color: $turqui;
                         display: block;
+                        background: #fff;
                         border: 0;
-                        border-bottom: 3px solid $azul;
+                        border-bottom: 3px solid $turqui;
                         border-radius: 0;
                         margin: 0 auto;
                     }
@@ -298,6 +335,8 @@
                         font: {
                             size: 15px;
                         }
+                        font-weight: 300;
+                        letter-spacing: 1px;
                         line-height: 1.5em;
                         color: #2B2B2B;
                         margin: 0 0 25px;
@@ -307,6 +346,8 @@
                     }
                     .description{
                         margin: 0 0 50px;
+                        font-weight: 300;
+                        letter-spacing: 1px;
                     }
                     h3{
                         font: {
@@ -315,7 +356,6 @@
                         color: #535353;
                         letter-spacing: 0.05em;
                         text-align: center;
-                        text-transform: uppercase;
                         margin: 0 0 30px;
                         &:after{
                             content: '';
@@ -324,7 +364,7 @@
                             width: 35px;
                             height: 5px;
                             border-radius: 4px;
-                            background: $amarillo;
+                            background: $azul;
                         }
                     }
                     .list{
@@ -348,7 +388,7 @@
                                         weight: 700;
                                         size: 15px;
                                     }
-                                    color: $azul;
+                                    color: $turqui;
                                     display: inline-block;
                                     margin: 0 0 10px;
                                 }
@@ -368,11 +408,34 @@
                     color: #535353;
                     letter-spacing: 0.05em;
                     text-align: center;
-                    text-transform: uppercase;
                     margin: 0 0 30px;
+                    &.title{
+                        margin-bottom: 10px;
+                        text-align: left;
+                    }
                 }
                 .more{
                     
+                }
+
+                .item-news .text>.author.multiple figure img{
+                    margin: 0px;
+                }
+                .owl-carousel .owl-stage{
+                    display: flex;
+                    align-items: center;
+                }
+                .owl-carousel.owl-drag .owl-item{
+                    opacity: 0.5;
+
+                }
+                .owl-carousel.owl-drag .owl-item.active.center{
+                    opacity: 1;
+                    margin: auto 5px;
+                    .text{
+                        transition: 0.3s;
+                        padding-bottom: 30px;
+                    }
                 }
             }
         }
