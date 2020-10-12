@@ -26,6 +26,9 @@ a{
     text-decoration: none;
 }
 button{
+    background-color: transparent;
+    border: none;
+    outline: none;
     font: {
         family: 'Montserrat', sans-serif;
         weight: 600;
@@ -81,48 +84,53 @@ ul.nav-step{
 
 }
 
+.inner-addon{
+position: relative;
+}
 
 i.icon{
     content: "";
-    margin: 10px auto;
     width: 30px;
     height: 30px;
     background-image: url(../img/sprite-icon-internos.svg);
-    background-size: 150px;
     background-repeat: no-repeat;
-    background-position: 0px 0px;
+    background-position: 7px -12px;
     position: absolute;
-    padding: 10px;
+    left: 0;
+    margin: 10px;
     pointer-events: none;
-    top: 1px;
-    line-height: 1;
 
-    .user{
-        background-position: 0px 0px;
+    &.user{
+        background-position: 7px -12px;
     }
-    .mail{
-        background-position: 0px 0px;
+    &.mail{
+        background-position: -16px -12px;
     }
-    .pass{
-        background-position: 0px 0px;
+    &.pass{
+        background-position: -40px -12px;
     }
-    .date{
-        background-position: 0px 0px;
+    &.date{
+        background-position: -65px -12px;
     }
-    .profesion{
-        background-position: 0px 0px;
+    &.profesion{
+        background-position: -90px -12px;
+
     }
-    .ubicacion{
-        background-position: 0px 0px;
+    &.ubicacion{
+        background-position: -114px -12px;
     }
-    .camara{
-        background-position: 0px 0px;
+    &.camara{
+        background-position: -138px -12px;
     }
-    .check{
-        background-position: 0px 0px;
+    &.check{
+        background-position: -220px 2px;
+        width: 60px;
+        height: 60px;
     }
-    .fall{
-        background-position: 0px 0px;
+    &.fall{
+        background-position: -284px 2px;
+        width: 60px;
+        height: 60px;
     }
 }
 
