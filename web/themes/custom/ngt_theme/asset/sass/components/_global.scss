@@ -42,9 +42,10 @@ figure{
         width: 100%;
     }
 }
-input{
+input, select{
     outline: none;
 }
+
 .input-form{
     select{
         -webkit-appearance: none;
