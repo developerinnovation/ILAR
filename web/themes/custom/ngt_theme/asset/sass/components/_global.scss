@@ -71,6 +71,9 @@ ul.nav-step{
     justify-content: space-between;
     list-style: none;
     color: transparent;
+    @media only screen and ($desktop){
+        width: 20%;
+    }
     li{
         width: 8px;
         height: 8px;
