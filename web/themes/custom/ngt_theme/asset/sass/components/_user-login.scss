@@ -1,7 +1,11 @@
 .page-user-login{
-    .user-login-form{
-        // background: linear-gradient(#3E54D3,#24338A,#0B2152);
+    .box{
+        @media only screen and ($desktop){
+        justify-content: end !important;
+        }
+    }        
 
+    .user-login-form{
         .main-form-login{
             position: relative;
             
@@ -196,5 +200,6 @@
 header .box>div.right .link{
     display: none;
 }
+
 
 

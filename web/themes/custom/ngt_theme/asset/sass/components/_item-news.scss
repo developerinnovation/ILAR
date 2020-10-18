@@ -8,6 +8,9 @@
         position: relative;
         padding: 40px 20px 20px;
         >.author{
+            @media only screen and ($desktop){
+            position: initial;
+            }
             position: absolute;
             top: -34px;
             left: 20px;

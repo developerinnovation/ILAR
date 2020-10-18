@@ -1,4 +1,9 @@
 .page-recovery-pass{
+    .box{
+        @media only screen and ($desktop){
+        justify-content: end !important;
+        }
+    }
     .block-recovery-pass{
         // background: linear-gradient(#3E54D3,#24338A,#0B2152);
 
