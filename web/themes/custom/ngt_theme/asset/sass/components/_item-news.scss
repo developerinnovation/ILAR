@@ -7,6 +7,9 @@
     .text{
         position: relative;
         padding: 40px 20px 20px;
+        @media only screen and ($desktop){
+            padding: 20px;
+        }
         >.author{
             @media only screen and ($desktop){
             position: initial;
