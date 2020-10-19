@@ -46,7 +46,10 @@
         }
     }
     .dialog-off-canvas-main-canvas{
+        @media only screen and ($desktop){
         margin-top: -70px;
+        }
+        
     }
 }
 
