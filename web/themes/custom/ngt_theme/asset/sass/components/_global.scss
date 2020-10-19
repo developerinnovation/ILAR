@@ -148,11 +148,9 @@ i.icon{
 p.error-message-input {
     color: #f30303!important;
 }
-.criteriar-pass .ng-binding .ng-scope{
+.criteriar-pass{
     &.validate{
-        li{
-            color: #15cdca;
-        }
+        color: #15cdca;
     }
 }
 
