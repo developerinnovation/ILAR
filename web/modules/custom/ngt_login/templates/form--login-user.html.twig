@@ -11,11 +11,17 @@
                 <p class="message_login"> {{ form['#message'] }} </p>
                 <div id="error_messages">{{ form.error_msgs }}</div>
                 <div class="input-form">
-                    {{ form.name }} {# input user name #}
-                    {{ form.pass }} {# input pass #}
+                    <div class="inner-addon leftaddon">
+                        <i class="icon mail"></i>
+                        {{ form.name }} {# input user name #}
+                    </div>
+                    <div class="inner-addon leftaddon">
+                        <i class="icon pass"></i>
+                        {{ form.pass }} {# input pass #}
+                    </div>
                 </div>
                 <div class="login-form__help_actions forgot-password">
-                    <a href="/ngt/user/password" class="forgot-password">{{ form['#forgot_password'] }}</a>
+                    <a href="/recovery/pass" class="forgot-password">{{ form['#forgot_password'] }}</a>
                 </div>
                 {{ form.form_build_id }} {# required #}
                 {{ form.form_token }} {# required #}
@@ -27,7 +33,7 @@
             <div class="login-form__bottom">
                 <h4 class="register">{{ form['#new_user_message'] }}</h4>
                 <div class="login-form__help_actions register">
-                    <a href="/ngt/user/register" class="register">{{ form['#new_user_text'] }}</a>
+                    <a href="/register/user" class="register">{{ form['#new_user_text'] }}</a>
                 </div>
             </div>
         </form>

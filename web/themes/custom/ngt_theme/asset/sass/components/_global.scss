@@ -44,6 +44,9 @@ figure{
 }
 input{
     outline: none;
+    .error-input-text {
+        border: 1px solid red!important;
+    }
 }
 .input-form{
     select{
@@ -138,7 +141,9 @@ i.icon{
     }
 }
 
-
+p.error-message-input {
+    color: #f30303!important;
+}
 
 
 

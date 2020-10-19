@@ -73,6 +73,7 @@ class RecoveryPassBlockClass {
         $other_config = [
             'pathGetCode' => '/ngt/api/v1/login/recovery/pass/get/code',
             'pathVerifyCode' => '/ngt/api/v1/login/recovery/pass/verify/code',
+            'pathSetNewPass' => '/ngt/api/v1/login/recovery/pass/set/new',
             'config' => $config->get('ngt_forgot_password'),
             'pass_criteriar' => explode(PHP_EOL, $config->get('ngt_forgot_password')['help_text_new_pass']),
         ];

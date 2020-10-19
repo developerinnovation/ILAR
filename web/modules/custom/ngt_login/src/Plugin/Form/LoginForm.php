@@ -196,7 +196,7 @@ class LoginForm extends ConfigFormBase {
         $form['ngt_forgot_password']['error_code'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje error al verificar código'),   
-            '#default_value' => isset($config->get('ngt_forgot_password')['error_code']) ? $config->get('ngt_forgot_password')['error_code'] : t('el código de verificación ingresado no es válido o ya ha caducado , por favor verifica el código recibido p intenta nuevamente obtener un nuevo.'),
+            '#default_value' => isset($config->get('ngt_forgot_password')['error_code']) ? $config->get('ngt_forgot_password')['error_code'] : t('el código de verificación ingresado no es válido o ya ha caducado , por favor verifica el código recibido o intenta obtener uno nuevo.'),
             '#required' => true
         ]; 
 

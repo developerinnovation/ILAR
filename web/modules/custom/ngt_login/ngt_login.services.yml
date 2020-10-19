@@ -14,3 +14,6 @@ services:
   ngt_login.verify_code_recovery_pass:
     class: Drupal\ngt_login\Services\Rest\VerifyCodeRecoveryPassRestLogic
     arguments: []
+  ngt_login.set_new_pass:
+    class: Drupal\ngt_login\Services\Rest\SetNewPassRestLogic
+    arguments: []

@@ -80,7 +80,6 @@ class SendNotification implements SendNotificationInterface{
                     $params['mail_to_send'] = $tokens['mail_to_send'];
                     $params['subject'] = $settings->get($template)['subject'];
                     $params['body'] = $settings->get($template)['body']['value'];
-                    // $params['tokens']['example'] = $tokens['example'];
                     $this->params = $params;
                     $this->send_mail();
                 break;

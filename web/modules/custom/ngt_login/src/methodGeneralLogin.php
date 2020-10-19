@@ -44,7 +44,6 @@ class methodGeneralLogin{
      */
     public function createKeyDinamic($mail, $user = NULL){
         $tokens = [];
-        \Drupal::service('page_cache_kill_switch')->trigger();
         mt_srand(time());
         $mt_rand = mt_rand(100000,50000000);
         $keyDinamic = substr($mt_rand, '4', '3').substr($mt_rand, '2', '3');
@@ -59,9 +58,15 @@ class methodGeneralLogin{
         return $data;
     }
 
-
+    
+    /**
+     * saveTmpStore
+     *
+     * @param  mixed $mail
+     * @param  mixed $keyDinamic
+     * @return void
+     */
     public function saveTmpStore($mail, $keyDinamic){
-        \Drupal::service('page_cache_kill_switch')->trigger();
         $keyTmpStore = sha1($keyDinamic.$mail);
         $tmpStore = \Drupal::service('tempstore.shared')->get('ngt_general.keyDinamic');
         $dataToSave = [
@@ -72,8 +77,15 @@ class methodGeneralLogin{
         $dataToSaveJson = json_encode($dataToSave);
         $tmpStore->set($keyTmpStore, $dataToSaveJson);
     }
-
-    public function verifyCode($mail, $keyDinamic){
+    
+    /**
+     * verifyCode
+     *
+     * @param  mixed $mail
+     * @param  mixed $keyDinamic
+     * @return void
+     */
+    public function verifyCode($mail, $keyDinamic, $clearCode = false){
         \Drupal::service('page_cache_kill_switch')->trigger();
         $dataTmpStore = null;
         $keyTmpStore = sha1($keyDinamic.$mail);
@@ -83,7 +95,9 @@ class methodGeneralLogin{
             $tmpStore = \Drupal::service('tempstore.shared')->get('ngt_general.keyDinamic');
             $dataTmpStore = (array)json_decode($tmpStore->get($keyTmpStore));
             if($dataTmpStore != null){
-                $tmpStore->delete($keyTmpStore);
+                if ($clearCode){
+                    $tmpStore->delete($keyTmpStore);
+                }
                 $data = [
                     'status' => '200',
                     'data' => $dataTmpStore,
@@ -104,6 +118,39 @@ class methodGeneralLogin{
             'message' => $message_error, 
         ];
         
+        return $data;
+    }
+    
+    /**
+     * setNewPass
+     *
+     * @param  mixed $mail
+     * @param  mixed $key_dinamic
+     * @param  mixed $pass
+     * @return void
+     */
+    public function setNewPass($mail, $key_dinamic, $pass){
+        \Drupal::service('page_cache_kill_switch')->trigger();
+        $user = user_load_by_mail($mail);
+
+        if($user){
+            $verifyCode = $this->verifyCode($mail, $key_dinamic, true);
+            if($verifyCode['status'] == '200'){
+                $user->setPassword($pass);
+                $user->save();
+                $data = [
+                    'status' => '200',
+                ];
+            }else{
+                $data = [
+                    'status' => '500', 
+                ];
+            }
+        }else{
+            $data = [
+                'status' => '500', 
+            ];
+        }
         return $data;
     }
 
