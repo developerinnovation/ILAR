@@ -42,12 +42,13 @@ figure{
         width: 100%;
     }
 }
-input{
+input, select{
     outline: none;
     .error-input-text {
         border: 1px solid red!important;
     }
 }
+
 .input-form{
     select{
         -webkit-appearance: none;
@@ -73,6 +74,9 @@ ul.nav-step{
     justify-content: space-between;
     list-style: none;
     color: transparent;
+    @media only screen and ($desktop){
+        width: 20%;
+    }
     li{
         width: 8px;
         height: 8px;
@@ -144,6 +148,15 @@ i.icon{
 p.error-message-input {
     color: #f30303!important;
 }
+.criteriar-pass .ng-binding .ng-scope{
+    &.validate{
+        li{
+            color: #15cdca;
+        }
+    }
+}
+
+
 
 
 
