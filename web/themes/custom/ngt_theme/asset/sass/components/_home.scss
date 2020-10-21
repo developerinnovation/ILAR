@@ -73,7 +73,7 @@
                                 height: 100%;
                                 top: 0;
                                 left: 0;
-                                background: linear-gradient(90deg, #0B2152, #3E54D3);
+                                background: linear-gradient(90deg, #04194a, #1c3ae8);
                                 opacity: .9;
                                 border-radius: 5px;
                             }
@@ -206,7 +206,7 @@
                             display: block;
                             width: 44px;
                             height: 44px;
-                            border: 2px solid $azul;
+                            border: 2px solid $turqui;
                             border-radius: 50%;
                             position: absolute;
                             top: 0;
@@ -215,6 +215,8 @@
                                 -webkit-transform: scale(2);
                                 transform: scale(2);
                                 transform-origin: top left;
+                                width: 26px;
+                                height: 26px;
                             }
                         }
                         &:after{
@@ -225,7 +227,7 @@
                             border: {
                                 width: 0 2px 2px 0;
                                 style: solid;
-                                color: $azul;
+                                color: $turqui;
                             }
                             position: absolute;
                             top: 10px;
@@ -236,8 +238,8 @@
                                 -webkit-transform: rotate(45deg) scale(2);
                                 transform: rotate(45deg) scale(2);
                                 transform-origin: top left;
-                                top: 20px;
-                                left: 58px;
+                                top: 0px;
+                                left: 45px;
                             }
                         }
                         &:last-child{

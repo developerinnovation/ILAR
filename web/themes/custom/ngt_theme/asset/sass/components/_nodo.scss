@@ -1,3 +1,88 @@
+.section-node{
+    header{
+        background: #0B2152;
+        .box{
+            justify-content: normal;
+            width: 90%;
+            .left{
+                width: 50%;
+                .menu{
+                    flex-direction: row-reverse;
+                    li{
+                        text-transform: capitalize;
+                    }
+                }
+            }
+            .right{
+                justify-content: flex-end;
+                width: 50%;
+                a.sign-in{
+                    color: #15cdca;
+                }
+                a.sign-up{
+                    margin: 0;
+                    padding: 0 25px;
+                    border: 0;
+                    border-radius: 30px;
+                    background: #15cdca;
+                    font-family: "Montserrat",sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 45px;
+                    color: #fff;
+                }
+            }
+        }
+        figure{
+            position: relative;
+            top: 0;
+            margin: 0;
+        }
+        .link{
+            display: block !important;
+        }
+    }
+
+    .dialog-off-canvas-main-canvas{
+        margin-top: 0px;
+    }
+
+    .show-course{
+        margin: 0 15px 0 0;
+        width: 134px;
+        border: 0;
+        background: $aqua;
+        height: 34px;
+        padding: 0;
+        border-radius: 20px;
+        font: {
+            size: 13px;
+        }
+        color: #fff;
+    }
+
+    .save{
+    height: 34px;
+    padding: 0;
+    border-radius: 20px;
+    width: 34px;
+    border: 1px solid $turqui;
+    font: {
+        size: 0;
+    }
+    background:{
+        image: url(../img/sprite-icon-generales.svg);
+        size: 240px;
+        position: -149px 2px;
+        repeat: no-repeat;
+        color: transparent;
+    }
+}
+}
+
+
+
+
 .node-course{
     position: relative;
     padding: 56vw 0 0;
@@ -6,6 +91,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
     }
     section{
         margin: 0 30px;
@@ -57,6 +144,7 @@
                         padding: 0;
                         border: 0;
                         margin: 0;
+                        margin-right: 40px;
                     }
                     figure{
                         display: flex;
@@ -122,6 +210,7 @@
                         @media only screen and ($desktop){
                             width: 33%;
                             margin: 0;
+                            margin-bottom: 7px;
                         }
                     }
                     .item{
@@ -133,6 +222,7 @@
                         @media only screen and ($desktop){
                             width: 33%;
                             margin: 0;
+                            margin-bottom: 7px;
                         }  
                           &:before{
                             content: '';
@@ -187,30 +277,6 @@
                         height: 34px;
                         padding: 0;
                         border-radius: 20px;
-                        &.show-course{
-                            margin: 0 15px 0 0;
-                            width: 134px;
-                            border: 0;
-                            background: $aqua;
-                            font: {
-                                size: 13px;
-                            }
-                            color: #fff;
-                        }
-                        &.save{
-                            width: 34px;
-                            border: 1px solid $turqui;
-                            font: {
-                                size: 0;
-                            }
-                            background:{
-                                image: url(../img/sprite-icon-generales.svg);
-                                size: 240px;
-                                position: -149px 2px;
-                                repeat: no-repeat;
-                                color: transparent;
-                            }
-                        }
                     }
                 }
             }
@@ -269,6 +335,7 @@
                         top: auto;
                         left: auto;
                         height: auto;
+                        overflow: hidden; 
                     }
                     .cover-video{
                         display: none;
@@ -283,6 +350,9 @@
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
+                            @media only screen and ($desktop){
+                                height: auto;
+                            }
                         }
                         &:before{
                             content: '';
@@ -321,7 +391,8 @@
                     video, iframe{
                         display: block;
                         width: 100%;
-                        height: 56vw;
+                        height: auto;
+
                     }
                 }
                 .content-tab{
@@ -329,6 +400,8 @@
                         display: none;
                         @media only screen and ($desktop){
                             display: block;
+                            margin: 40px 0;
+                            color: #535353;
                         }
                     }
                     p{
@@ -357,6 +430,20 @@
                         letter-spacing: 0.05em;
                         text-align: center;
                         margin: 0 0 30px;
+                        @media only screen and ($desktop){
+                            text-align: inherit;
+                        }
+                        &:before{
+                            @media only screen and ($desktop){
+                                content: "";
+                                display: block;
+                                margin: 45px 0;
+                                width: 55px;
+                                height: 5px;
+                                border-radius: 4px;
+                                background: #3e54d3;
+                            }
+                        }
                         &:after{
                             content: '';
                             display: block;
@@ -365,11 +452,17 @@
                             height: 5px;
                             border-radius: 4px;
                             background: $azul;
+                            @media only screen and ($desktop){
+                                content: none;
+                            }
                         }
                     }
                     .list{
                         .author{
                             margin: 0 0 40px;
+                            @media only screen and ($desktop){
+                                display: inline-flex;
+                            }
                             figure{
                                 margin: 0 0 20px;
                                 img{
@@ -379,10 +472,18 @@
                                     border: 3px solid #fff;
                                     border-radius: 50%;
                                     object-fit: cover;
+                                    @media only screen and ($desktop){
+                                        max-width: initial; 
+                                    }
                                 }
                             }
                             .info{
                                 text-align: center;
+                                @media only screen and ($desktop){
+                                    text-align: inherit;
+                                    padding-left: 20px;
+                                }
+
                                 .name{
                                     font: {
                                         weight: 700;
@@ -415,6 +516,20 @@
                     }
                 }
                 .more{
+                    @media only screen and ($desktop){
+                        display: flex;
+                        position: relative;
+                        padding-bottom: 30px;
+                        max-width: 1180px;
+                        margin: 0 auto 40px;
+                    }
+
+                    .item-news{
+                        @media only screen and ($desktop){
+                            margin-right: 15px;
+                        }
+
+                    }
                     
                 }
 
