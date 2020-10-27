@@ -64,8 +64,8 @@ class NodeRightCourseBlockClass {
             
             $course = [
                 'nid' => $node->get('nid')->getValue()[0]['value'],
-                'body' => $node->get('body')->getValue()[0]['value'],
-                'resume' => $node->get('field_resumen')->getValue()[0]['value'],
+                'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
+                'resume' => isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '',
                 'autor' => \Drupal::service('ngt_general.course_main')->load_author($node->get('field_autor_principal')->getValue()),
                 'expertos' => \Drupal::service('ngt_general.course_main')->load_author($node->get('field_expertos')->getValue()),
                 'foto_portada' => [
