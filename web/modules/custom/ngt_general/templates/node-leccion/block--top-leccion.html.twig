@@ -1,0 +1,34 @@
+<div class="info">
+    <h1 class="title course">{{ data[0].title }}</h1>
+    <p class="summary">Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.</p>
+</div>
+<div class="details">
+    <picture class="author">
+        <figure>
+            {% for key, item in data[0].expertos %}
+                <img src="{{ item.picture_uri }}" alt="{{ item.name_author }}">
+            {% endfor %}
+        </figure>
+           
+        <figcaption>
+            {% for key, item in data[0].expertos %}
+                <a href="{{ item.uri }}" class="link">{{ item.name_author }}</a>
+            {% endfor %}
+        </figcaption>
+    </picture>
+    <div class="action shared">
+        <button class="icon shared">Compartir</button>
+    </div>
+</div>
+<div class="title leccion">
+    <h3 class="name-module">M1 ¿Cómo iniciar un estuduio?</h3>
+    <h2 class="name-leccion">Lección 1: Pregunta de investigación</h2>
+</div>
+<div class="nav-leccion">
+    <div class="preview">
+        <a href="#"><i class="icon row"></i>Volver</a>
+    </div>
+    <div class="next">
+        <a href="#"><i class="icon row"></i>Siguiente lección</a>
+    </div>
+</div>
