@@ -83,10 +83,6 @@ class RecoveryPassBlockClass {
         $instance->cardBuildAddConfigDirective($config_block);
 
         
-
-        // $cid = 'config:block' . $uuid;
-        // $data = $this->configuration;
-        // \Drupal::cache()->set($cid, $data);
         return $instance->getValue('build');
     }
 

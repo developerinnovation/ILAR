@@ -37,16 +37,36 @@ class NodeRightCourseBlockClass {
      * @param $config
      */
     public function build(NodeRightCourseBlock &$instance, $configuration){
+        $this->configuration = $configuration;
+        $instance->setValue('config_name', 'NodeRightCourseBlock');
+        $instance->setValue('class', 'block-node-right-course');
+        $uuid = $instance->uuid('block-node-right-course');
+        $instance->setValue('directive', 'data-ng-node-right-course');
+        $this->instance->setValue('dataAngular', 'node-right-course-' . $uuid);
+
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
-
-        $build = [
-            '#theme' => 'node_right_course',
-            '#data' => $this->preparerate($node),
+        $parameters = [
+            'theme' => 'node_right_course',
+            'library' => 'ngt_general/node-right-course',
         ];
 
-        return $build;
+        $others = [
+            '#dataAngular' => $this->instance->getValue('dataAngular'),
+            '#data' => $this->preparerate($node),
+            '#uuid' => $uuid,
+        ];
+
+        $other_config = [
+        ];
+
+        $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
+        $instance->cardBuilVarBuild($parameters, $others);
+        $instance->cardBuildAddConfigDirective($config_block);
+
+        
+        return $instance->getValue('build');
     }
 
       /**

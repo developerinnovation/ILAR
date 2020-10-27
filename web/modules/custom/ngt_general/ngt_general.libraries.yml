@@ -40,3 +40,13 @@ course-category:
     - core/jquery
     - core/drupalSettings
     - ngt_general/angular.ngt
+
+node-right-course:
+  version: 1.x
+  js:
+    js/directive/node_right_course.js: {}
+    js/jquery.mask.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - ngt_general/angular.ngt

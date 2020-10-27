@@ -6,7 +6,7 @@ use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\ngt_general\Plugin\Config\Block\NodeRightCourseBlockClass;
-use Drupal\Core\Block\BlockBase;
+use Drupal\ngt_general\CardBlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Access\AccessResult;
@@ -19,7 +19,7 @@ use Drupal\Core\Access\AccessResult;
  *  admin_label = @Translation("Ngt general Node course right"),
  * )
  */
-class NodeRightCourseBlock extends BlockBase implements ContainerFactoryPluginInterface{
+class NodeRightCourseBlock extends CardBlockBase implements ContainerFactoryPluginInterface{
     /**
      * @var \Drupal\ngt_general\Plugin\Config\Block\NodeRightCourseBlockClass
      */
