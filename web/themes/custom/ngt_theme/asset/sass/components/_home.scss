@@ -323,7 +323,7 @@
             }
             .course{
                 @media only screen and ($desktop){
-                display: flex;
+                // display: flex;
                 position: relative;
                 padding-bottom: 30px;
                 max-width: 1180px;
@@ -331,7 +331,10 @@
                 }
                 .course-category{
                     @media only screen and ($desktop){
-                    margin-right: 15px;
+                        margin-right: 15px;
+                        width: 23.7%;
+                        display: inline-grid;
+
                     }
 
                 }

@@ -285,18 +285,96 @@
             display: none;
             @media only screen and ($desktop){
                 display: block;
-                width: 25%;
+                width: 27%;
+                padding: 30px;
+                // margin-top: 30px;
+                // border-top: 1px solid #ccc;
             }
             .course-action{
+                @media only screen and ($desktop){
+                  margin: 0 0 30px 0 !important; 
+                  border-top: 1px solid #ccc;
+                  padding-top: 30px;  
+                  width: initial;
+                }
+
+                nav{
+                    list-style: none;
+
+                    li{
+                        margin-bottom: 12px;
+                        color: #535353;
+                        &.active{
+                            color: #0a2152;
+                            font-weight: bold;
+                            border-bottom: 3px solid #0a2152;
+                            padding-bottom: 5px;
+                            display: inline-block;
+                        }
+                    }
+                }
+                
+                &:after{content: none;}
             }
             .action{
+                @media only screen and ($desktop){
+                    padding-bottom: 30px;
+                    margin-bottom: 30px;
+                    border-bottom: 1px solid #ccc; 
+                    display: flex;  
+                }
+                
             }
             .share{
+                a.facebook{
+                    padding: 7px 12px;
+                    background: #245A9B;
+                    color: white;
+                    font-size: 15px;
+                    display: inline-block;
+                    border-radius: 5px;
+
+                    &:before{
+                        content: "";
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin: 0 4px 0 0;
+                        width: 17px;
+                        height: 17px;
+                        background-image: url(../img/sprite-icon-generales.svg);
+                        background-size: 240px;
+                        background-position: -156px -36px;
+                        background-repeat: no-repeat;
+                        background-color: transparent;
+                    }
+                }
+                a.twetter{
+                    padding: 7px 12px;
+                    background: #00BBFC;
+                    color: white;
+                    font-size: 15px;
+                    display: inline-block;
+                    border-radius: 5px;
+                    &:before{
+                        content: "";
+                        display: inline-block;
+                        vertical-align: text-top;
+                        margin: 0 4px 0 0;
+                        width: 19px;
+                        height: 17px;
+                        background-image: url(../img/sprite-icon-generales.svg);
+                        background-size: 240px;
+                        background-position: -184px -36px;
+                        background-repeat: no-repeat;
+                        background-color: transparent; 
+
+                    }
+                }
             }
         }
         &.right{
             @media only screen and ($desktop){
-                width: 70%;
+                width: 72%;
             }
             .main-content{
                 padding: 30px 0 50px;
