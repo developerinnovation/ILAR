@@ -137,7 +137,7 @@ class CourseMainBlockClass {
      */
     public function load_url_file($media_field){
         $file = File::load($media_field);
-        $url = $file->getFileUri();
+        $url = file_create_url($file->getFileUri());
         return $url;
     }
     

@@ -16,7 +16,7 @@
                 alt="{{ data[0].foto_portada.alt }}" 
                 title="{{ data[0].foto_portada.title }}">
         </picture>
-        <video id="presentation" src="https://ilar.s3.sa-east-1.amazonaws.com/cursos/videos/2020-05-25/Grabacio%CC%81n%20de%20pantalla%202020-05-25%20a%20la%28s%29%205.51.24%20p.%C2%A0m..mov" controls>
+        <video id="presentation" src="{{ data[0].video }}" controls preload="auto">
             Tu navegador no implementa el elemento <code>video</code>.
         </video>
     </figure>
