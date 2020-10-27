@@ -469,7 +469,10 @@
                     video, iframe{
                         display: block;
                         width: 100%;
-                        height: auto;
+                        height: inherit;
+                        @media only screen and ($desktop){
+                            height: fit-content;
+                        }
 
                     }
                 }
