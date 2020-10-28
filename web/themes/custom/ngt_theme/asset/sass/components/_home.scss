@@ -222,8 +222,12 @@ body{
                         &:after{
                             content: '';
                             display: block;
-                            width: 7px;
-                            height: 15px;
+                            @media only screen and ($desktop){
+                                width: 7px;
+                                height: 15px;
+                            }
+                            width: 10px;
+                            height: 19px;
                             border: {
                                 width: 0 2px 2px 0;
                                 style: solid;
