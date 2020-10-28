@@ -175,6 +175,18 @@ i.icon{
         right: 0;
         margin: 10px auto;
     }
+    &.play{
+        background-image: url(../img/play.png);
+        background-position: 0px 0px;
+        margin: 0;
+        width: 25px;
+        height: 25px;
+        background-size: 100%;
+        left: -36px;
+    }
+    &.no-login.play{
+        background: none; 
+    }
 }
 
 p.error-message-input {
