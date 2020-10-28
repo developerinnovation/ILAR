@@ -281,6 +281,46 @@ body{
                 @media only screen and ($desktop){
                 max-width: 1000px;
                 display: flex;
+                align-items: center;
+                }
+                &.course-main{
+                    .text{
+                        @media only screen and ($desktop){
+                            padding: 40px;
+                        }
+
+                    }
+                }
+                .picture{
+                    @media only screen and ($desktop){
+                        width: 50%;
+                    }
+
+                }
+                .text{
+                    @media only screen and ($desktop){
+                        width: 50%;
+                    }
+                    .title{
+                        @media only screen and ($desktop){
+                            margin-bottom: 20px;
+                        }
+                    }
+                    .author{
+                        @media only screen and ($desktop){
+                            margin-bottom: 5px;
+                        }
+
+                    }
+                    .info{
+                        .name{
+                            @media only screen and ($desktop){
+                            margin-bottom: 20px;
+                            }
+
+                        }
+                    }
+
                 }
 
             }
