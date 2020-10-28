@@ -118,6 +118,7 @@ function ngt_general_theme() {
       ],
       'template' => 'block--benefit-home',
     ],
+    // node course
     'node_top_course' => [
       'variables' => [
         'data' => NULL,
@@ -147,6 +148,31 @@ function ngt_general_theme() {
         'data' => NULL,
       ],
       'template' => 'node-course/block--more-course',
+    ],
+    // node lesson
+    'node_top_lesson' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-lesson/block--top-lesson',
+    ],
+    'node_left_lesson' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+      'template' => 'node-lesson/block--left-lesson',
+    ],
+    'node_right_lesson' => [
+      'variables' => [
+        'data' => NULL,
+        'dataAngular' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
+      ],
+      'template' => 'node-lesson/block--right-lesson',
     ],
   ];
 }

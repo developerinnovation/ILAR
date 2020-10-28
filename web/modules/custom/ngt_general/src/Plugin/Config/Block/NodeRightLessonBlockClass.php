@@ -4,22 +4,22 @@ namespace Drupal\ngt_general\Plugin\Config\Block;
 
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\ngt_general\Plugin\Block\NodeRightCourseBlock;
+use Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock;
 use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
- * Manage config a 'NodeRightCourseBlockClass' block
+ * Manage config a 'NodeRightLessonBlockClass' block
  */
-class NodeRightCourseBlockClass {
+class NodeRightLessonBlockClass {
     protected $instance;
     protected $configuration;
 
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeRightCourseBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock $instance
      * @param $config
      */
-    public function setConfig(NodeRightCourseBlock &$instance, &$config){
+    public function setConfig(NodeRightLessonBlock &$instance, &$config){
         $this->instance = &$instance;
         $this->configuration = &$config;
     }
@@ -33,23 +33,23 @@ class NodeRightCourseBlockClass {
 
   
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeRightCourseBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock $instance
      * @param $config
      */
-    public function build(NodeRightCourseBlock &$instance, $configuration){
+    public function build(NodeRightLessonBlock &$instance, $configuration){
         $this->configuration = $configuration;
-        $instance->setValue('config_name', 'NodeRightCourseBlock');
-        $instance->setValue('class', 'block-node-right-course');
-        $uuid = $instance->uuid('block-node-right-course');
-        $instance->setValue('directive', 'data-ng-node-right-course');
-        $this->instance->setValue('dataAngular', 'node-right-course-' . $uuid);
+        $instance->setValue('config_name', 'NodeRightLessonBlock');
+        $instance->setValue('class', 'block-node-right-lesson');
+        $uuid = $instance->uuid('block-node-right-lesson');
+        $instance->setValue('directive', 'data-ng-node-right-lesson');
+        $this->instance->setValue('dataAngular', 'node-right-lesson-' . $uuid);
 
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
         $parameters = [
-            'theme' => 'node_right_course',
-            'library' => 'ngt_general/node-right-course',
+            'theme' => 'node_right_lesson',
+            'library' => 'ngt_general/node-right-lesson',
         ];
 
         $others = [
@@ -76,18 +76,15 @@ class NodeRightCourseBlockClass {
      * @return array
      */
     public function preparerate($nodes){
-        $courses = [];
+        $lessons = [];
         
         foreach ($nodes as $node) {
-            $date = new DrupalDateTime($node->get('field_fecha_de_inicio')->getValue()[0]['value']);
-            $formatted_date = \Drupal::service('date.formatter')->format($date->getTimestamp(), 'custom', 'M d, Y');
-            
-            $course = [
+            $resource = isset($node->get('field_recursos')->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_resource($node->get('field_recursos')->getValue()) : null;
+            $lesson = [
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
-                'resume' => isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '',
-                'autor' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_autor_principal')->getValue()),
-                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue()),
+                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_docente')->getValue()),
+                'recursos' => $resource, 
                 'foto_portada' => [
                     'uri' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']),
                     'uri_360x196' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'360x196'),
@@ -100,9 +97,9 @@ class NodeRightCourseBlockClass {
                 ],
                 'video' => \Drupal::service('ngt_general.methodGeneral')->load_url_file($node->get('field_video')->getValue()[0]['target_id']),
             ];
-            array_push($courses,$course);
+            array_push($lessons,$lesson);
         }
-        return $courses;
+        return $lessons;
     }
 
 }

@@ -89,16 +89,16 @@ class CourseMainBlockClass {
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'title' => $node->get('title')->getValue()[0]['value'],
                 'body' => $node->get('body')->getValue()[0]['value'],
-                'autor' => $this->load_author($node->get('field_autor_principal')->getValue()),
+                'autor' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_autor_principal')->getValue()),
                 'cnt_alumnos' => $node->get('field_cantidad_de_alumnos')->getValue()[0]['value'],
                 'categoria' => $node->get('field_categoria')->getValue()[0]['target_id'],
-                'expertos' => $this->load_author($node->get('field_expertos')->getValue()),
+                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue()),
                 'fecha_inicio' => $formatted_date,
                 'foto_portada' => [
-                    'uri' => $this->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']),
-                    'uri_313x156' => $this->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'313x156'),
-                    'uri_604x476' => $this->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'604x476'),
-                    'uri_374x226' => $this->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'374x226'),
+                    'uri' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']),
+                    'uri_313x156' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'313x156'),
+                    'uri_604x476' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'604x476'),
+                    'uri_374x226' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id'],'374x226'),
                     'target_id' => $node->get('field_foto_portada')->getValue()[0]['target_id'],
                     'alt' => isset($node->get('field_foto_portada')->getValue()[0]['value']) ? $node->get('field_foto_portada')->getValue()[0]['alt'] : '',
                     'title' => isset($node->get('field_foto_portada')->getValue()[0]['value']) ? $node->get('field_foto_portada')->getValue()[0]['title'] : '',
@@ -114,53 +114,4 @@ class CourseMainBlockClass {
         return $courses;
     }
     
-    /**
-     * load_image
-     *
-     * @param  int $media_field
-     * @return url
-     */
-    public function load_image($media_field, $style = NULL){
-        $file = File::load($media_field);
-        $url = $file->getFileUri();
-        if ($style != NULL){
-            $url = ImageStyle::load($style)->buildUrl($url);
-        }
-        return $url;
-    }
-
-    /**
-     * load_url_file
-     *
-     * @param  int $media_field
-     * @return string url
-     */
-    public function load_url_file($media_field){
-        $file = File::load($media_field);
-        $url = file_create_url($file->getFileUri());
-        return $url;
-    }
-    
-    /**
-     * load_author
-     *
-     * @param  array $authors
-     * @return array
-     */
-    public function load_author($authors){
-        $expertos = [];
-        foreach ($authors as $key => $author) {
-            $user =   User::load($author['target_id']); 
-            $experto = [
-                'uid' => $user->get('uid')->getValue()[0]['value'],
-                'name_author' => ucfirst($user->get('field_nombre')->getValue()[0]['value'])." ".ucfirst($user->get('field_apellidos')->getValue()[0]['value']),
-                'picture_uri' => $this->load_image($user->get('user_picture')->getValue()[0]['target_id'],'98x98'),
-                'uri' => \Drupal::service('path.alias_manager')->getAliasByPath('/user/'.$user->get('uid')->getValue()[0]['value']),
-                'profile' => $user->get('field_perfil')->getValue()[0]['value'],
-            ];
-            array_push($expertos,$experto);
-        }
-        
-        return $expertos;
-    }
 }

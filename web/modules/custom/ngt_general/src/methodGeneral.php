@@ -5,6 +5,9 @@ namespace Drupal\ngt_general;
 use Drupal\file\Entity\File;
 use Drupal\rest\ResourceResponse;
 use Drupal\user\Entity\User;
+use Drupal\media\Entity\Media;
+use Drupal\Core\Url;
+use Drupal\image\Entity\ImageStyle;
 
 class methodGeneral{
    
@@ -94,6 +97,83 @@ class methodGeneral{
         }
         
         return $term;
+    }
+
+      /**
+     * load_image
+     *
+     * @param  int $media_field
+     * @return url
+     */
+    public function load_image($media_field, $style = NULL){
+        $file = File::load($media_field);
+        $url = $file->getFileUri();
+        if ($style != NULL){
+            $url = ImageStyle::load($style)->buildUrl($url);
+        }
+        return $url;
+    }
+
+    /**
+     * load_url_file
+     *
+     * @param  int $media_field
+     * @return string url
+     */
+    public function load_url_file($media_field){
+        $file = File::load($media_field);
+        $url = file_create_url($file->getFileUri());
+        return $url;
+    }
+    
+    /**
+     * load_author
+     *
+     * @param  array $authors
+     * @return array
+     */
+    public function load_author($authors){
+        $expertos = [];
+        foreach ($authors as $key => $author) {
+            $user =   User::load($author['target_id']); 
+            $experto = [
+                'uid' => $user->get('uid')->getValue()[0]['value'],
+                'name_author' => ucfirst($user->get('field_nombre')->getValue()[0]['value'])." ".ucfirst($user->get('field_apellidos')->getValue()[0]['value']),
+                'picture_uri' => $this->load_image($user->get('user_picture')->getValue()[0]['target_id'],'98x98'),
+                'uri' => \Drupal::service('path.alias_manager')->getAliasByPath('/user/'.$user->get('uid')->getValue()[0]['value']),
+                'profile' => $user->get('field_perfil')->getValue()[0]['value'],
+            ];
+            array_push($expertos,$experto);
+        }
+        
+        return $expertos;
+    }
+    
+    /**
+     * load_resource
+     *
+     * @param  array $resources
+     * @return array
+     */
+    public function load_resource($resources){
+        $recursos = [];
+        foreach ($resources as $key => $resource) {
+            $file = File::load($resource['target_id']);
+            $url = file_create_url($file->getFileUri());
+            $filename = $file->get('filename')->getValue()[0]['value'];
+            $filenameArray = explode('.', $filename);
+            array_pop($filenameArray);
+            $title = implode('', $filenameArray);
+            $typeFile = end(explode('.', $file->get('filename')->getValue()[0]['value']));
+            $recurso = [
+                'title' => $title,
+                'description' => $resource['description'],
+                'extension' => $typeFile,
+                'url' => $url,
+            ];
+            array_push($recursos,$recurso);
+        }
+        return $recursos;
     }
 
 }

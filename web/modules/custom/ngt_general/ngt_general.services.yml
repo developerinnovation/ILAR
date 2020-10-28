@@ -33,6 +33,17 @@ services:
   ngt_general.node_right_course:
     class: Drupal\ngt_general\Plugin\Config\Block\NodeRightCourseBlockClass
     arguments: []
+
+  ngt_general.node_top_lesson:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeTopLessonBlockClass
+    arguments: []
+  ngt_general.node_left_lesson:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeLeftLessonBlockClass
+    arguments: []
+  ngt_general.node_right_lesson:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeRightLessonBlockClass
+    arguments: []
+
   ngt_general.node_more_course:
     class: Drupal\ngt_general\Plugin\Config\Block\NodeMoreCourseBlockClass
     arguments: []
