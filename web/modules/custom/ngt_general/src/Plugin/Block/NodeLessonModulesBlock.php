@@ -5,23 +5,23 @@ namespace Drupal\ngt_general\Plugin\Block;
 use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\ngt_general\Plugin\Config\Block\NodeLeftCourseBlockClass;
+use Drupal\ngt_general\Plugin\Config\Block\NodeLessonModulesBlockClass;
 use Drupal\ngt_general\CardBlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Access\AccessResult;
 
 /**
- * Provides a 'NodeLeftCourseBlock' block.
+ * Provides a 'NodeLessonModulesBlock' block.
  *
  * @Block(
- *  id = "ngt_general_node_left_course",
- *  admin_label = @Translation("Ngt general Node course left"),
+ *  id = "ngt_general_node_lesson_modules",
+ *  admin_label = @Translation("Ngt general Node lesson modules"),
  * )
  */
-class NodeLeftCourseBlock extends CardBlockBase implements ContainerFactoryPluginInterface{
+class NodeLessonModulesBlock extends CardBlockBase implements ContainerFactoryPluginInterface{
     /**
-     * @var \Drupal\ngt_general\Plugin\Config\Block\NodeLeftCourseBlockClass
+     * @var \Drupal\ngt_general\Plugin\Config\Block\NodeLessonModulesBlockClass
      */
     protected $configurationInstance;
 
@@ -29,9 +29,9 @@ class NodeLeftCourseBlock extends CardBlockBase implements ContainerFactoryPlugi
      * @param array $configuration
      * @param string $plugin_id
      * @param mixed $plugin_definition
-     * @param \Drupal\ngt_general\Plugin\Config\Block\NodeLeftCourseBlockClass $configurationInstance
+     * @param \Drupal\ngt_general\Plugin\Config\Block\NodeLessonModulesBlockClass $configurationInstance
      */
-    public function __construct(array $configuration, $plugin_id, $plugin_definition, NodeLeftCourseBlockClass $configurationInstance) {
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, NodeLessonModulesBlockClass $configurationInstance) {
         // Store our dependency.
         $this->configurationInstance = $configurationInstance;
 
@@ -54,7 +54,7 @@ class NodeLeftCourseBlock extends CardBlockBase implements ContainerFactoryPlugi
             $configuration,
             $plugin_id,
             $plugin_definition,
-            $container->get('ngt_general.node_left_course')
+            $container->get('ngt_general.node_lesson_modules')
         );
     }
 

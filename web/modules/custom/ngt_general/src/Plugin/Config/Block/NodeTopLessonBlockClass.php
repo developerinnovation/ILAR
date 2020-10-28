@@ -4,7 +4,7 @@ namespace Drupal\ngt_general\Plugin\Config\Block;
 
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\ngt_general\Plugin\Block\NodeTopCourseBlock;
+use Drupal\ngt_general\Plugin\Block\NodeTopLessonBlock;
 use Drupal\media\Entity\Media;
 use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
@@ -12,17 +12,17 @@ use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
- * Manage config a 'NodeTopCourseBlockClass' block
+ * Manage config a 'NodeTopLessonBlockClass' block
  */
-class NodeTopCourseBlockClass {
+class NodeTopLessonBlockClass {
     protected $instance;
     protected $configuration;
 
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeTopCourseBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeTopLessonBlock $instance
      * @param $config
      */
-    public function setConfig(NodeTopCourseBlock &$instance, &$config){
+    public function setConfig(NodeTopLessonBlock &$instance, &$config){
         $this->instance = &$instance;
         $this->configuration = &$config;
     }
@@ -36,15 +36,15 @@ class NodeTopCourseBlockClass {
 
   
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeTopCourseBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeTopLessonBlock $instance
      * @param $config
      */
-    public function build(NodeTopCourseBlock &$instance, $configuration){
+    public function build(NodeTopLessonBlock &$instance, $configuration){
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
         $build = [
-            '#theme' => 'node_top_course',
+            '#theme' => 'node_top_lesson',
             '#data' => $this->preparerate($node),
         ];
 
@@ -67,9 +67,11 @@ class NodeTopCourseBlockClass {
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'title' => $node->get('title')->getValue()[0]['value'],
                 'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_docente')->getValue()),
-                'nextLesson' => '',
-                'prevLesson' => '',
-                'module' => '',
+                'nextLesson' => '#',
+                'prevLesson' => '#',
+                'module' => 'M1 ¿Cómo iniciar un estuduio?',
+                'courseTitle' => '',
+                'courseResume' => 'Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.',
             ];
             array_push($lessons,$lesson);
         }

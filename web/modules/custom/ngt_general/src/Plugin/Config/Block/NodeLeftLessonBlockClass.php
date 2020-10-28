@@ -4,22 +4,22 @@ namespace Drupal\ngt_general\Plugin\Config\Block;
 
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock;
+use Drupal\ngt_general\Plugin\Block\NodeLeftLessonBlock;
 use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
- * Manage config a 'NodeRightLessonBlockClass' block
+ * Manage config a 'NodeLeftLessonBlockClass' block
  */
-class NodeRightLessonBlockClass {
+class NodeLeftLessonBlockClass {
     protected $instance;
     protected $configuration;
 
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeLeftLessonBlock $instance
      * @param $config
      */
-    public function setConfig(NodeRightLessonBlock &$instance, &$config){
+    public function setConfig(NodeLeftLessonBlock &$instance, &$config){
         $this->instance = &$instance;
         $this->configuration = &$config;
     }
@@ -33,23 +33,23 @@ class NodeRightLessonBlockClass {
 
   
     /**
-     * @param \Drupal\ngt_general\Plugin\Block\NodeRightLessonBlock $instance
+     * @param \Drupal\ngt_general\Plugin\Block\NodeLeftLessonBlock $instance
      * @param $config
      */
-    public function build(NodeRightLessonBlock &$instance, $configuration){
+    public function build(NodeLeftLessonBlock &$instance, $configuration){
         $this->configuration = $configuration;
-        $instance->setValue('config_name', 'NodeRightLessonBlock');
-        $instance->setValue('class', 'block-node-right-lesson');
-        $uuid = $instance->uuid('block-node-right-lesson');
-        $instance->setValue('directive', 'data-ng-node-right-lesson');
-        $this->instance->setValue('dataAngular', 'node-right-lesson-' . $uuid);
+        $instance->setValue('config_name', 'NodeLeftLessonBlock');
+        $instance->setValue('class', 'block-node-left-lesson');
+        $uuid = $instance->uuid('block-node-left-lesson');
+        $instance->setValue('directive', 'data-ng-node-left-lesson');
+        $this->instance->setValue('dataAngular', 'node-left-lesson-' . $uuid);
 
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
         $parameters = [
-            'theme' => 'node_right_lesson',
-            'library' => 'ngt_general/node-right-lesson',
+            'theme' => 'node_left_lesson',
+            'library' => 'ngt_general/node-left-lesson',
         ];
 
         $others = [
@@ -96,8 +96,6 @@ class NodeRightLessonBlockClass {
                     'height' => $node->get('field_foto_portada')->getValue()[0]['height'],
                 ],
                 'video' => \Drupal::service('ngt_general.methodGeneral')->load_url_file($node->get('field_video')->getValue()[0]['target_id']),
-                'nextLesson' => '#',
-                'prevLesson' => '#',
             ];
             array_push($lessons,$lesson);
         }

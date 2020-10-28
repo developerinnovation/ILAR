@@ -43,6 +43,9 @@ services:
   ngt_general.node_right_lesson:
     class: Drupal\ngt_general\Plugin\Config\Block\NodeRightLessonBlockClass
     arguments: []
+  ngt_general.node_lesson_modules:
+    class: Drupal\ngt_general\Plugin\Config\Block\NodeLessonModulesBlockClass
+    arguments: []
 
   ngt_general.node_more_course:
     class: Drupal\ngt_general\Plugin\Config\Block\NodeMoreCourseBlockClass

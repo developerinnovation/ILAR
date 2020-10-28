@@ -50,6 +50,14 @@
         {% endif %}
     </div>
 </div>
+<div class="nav-leccion desktop">
+    <div class="preview">
+        <a href="{{ data[0].nextLesson }}"><i class="icon row"></i>Volver</a>
+    </div>
+    <div class="next">
+        <a href="{{ data[0].prevLesson }}"><i class="icon row"></i>Siguiente lección</a>
+    </div>
+</div>
 <div class="mobile">
-    {{ drupal_block('ngt_general_node_leccion_module', {'node' : node.id }) }}
+    {{ drupal_block('ngt_general_node_lesson_modules', {'node' : node.id }) }}
 </div>
