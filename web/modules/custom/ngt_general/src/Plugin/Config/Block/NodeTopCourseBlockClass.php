@@ -69,6 +69,7 @@ class NodeTopCourseBlockClass {
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'title' => $node->get('title')->getValue()[0]['value'],
                 'body' => $node->get('body')->getValue()[0]['value'],
+                'resumen' => isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '',
                 'autor' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_autor_principal')->getValue()),
                 'cnt_alumnos' => $node->get('field_cantidad_de_alumnos')->getValue()[0]['value'],
                 'cnt_moulos' => count($node->get('field_modulo')->getValue()),
