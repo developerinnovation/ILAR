@@ -149,6 +149,8 @@
                         display: flex;
                         justify-content: center;
                         margin: 0 0 10px;
+                        width: 48px;
+                        height: 48px;
                         img{
                             width: 48px;
                             height: 48px;
@@ -483,7 +485,7 @@
                     }
                     video{
                         @media only screen and ($desktop){
-                            height: min-content;
+                            height: 455px;
                         }
                     }
                 }
