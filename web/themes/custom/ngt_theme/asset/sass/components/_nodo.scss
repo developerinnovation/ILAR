@@ -1,4 +1,4 @@
-.section-node{
+.section-node, .section-curso{
     header{
         background: #0B2152;
         .box{
@@ -63,25 +63,23 @@
     }
 
     .save{
-    height: 34px;
-    padding: 0;
-    border-radius: 20px;
-    width: 34px;
-    border: 1px solid $turqui;
-    font: {
-        size: 0;
-    }
-    background:{
-        image: url(../img/sprite-icon-generales.svg);
-        size: 240px;
-        position: -149px 2px;
-        repeat: no-repeat;
-        color: transparent;
+        height: 34px;
+        padding: 0;
+        border-radius: 20px;
+        width: 34px;
+        border: 1px solid $turqui;
+        font: {
+            size: 0;
+        }
+        background:{
+            image: url(../img/sprite-icon-generales.svg);
+            size: 240px;
+            position: -149px 2px;
+            repeat: no-repeat;
+            color: transparent;
+        }
     }
 }
-}
-
-
 
 
 .node-course{
@@ -431,7 +429,7 @@
                             height: 100%;
                             object-fit: cover;
                             @media only screen and ($desktop){
-                                height: auto;
+                                // height: auto;
                             }
                         }
                         &:before{
