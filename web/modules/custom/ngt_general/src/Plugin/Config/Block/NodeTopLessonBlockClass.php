@@ -70,7 +70,7 @@ class NodeTopLessonBlockClass {
                 'nextLesson' => '#',
                 'prevLesson' => '#',
                 'module' => 'M1 ¿Cómo iniciar un estuduio?',
-                'courseTitle' => '',
+                'courseTitle' => 'Commodo lígula eget dolor aenean dis parturient montes, nascetur',
                 'courseResume' => 'Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.',
             ];
             array_push($lessons,$lesson);
