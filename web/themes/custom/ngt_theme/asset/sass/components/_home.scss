@@ -222,8 +222,8 @@ body{
                         &:after{
                             content: '';
                             display: block;
-                            width: 8px;
-                            height: 20px;
+                            width: 7px;
+                            height: 15px;
                             border: {
                                 width: 0 2px 2px 0;
                                 style: solid;
@@ -238,8 +238,8 @@ body{
                                 -webkit-transform: rotate(45deg) scale(2);
                                 transform: rotate(45deg) scale(2);
                                 transform-origin: top left;
-                                top: 0px;
-                                left: 45px;
+                                top: 6px;
+                                left: 36px;
                             }
                         }
                         &:last-child{

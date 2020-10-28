@@ -305,6 +305,7 @@
                     li{
                         margin-bottom: 12px;
                         color: #535353;
+                        cursor: pointer;
                         &.active{
                             color: #0a2152;
                             font-weight: bold;
@@ -581,6 +582,81 @@
                             }
                         }
                     }
+                }
+
+                .content-tab.content{
+                    margin-top: 30px;
+
+                    .module{
+                        padding-bottom: 40px;
+                        margin-bottom: 60px;
+                        border-bottom: 1px solid #ccc;
+
+                        span{
+                            font-size: 15px;
+                            color: #535353;
+                            margin-bottom: 10px;
+                            display: block;
+                        }
+
+                        ul{
+                            padding-left: 38px;
+                            list-style: outside;
+                            color: #15cdca;
+                            font-size: larger;
+                        }
+                        li{
+                            position: relative;
+                            h4{
+                                @media only screen and ($desktop){
+                                }
+                                font-size: 16px;
+                                font-weight: 300;
+                                color: #535353;
+                                &:after{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                    h3{
+                        @media only screen and ($desktop){
+                            font-size: 25px;
+                        }
+                        font-size: 16px;
+                        letter-spacing: 0px;
+                        margin-bottom: 20px;
+                        text-align: inherit;
+                        &:after{
+                            display: none;
+                        }
+                    }
+
+                    h3:before{
+                        content: none;
+                    }
+
+
+                    .evaluation{
+                        ul{
+                            padding: 0px;
+                            position: relative;
+                            list-style: none;
+                            li{
+                                h4{
+                                    @media only screen and ($desktop){
+                                        font-size: 25px;
+                                    }
+                                    font-size: 16px;
+                                    color: #535353;
+                                }
+                                .icon{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
             .other-course{
