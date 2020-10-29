@@ -175,5 +175,51 @@ class methodGeneral{
         }
         return $recursos;
     }
+    
+    /**
+     * load_module_course
+     *
+     * @param  mixed $paragraph
+     * @return void
+     */
+    public function load_module_course($paragraph){
+        $modules = [];
+        $i = 1;
+        foreach ( $paragraph as $element ) {
+            $module = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
+            $lessons = isset($module->get('field_leccion')->getValue()[0]['target_id']) ? $this->load_lesson_module($module->get('field_leccion')->getValue()) : NULL;
+            array_push($modules, [
+                'nidModule' => $module->get('parent_id')->getValue()[0]['value'],
+                'numModule' => $i,
+                'moduleId' => 'Modulo '. $i,
+                'titleModule' => $module->get('field_titulo_del_modulo')->getValue()[0]['value'],
+                'lessons' => $lessons,
+            ]);
+            $i++;
+        }
+        return $modules;
+    }
+    
+    /**
+     * load_lesson_module
+     *
+     * @param  mixed $lesson
+     * @return void
+     */
+    public function load_lesson_module($lessons){
+        $lessonByModule = [];
+        if($lessons != NULL){
+            foreach ($lessons as $key => $lesson) {
+                $node = \Drupal\node\Entity\Node::load($lesson['target_id']);
+                array_push($lessonByModule, [
+                    'title' => $node->get('title')->getValue()[0]['value'],
+                    'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']),
+                    'nid' => $node->get('nid')->getValue()[0]['value'],
+                ]);
+            }
+        }
+        return $lessonByModule;
+    }
+
 
 }

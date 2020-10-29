@@ -42,81 +42,28 @@
 
         <div class="content-tab content" ng-if="tab == 'contentMain'">
             <div class="list">
-                <div class="module">
-                    <span class="label">Módulo 1</span>
-                    <h3 class="title-module"> Cómo iniciar un estudio de investigación</h3>
-                    <ul>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="module">
-                    <span class="label">Módulo 2</span>
-                    <h3 class="title-module"> Cómo iniciar un estudio de investigación</h3>
-                    <ul>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="module">
-                    <span class="label">Módulo 3</span>
-                    <h3 class="title-module"> Cómo iniciar un estudio de investigación</h3>
-                    <ul>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                        <li class="item class">
-                            <i class="no-login icon play"></i>
-                            <a href="#" class="link">
-                                <h4>Estudios de cohorte</h4>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="evaluation"><ul>
+                {% if data[0].modules is not null %}
+                    {% for key, module in data[0].modules %}
+                        <div class="module">
+                            <span class="label">{{ module.moduleId }}</span>
+                            <h3 class="title-module"> {{ module.titleModule }}</h3>
+                            {% if module.lessons is not null %}
+                                <ul>
+                                    {% for key, lesson in module.lessons %}
+                                        <li class="item class">
+                                            <i class="no-login icon play"></i>
+                                            <a href="{{ lesson.url }}" class="link" data-id-module="{{ module.nidModule }}" data-num-module="{{ module.numModule }}">
+                                                <h4>{{ lesson.title }}</h4>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!--<div class="evaluation">
                     <ul>
                         <li class="item class">
                             <i class="no-login icon evaluation"></i>
@@ -125,7 +72,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
 

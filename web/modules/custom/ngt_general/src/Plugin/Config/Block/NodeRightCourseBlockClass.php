@@ -81,7 +81,7 @@ class NodeRightCourseBlockClass {
         foreach ($nodes as $node) {
             $date = new DrupalDateTime($node->get('field_fecha_de_inicio')->getValue()[0]['value']);
             $formatted_date = \Drupal::service('date.formatter')->format($date->getTimestamp(), 'custom', 'M d, Y');
-            
+            $modules = isset($node->field_modulo->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_module_course($node->field_modulo->getValue()): NULL;
             $course = [
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
@@ -99,6 +99,7 @@ class NodeRightCourseBlockClass {
                     'height' => $node->get('field_foto_portada')->getValue()[0]['height'],
                 ],
                 'video' => \Drupal::service('ngt_general.methodGeneral')->load_url_file($node->get('field_video')->getValue()[0]['target_id']),
+                'modules' => $modules,
             ];
             array_push($courses,$course);
         }

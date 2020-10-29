@@ -62,7 +62,7 @@ class CardBlockBase extends BlockBase implements CardBlockBaseInterface {
      * @return void
      */
     public function cardBuildConfigBlock($endPoint = NULL, $others = []){
-
+        $config_block = [];
         $other_config = [
             'url' => $endPoint,
             'uuid' => $this->uuid,
