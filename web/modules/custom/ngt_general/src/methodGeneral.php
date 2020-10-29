@@ -213,6 +213,7 @@ class methodGeneral{
                 $node = \Drupal\node\Entity\Node::load($lesson['target_id']);
                 array_push($lessonByModule, [
                     'title' => $node->get('title')->getValue()[0]['value'],
+                    'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
                     'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']),
                     'nid' => $node->get('nid')->getValue()[0]['value'],
                 ]);
@@ -220,6 +221,45 @@ class methodGeneral{
         }
         return $lessonByModule;
     }
+    
+    /**
+     * get_module_by_lesson
+     *
+     * @param  mixed $idLesson
+     * @return void
+     */
+    public function get_module_by_lesson($idLesson){
+        $query = 'SELECT leccion.field_leccion_target_id, curso.parent_id FROM paragraph__field_leccion leccion
+                INNER JOIN paragraphs_item_field_data curso
+                ON leccion.entity_id = curso.id
+                WHERE leccion.field_leccion_target_id = ' . $idLesson;
+        
+        $result = [];
+        $db = \Drupal::database();
+        $select = $db->query($query);
+        $result = $select->fetchAll();
+        
+        if($result[0]){
+            return $result[0]->parent_id;
+        }
+        return NULL;
+    }
 
+    /**
+     * in_array_r
+     *
+     * @param  mixed $needle
+     * @param  mixed $haystack
+     * @param  mixed $strict
+     * @return void
+     */
+    public function in_array_r($needle, $haystack, $strict = false) {
+        foreach ($haystack as $item) {
+            if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && $this->in_array_r($needle, $item, $strict))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

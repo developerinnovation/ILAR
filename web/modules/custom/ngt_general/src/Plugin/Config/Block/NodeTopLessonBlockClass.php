@@ -62,20 +62,43 @@ class NodeTopLessonBlockClass {
         $lessons = [];
         
         foreach ($nodes as $node) {
+            $nid = $node->get('nid')->getValue()[0]['value'];
+            $courseId = \Drupal::service('ngt_general.methodGeneral')->get_module_by_lesson($nid);
+            $course = \Drupal\node\Entity\Node::load($courseId);
+            $modules = isset($course->field_modulo->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_module_course($course->field_modulo->getValue()): NULL;
+            
             $resource = isset($node->get('field_recursos')->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_resource($node->get('field_recursos')->getValue()) : null;
             $lesson = [
-                'nid' => $node->get('nid')->getValue()[0]['value'],
+                'nid' => $nid,
                 'title' => $node->get('title')->getValue()[0]['value'],
                 'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_docente')->getValue()),
                 'nextLesson' => '#',
                 'prevLesson' => '#',
-                'module' => 'M1 ¿Cómo iniciar un estuduio?',
-                'courseTitle' => 'Commodo lígula eget dolor aenean dis parturient montes, nascetur',
-                'courseResume' => 'Officia tempor nisi aliqua dolore est fugiat incididunt incididunt voluptate elit do ut dolor.',
+                'module' => $this->searchTitleModule($nid, $modules) != NULL ? $this->searchTitleModule($nid, $modules) : 'No hay módulo asociado a la lección actual.',
+                'courseTitle' =>  $course->get('title')->getValue()[0]['value'],
+                'courseResume' => isset($course->get('field_resumen')->getValue()[0]['value']) ? $course->get('field_resumen')->getValue()[0]['value'] : '',
             ];
             array_push($lessons,$lesson);
         }
         return $lessons;
     }
 
+    public function searchTitleModule($nidLesson, $modules){
+        if($modules != NULL){
+            foreach ($modules  as $key => $dataModule) {
+                if(\Drupal::service('ngt_general.methodGeneral')->in_array_r($nidLesson, $dataModule['lessons'])){
+                    return 'M' . $dataModule['numModule'] . ': '. $dataModule['titleModule'];
+                    break;
+                }
+            }
+            return NULL;
+        }
+        return NULL;
+    }
+
+
 }
+
+
+
+            

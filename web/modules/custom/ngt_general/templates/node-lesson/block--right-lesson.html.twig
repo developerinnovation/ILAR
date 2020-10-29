@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" id="lesson-{{ data[0].nid }}">
     <div class="course-action">
         <select name="" id="">
             <option value="" selected>Presentación</option>
@@ -59,5 +59,5 @@
     </div>
 </div>
 <div class="mobile">
-    {{ drupal_block('ngt_general_node_lesson_modules', {'node' : node.id }) }}
+    {{ drupal_block('ngt_general_node_lesson_modules', { 'node' : data[0].nid }) }}
 </div>

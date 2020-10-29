@@ -46,7 +46,7 @@
                     {% for key, module in data[0].modules %}
                         <div class="module">
                             <span class="label">{{ module.moduleId }}</span>
-                            <h3 class="title-module"> {{ module.titleModule }}</h3>
+                            <h3 class="title-module" id="module{{ module.numModule }}"> {{ module.titleModule }}</h3>
                             {% if module.lessons is not null %}
                                 <ul>
                                     {% for key, lesson in module.lessons %}
