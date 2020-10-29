@@ -175,5 +175,91 @@ class methodGeneral{
         }
         return $recursos;
     }
+    
+    /**
+     * load_module_course
+     *
+     * @param  mixed $paragraph
+     * @return void
+     */
+    public function load_module_course($paragraph){
+        $modules = [];
+        $i = 1;
+        foreach ( $paragraph as $element ) {
+            $module = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
+            $lessons = isset($module->get('field_leccion')->getValue()[0]['target_id']) ? $this->load_lesson_module($module->get('field_leccion')->getValue()) : NULL;
+            array_push($modules, [
+                'nidModule' => $module->get('parent_id')->getValue()[0]['value'],
+                'numModule' => $i,
+                'moduleId' => 'Módulo '. $i,
+                'titleModule' => $module->get('field_titulo_del_modulo')->getValue()[0]['value'],
+                'lessons' => $lessons,
+            ]);
+            $i++;
+        }
+        return $modules;
+    }
+    
+    /**
+     * load_lesson_module
+     *
+     * @param  mixed $lesson
+     * @return void
+     */
+    public function load_lesson_module($lessons){
+        $lessonByModule = [];
+        if($lessons != NULL){
+            foreach ($lessons as $key => $lesson) {
+                $node = \Drupal\node\Entity\Node::load($lesson['target_id']);
+                array_push($lessonByModule, [
+                    'title' => $node->get('title')->getValue()[0]['value'],
+                    'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
+                    'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']),
+                    'nid' => $node->get('nid')->getValue()[0]['value'],
+                ]);
+            }
+        }
+        return $lessonByModule;
+    }
+    
+    /**
+     * get_module_by_lesson
+     *
+     * @param  mixed $idLesson
+     * @return void
+     */
+    public function get_module_by_lesson($idLesson){
+        $query = 'SELECT leccion.field_leccion_target_id, curso.parent_id FROM paragraph__field_leccion leccion
+                INNER JOIN paragraphs_item_field_data curso
+                ON leccion.entity_id = curso.id
+                WHERE leccion.field_leccion_target_id = ' . $idLesson;
+        
+        $result = [];
+        $db = \Drupal::database();
+        $select = $db->query($query);
+        $result = $select->fetchAll();
+        
+        if($result[0]){
+            return $result[0]->parent_id;
+        }
+        return NULL;
+    }
+
+    /**
+     * in_array_r
+     *
+     * @param  mixed $needle
+     * @param  mixed $haystack
+     * @param  mixed $strict
+     * @return void
+     */
+    public function in_array_r($needle, $haystack, $strict = false) {
+        foreach ($haystack as $item) {
+            if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && $this->in_array_r($needle, $item, $strict))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
