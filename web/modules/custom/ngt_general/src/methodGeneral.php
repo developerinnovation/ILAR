@@ -191,7 +191,7 @@ class methodGeneral{
             array_push($modules, [
                 'nidModule' => $module->get('parent_id')->getValue()[0]['value'],
                 'numModule' => $i,
-                'moduleId' => 'Modulo '. $i,
+                'moduleId' => 'Módulo '. $i,
                 'titleModule' => $module->get('field_titulo_del_modulo')->getValue()[0]['value'],
                 'lessons' => $lessons,
             ]);

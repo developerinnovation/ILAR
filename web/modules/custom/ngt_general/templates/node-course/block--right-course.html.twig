@@ -52,7 +52,7 @@
                                     {% for key, lesson in module.lessons %}
                                         <li class="item class">
                                             <i class="no-login icon play"></i>
-                                            <a href="{{ lesson.url }}" class="link" data-id-module="{{ module.nidModule }}" data-num-module="{{ module.numModule }}">
+                                            <a href="{{ lesson.url }}" class="link" data-id-module="{{ module.nidModule }}" data-num-module="{{ module.numModule }}" data-id-lesson="{{ lesson.nid }}">
                                                 <h4>{{ lesson.title }}</h4>
                                             </a>
                                         </li>
@@ -63,7 +63,7 @@
                     {% endfor %}
                 {% endif %}
 
-                <!--<div class="evaluation">
+                <div class="evaluation">
                     <ul>
                         <li class="item class">
                             <i class="no-login icon evaluation"></i>
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>-->
+                </div>
             </div>
         </div>
 
