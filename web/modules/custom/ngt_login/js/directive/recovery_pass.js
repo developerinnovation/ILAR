@@ -16,7 +16,7 @@ function ngRecoveryPass($http){
         scope.pathGetCode = config.pathGetCode;
         scope.pathVerifyCode = config.pathVerifyCode;
         scope.pathSetNewPass = config.pathSetNewPass;
-        scope.step = 3;
+        scope.step = 1;
         scope.message = config.config.msj_mail;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
