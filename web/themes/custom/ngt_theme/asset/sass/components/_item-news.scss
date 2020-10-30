@@ -52,6 +52,10 @@
                 size: 16px;
             }
             color: #535353;
+            @media only screen and ($desktop){
+               min-height: 40px; 
+            }
+            
         }
         .info{
             .name{

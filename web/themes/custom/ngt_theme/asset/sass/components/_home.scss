@@ -115,6 +115,7 @@ body{
                                 }
                                 line-height: 1.3em;
                                 color: #fff;
+                                letter-spacing: 0.5px;
                                 text-align: center;
                                 width: 100%;
                                 margin: 0 auto 60px;
@@ -132,7 +133,7 @@ body{
                                 border-radius: 30px;
                                 background: $aqua;
                                 font: {
-                                    family: 'Montserrat', sans-serif;
+                                    family: 'Asap', sans-serif;
                                     size: 14px;
                                     weight: 600;
                                 }
@@ -332,7 +333,7 @@ body{
                     select{
                         -webkit-appearance: none;
                         font: {
-                            family: 'Montserrat', sans-serif;
+                            family: 'Asap', sans-serif;
                             size: 15px;
                             weight: 700;
                             width: inherit;
