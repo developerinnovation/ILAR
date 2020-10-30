@@ -221,10 +221,11 @@ i.icon{
     background: #B1B1B1;
     border-radius: 50%;
     color: #fff;
-    align-items: center;
+    text-align: center;
     margin-left: -50px;
     width: 40px;
-    padding: 11px 10px;
+    font-size: 16px;
+    padding: 10px 10px;
     height: 40px;
     }
     &.module.active{
