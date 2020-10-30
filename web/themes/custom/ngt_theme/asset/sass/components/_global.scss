@@ -17,7 +17,7 @@ $aqua: #15CDCA;
 }
 h1,h2,h3,h4,h5,h6{
     font: {
-        family: 'Montserrat', sans-serif;
+        family: 'Asap', sans-serif;
         weight: 700;
     }
     margin: 0 0 10px;
@@ -30,7 +30,7 @@ button{
     border: none;
     outline: none;
     font: {
-        family: 'Montserrat', sans-serif;
+        family: 'Asap', serif;
         weight: 600;
     }
 }
@@ -186,6 +186,28 @@ i.icon{
     }
     &.no-login.play{
         background: none; 
+    }
+    &.download{
+        background-image: url(../img/pdf.svg);
+        background-position: 0px 0px;
+        margin: 0;
+        width: 30px;
+        height: 40px;
+        background-size: 100%;
+        margin-left: -48px;
+    }
+}
+
+.icon{
+    &.shared{
+    background-image: url(../img/share.png);
+    background-position: 0px 0px;
+    margin: 0;
+    width: 25px;
+    height: 25px !important;
+    background-size: 100%;
+    color: transparent;
+    font-size: 0;
     }
 }
 
