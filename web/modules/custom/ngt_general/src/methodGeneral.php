@@ -157,14 +157,18 @@ class methodGeneral{
      */
     public function load_resource($resources){
         $recursos = [];
-        foreach ($resources as $key => $resource) {
+        $resourcesArray = $resources;
+        foreach ($resourcesArray as $key => $resource) {
             $file = File::load($resource['target_id']);
             $url = file_create_url($file->getFileUri());
             $filename = $file->get('filename')->getValue()[0]['value'];
             $filenameArray = explode('.', $filename);
             array_pop($filenameArray);
-            $title = implode('', $filenameArray);
-            $typeFile = end(explode('.', $file->get('filename')->getValue()[0]['value']));
+            $filenameArrayData = $filenameArray;
+            $title = implode('', $filenameArrayData);
+            $typeFileData = $file->get('filename')->getValue()[0]['value'];
+            $fileDataExplode = explode('.', $typeFileData);
+            $typeFile = end($fileDataExplode);
             $recurso = [
                 'title' => $title,
                 'description' => $resource['description'],
@@ -185,7 +189,8 @@ class methodGeneral{
     public function load_module_course($paragraph){
         $modules = [];
         $i = 1;
-        foreach ( $paragraph as $element ) {
+        $paragraphArray = $paragraph;
+        foreach ( $paragraphArray as $element ) {
             $module = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
             $lessons = isset($module->get('field_leccion')->getValue()[0]['target_id']) ? $this->load_lesson_module($module->get('field_leccion')->getValue()) : NULL;
             array_push($modules, [
@@ -208,8 +213,9 @@ class methodGeneral{
      */
     public function load_lesson_module($lessons){
         $lessonByModule = [];
+        $lessonsArray = $lessons;
         if($lessons != NULL){
-            foreach ($lessons as $key => $lesson) {
+            foreach ($lessonsArray as $key => $lesson) {
                 $node = \Drupal\node\Entity\Node::load($lesson['target_id']);
                 array_push($lessonByModule, [
                     'title' => $node->get('title')->getValue()[0]['value'],
@@ -254,6 +260,7 @@ class methodGeneral{
      * @return void
      */
     public function in_array_r($needle, $haystack, $strict = false) {
+        $haystackArray = $haystack;
         foreach ($haystack as $item) {
             if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && $this->in_array_r($needle, $item, $strict))) {
                 return true;

@@ -12,7 +12,6 @@ function ngNodeRightCourse($http){
 
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_course_category];
-        scope.tab = 'contentPresentation';
         scope.tabsType = [
             {
                 id: 1,
@@ -23,7 +22,22 @@ function ngNodeRightCourse($http){
                 name: 'Contenido',
             }
         ];
-        scope.myTabsType = scope.tabsType[0];
+        
+        if(location.hash.substring(0,7) == '#module') {
+            scope.tab = 'contentMain';
+            scope.myTabsType = scope.tabsType[1];
+
+            setTimeout(function(){ 
+                var moduleId = location.hash;
+                var element = document.querySelector(moduleId);
+                element.scrollIntoView();
+            }, 1000);
+           
+        }else{
+            scope.tab = 'contentPresentation';
+            scope.myTabsType = scope.tabsType[0];
+        }
+        
     }
 
 }
