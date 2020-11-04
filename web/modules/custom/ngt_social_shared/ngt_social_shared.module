@@ -227,6 +227,8 @@ function ngt_social_shared_theme() {
         'via' => NULL,
         'url_facebook' => NULL,
         'url_twitter' => NULL,
+        'active_facebook' => NULL,
+        'active_twitter' => NULL,
       ],
     ],
   ];
