@@ -45,7 +45,7 @@ class SocialSharedForm extends ConfigFormBase {
             '#type' => 'managed_file',
             '#title' => t('Foto general para compartir '),
             '#default_value' => isset($config->get('ngt_social_shared_active')['image']) ? $config->get('ngt_social_shared_active')['image'] : '',
-            '#description' => t('Foto general que saldrá cuando comparta la página principal de la plataforma u otra p{agina que no tenga asociada una foto, de extension png jpg jpeg, tamaño no superior a 1300x820 px'),
+            '#description' => t('Foto general que saldrá cuando comparta la página principal de la plataforma u otra página que no tenga asociada una foto, de extension png jpg jpeg, tamaño no superior a 1300x820 px'),
             '#upload_location' => 's3://file-project',
             '#upload_validators' => [
               'file_validate_image_resolution' => ['1300x820'],
