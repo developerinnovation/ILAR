@@ -53,20 +53,32 @@ function ngt_social_shared_preprocess_html(&$variables){
         $image_node = \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']);
         $image = file_create_url($image_node);
         $title = $node->get('title')->getValue()[0]['value'];
-        if($node->get('type')->getValue()[0]['target_id'] == 'leccion'){
-          $resumen = strip_tags($node->get('body')->getValue()[0]['value']);
-          $description = isset($resumen) ? $resumen : '';
+        
+        if($node){
+          if($node->get('type')->getValue()[0]['target_id'] == 'leccion'){
+            $resumen = strip_tags($node->get('body')->getValue()[0]['value']);
+            $description = isset($resumen) ? $resumen : '';
+          }else{
+            $description = isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '';
+          }
         }else{
-          $description = isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '';
+          $title = $config->get('ngt_social_shared_config')['twitter_text'];
+          $description = $config->get('ngt_social_shared_config')['description'];
         }
         
       break;
 
     case 'entity.taxonomy_term.canonical':
         $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
-        $term = \Drupal\taxonomy\Entity\Term::load($tid);
-        $title = $term->get('name')->value;
-        $description = $site . ' - ' . $title;
+        if($tid != NULL) {
+          $term = \Drupal\taxonomy\Entity\Term::load($tid);
+          $title = $term->get('name')->value;
+          $description = $site . ' - ' . $title;
+        }else{
+          $title = $config->get('ngt_social_shared_config')['twitter_text'];
+          $description = $config->get('ngt_social_shared_config')['description'];
+        }
+        
       break;
       
     default:
