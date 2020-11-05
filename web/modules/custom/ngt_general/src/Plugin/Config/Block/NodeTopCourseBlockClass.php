@@ -74,7 +74,7 @@ class NodeTopCourseBlockClass {
                 'cnt_alumnos' => $node->get('field_cantidad_de_alumnos')->getValue()[0]['value'],
                 'cnt_moulos' => count($node->get('field_modulo')->getValue()),
                 'categoria' => $node->get('field_categoria')->getValue()[0]['target_id'],
-                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue()),
+                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue(), 1),
                 'fecha_inicio' => $formatted_date,
                 'horas' =>$node->get('field_horas')->getValue()[0]['value'],
                 'rating' => isset($node->get('field_calificacion')->getValue()[0]['rating']) ? $node->get('field_calificacion')->getValue()[0]['rating'] :'',
