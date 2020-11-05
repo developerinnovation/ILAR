@@ -1,8 +1,10 @@
 <div class="leccion-action">
     <nav>
-        <li>Presentación</li>
+        <li>
+            <a href="{{ data[0].urlCourse }}">Presentación</a>
+        </li>
         <li class="active">Contenidos</li>
-        <li>Comunidad</li>
+        <!--<li>Comunidad</li>-->
     </nav>
 </div>
 {{ drupal_block('ngt_general_node_lesson_modules', {'node' : data[0].nid }) }}

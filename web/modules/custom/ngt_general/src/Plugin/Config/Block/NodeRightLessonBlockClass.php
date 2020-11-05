@@ -52,13 +52,16 @@ class NodeRightLessonBlockClass {
             'library' => 'ngt_general/node-right-lesson',
         ];
 
+        $data = $this->preparerate($node);
+
         $others = [
             '#dataAngular' => $this->instance->getValue('dataAngular'),
-            '#data' => $this->preparerate($node),
+            '#data' => $data,
             '#uuid' => $uuid,
         ];
 
         $other_config = [
+            'urlCourse' => $data[0]['urlCourse'],
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
@@ -79,6 +82,7 @@ class NodeRightLessonBlockClass {
         $lessons = [];
         
         foreach ($nodes as $node) {
+            $courseId = \Drupal::service('ngt_general.methodGeneral')->get_module_by_lesson($node->get('nid')->getValue()[0]['value']);
             $resource = isset($node->get('field_recursos')->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_resource($node->get('field_recursos')->getValue()) : null;
             $lesson = [
                 'nid' => $node->get('nid')->getValue()[0]['value'],
@@ -95,7 +99,8 @@ class NodeRightLessonBlockClass {
                     'width' => $node->get('field_foto_portada')->getValue()[0]['width'],
                     'height' => $node->get('field_foto_portada')->getValue()[0]['height'],
                 ],
-                'video' => \Drupal::service('ngt_general.methodGeneral')->load_url_file($node->get('field_video')->getValue()[0]['target_id']),
+                'urlCourse' =>\Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $courseId),
+                'video' => isset($node->get('field_url_video')->getValue()[0]) ? $node->get('field_url_video')->getValue()[0]['uri'] : '',
                 'nextLesson' => '#',
                 'prevLesson' => '#',
             ];

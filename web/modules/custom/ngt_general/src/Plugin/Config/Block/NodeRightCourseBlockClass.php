@@ -98,7 +98,7 @@ class NodeRightCourseBlockClass {
                     'width' => $node->get('field_foto_portada')->getValue()[0]['width'],
                     'height' => $node->get('field_foto_portada')->getValue()[0]['height'],
                 ],
-                'video' => \Drupal::service('ngt_general.methodGeneral')->load_url_file($node->get('field_video')->getValue()[0]['target_id']),
+                'video' => isset($node->get('field_url_video')->getValue()[0]) ? $node->get('field_url_video')->getValue()[0]['uri'] : '',
                 'modules' => $modules,
             ];
             array_push($courses,$course);

@@ -50,3 +50,13 @@ node-right-course:
     - core/jquery
     - core/drupalSettings
     - ngt_general/angular.ngt
+
+node-right-lesson:
+  version: 1.x
+  js:
+    js/directive/node_right_lesson.js: {}
+    js/jquery.mask.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - ngt_general/angular.ngt

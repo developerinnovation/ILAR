@@ -11,7 +11,7 @@ function ngNodeRightCourse($http){
     return directive;
 
     function linkFunc(scope, el, attr, ctrl){
-        var config = drupalSettings.ngtBlock[scope.uuid_data_ng_course_category];
+        var config = drupalSettings.ngtBlock[scope.uuid_data_ng_node_right_course];
         scope.tabsType = [
             {
                 id: 1,
