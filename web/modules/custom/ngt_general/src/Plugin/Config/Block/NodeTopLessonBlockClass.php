@@ -64,6 +64,7 @@ class NodeTopLessonBlockClass {
         foreach ($nodes as $node) {
             $nid = $node->get('nid')->getValue()[0]['value'];
             $courseId = \Drupal::service('ngt_general.methodGeneral')->get_module_by_lesson($nid);
+            $navLesson = \Drupal::service('ngt_general.methodGeneral')->get_last_prev_lesson($courseId, $nid);
             $course = \Drupal\node\Entity\Node::load($courseId);
             $modules = isset($course->field_modulo->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_module_course($course->field_modulo->getValue()): NULL;
             
@@ -72,8 +73,8 @@ class NodeTopLessonBlockClass {
                 'nid' => $nid,
                 'title' => $node->get('title')->getValue()[0]['value'],
                 'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_docente')->getValue()),
-                'nextLesson' => '#',
-                'prevLesson' => '#',
+                'nextLesson' => $navLesson['next'],
+                'prevLesson' => $navLesson['prev'],
                 'module' => $this->searchTitleModule($nid, $modules) != NULL ? $this->searchTitleModule($nid, $modules) : 'No hay módulo asociado a la lección actual.',
                 'courseTitle' =>  $course->get('title')->getValue()[0]['value'],
                 'courseResume' => isset($course->get('field_resumen')->getValue()[0]['value']) ? $course->get('field_resumen')->getValue()[0]['value'] : '',

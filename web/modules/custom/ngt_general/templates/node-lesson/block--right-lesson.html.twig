@@ -51,10 +51,11 @@
     </div>
     <div class="nav-leccion desktop">
         <div class="preview">
-            <a href="{{ data[0].nextLesson }}"><i class="icon row"></i>Volver</a>
+            <a {% if data[0].prevLesson is not null %} href="{{ data[0].prevLesson }}" {% else %} class="inactive" {% endif %}><i class="icon row"></i>Volver</a>
         </div>
+        
         <div class="next">
-            <a href="{{ data[0].prevLesson }}"><i class="icon row"></i>Siguiente lección</a>
+            <a {% if data[0].nextLesson is not null %} href="{{ data[0].nextLesson }}" {% else %} class="inactive" {% endif %}><i class="icon row"></i>Siguiente lección</a>
         </div>
     </div>
     <div class="mobile">

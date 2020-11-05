@@ -276,5 +276,49 @@ class methodGeneral{
         }
         return false;
     }
+    
+    /**
+     * get_last_prev_lesson
+     *
+     * @param  int $courseId
+     * @param  int $lessonId
+     * @return array
+     */
+    public function get_last_prev_lesson($courseId, $lessonId){
+
+        $query = 'SELECT leccion.field_leccion_target_id FROM paragraphs_item_field_data curso
+            INNER JOIN paragraph__field_leccion leccion
+            ON leccion.entity_id = curso.id
+            WHERE curso.parent_id = ' . $courseId;
+
+        $result = NULL;
+
+        $path = [
+            'next' => NULL,
+            'prev' => NULL,
+        ];
+
+        $db = \Drupal::database();
+        $select = $db->query($query);
+        $result = $select->fetchAll();
+
+        if($result){
+            $lessons = [];
+            foreach ($result as $leccion) {
+                array_push($lessons, $leccion->field_leccion_target_id);
+            }
+
+            $position = array_search($lessonId, $lessons); 
+            if($lessons[$position - 1] != NULL) {
+                $path['prev'] =  \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $lessons[$position-1]);
+            } 
+            
+            if($lessons[$position +1 ] != NULL) {
+                $path['next'] = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $lessons[$position+1]);
+            } 
+               
+        }
+        return $path;
+    }
 
 }

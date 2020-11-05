@@ -82,10 +82,12 @@ class NodeRightLessonBlockClass {
         $lessons = [];
         
         foreach ($nodes as $node) {
-            $courseId = \Drupal::service('ngt_general.methodGeneral')->get_module_by_lesson($node->get('nid')->getValue()[0]['value']);
+            $nid = $node->get('nid')->getValue()[0]['value'];
+            $courseId = \Drupal::service('ngt_general.methodGeneral')->get_module_by_lesson($nid);
+            $navLesson = \Drupal::service('ngt_general.methodGeneral')->get_last_prev_lesson($courseId, $nid);
             $resource = isset($node->get('field_recursos')->getValue()[0]['target_id']) ? \Drupal::service('ngt_general.methodGeneral')->load_resource($node->get('field_recursos')->getValue()) : null;
             $lesson = [
-                'nid' => $node->get('nid')->getValue()[0]['value'],
+                'nid' => $nid,
                 'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
                 'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_docente')->getValue()),
                 'recursos' => $resource, 
@@ -101,8 +103,8 @@ class NodeRightLessonBlockClass {
                 ],
                 'urlCourse' =>\Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $courseId),
                 'video' => isset($node->get('field_url_video')->getValue()[0]) ? $node->get('field_url_video')->getValue()[0]['uri'] : '',
-                'nextLesson' => '#',
-                'prevLesson' => '#',
+                'nextLesson' => $navLesson['next'],
+                'prevLesson' => $navLesson['prev'],
             ];
             array_push($lessons,$lesson);
         }
