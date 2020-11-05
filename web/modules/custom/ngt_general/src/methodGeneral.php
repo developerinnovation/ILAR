@@ -130,10 +130,12 @@ class methodGeneral{
      * load_author
      *
      * @param  array $authors
+     * @param  int $limit
      * @return array
      */
-    public function load_author($authors){
+    public function load_author($authors, $limit = NULL){
         $expertos = [];
+        $i = 1;
         foreach ($authors as $key => $author) {
             $user =   User::load($author['target_id']); 
             $experto = [
@@ -144,6 +146,12 @@ class methodGeneral{
                 'profile' => $user->get('field_perfil')->getValue()[0]['value'],
             ];
             array_push($expertos,$experto);
+            if ($limit != NULL){
+                if($i == $limit){
+                    break;
+                }
+                $i++;
+            }
         }
         
         return $expertos;
