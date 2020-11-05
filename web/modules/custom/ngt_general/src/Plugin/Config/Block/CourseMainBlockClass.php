@@ -92,7 +92,7 @@ class CourseMainBlockClass {
                 'autor' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_autor_principal')->getValue()),
                 'cnt_alumnos' => $node->get('field_cantidad_de_alumnos')->getValue()[0]['value'],
                 'categoria' => $node->get('field_categoria')->getValue()[0]['target_id'],
-                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue()),
+                'expertos' => \Drupal::service('ngt_general.methodGeneral')->load_author($node->get('field_expertos')->getValue(), 2),
                 'fecha_inicio' => $formatted_date,
                 'foto_portada' => [
                     'uri' => \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']),
