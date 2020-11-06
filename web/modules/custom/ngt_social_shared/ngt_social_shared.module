@@ -58,16 +58,28 @@ function ngt_social_shared_preprocess_html(&$variables){
     
         case 'entity.node.canonical':
             $node = \Drupal::request()->attributes->get('node');
-            $image_node = \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']);
-            $image = file_create_url($image_node);
+            if($node->hasField('field_foto_portada')){
+              $image_node = \Drupal::service('ngt_general.methodGeneral')->load_image($node->get('field_foto_portada')->getValue()[0]['target_id']);
+              $image = file_create_url($image_node);
+            }else{
+              $image = '';
+            }
+            
+
             $title = $node->get('title')->getValue()[0]['value'];
             
             if($node){
               if($node->get('type')->getValue()[0]['target_id'] == 'leccion'){
                 $resumen = strip_tags($node->get('body')->getValue()[0]['value']);
                 $description = isset($resumen) ? $resumen : '';
+                
               }else{
-                $description = isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '';
+                if($node->hasField('field_resumen')){
+                  $description = isset($node->get('field_resumen')->getValue()[0]['value']) ? $node->get('field_resumen')->getValue()[0]['value'] : '';
+                }else{
+                  $description = '';
+                }
+                
               }
             }else{
               $title = $config->get('ngt_social_shared_config')['twitter_text'];
