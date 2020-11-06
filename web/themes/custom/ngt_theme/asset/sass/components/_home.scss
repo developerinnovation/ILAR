@@ -42,14 +42,12 @@ body{
             }
         }
 
-
         }
     }
     .dialog-off-canvas-main-canvas{
         @media only screen and ($desktop){
         margin-top: -70px;
         }
-        
     }
 }
 
@@ -289,14 +287,12 @@ body{
                         @media only screen and ($desktop){
                             padding: 40px;
                         }
-
                     }
                 }
                 .picture{
                     @media only screen and ($desktop){
                         width: 50%;
                     }
-
                 }
                 .text{
                     @media only screen and ($desktop){
@@ -311,19 +307,15 @@ body{
                         @media only screen and ($desktop){
                             margin-bottom: 5px;
                         }
-
                     }
                     .info{
                         .name{
                             @media only screen and ($desktop){
                             margin-bottom: 20px;
                             }
-
                         }
                     }
-
                 }
-
             }
         }
         >.bottom{
@@ -331,14 +323,13 @@ body{
                 margin: 0 0 40px;
                 .mobile{
                     select{
-                        -webkit-appearance: none;
+                        // -webkit-appearance: none;
                         font: {
                             family: 'Asap', sans-serif;
                             size: 15px;
                             weight: 700;
-                            width: inherit;
-                            padding: 0px;
                         }
+                        padding-bottom: 3px;
                         &::after{
                             content: "";
                             display: inline-block;
@@ -368,7 +359,6 @@ body{
             }
             .course{
                 @media only screen and ($desktop){
-                // display: flex;
                 position: relative;
                 padding-bottom: 30px;
                 max-width: 1180px;
@@ -379,7 +369,6 @@ body{
                         margin-right: 15px;
                         width: 23.7%;
                         display: inline-grid;
-
                     }
                     .picture{
                         img{
@@ -387,11 +376,8 @@ body{
                                 width: 280px;
                                 height: 170px;
                             }
-
                         }
-
                     }
-
                 }
                 .load_more{
                     button{
