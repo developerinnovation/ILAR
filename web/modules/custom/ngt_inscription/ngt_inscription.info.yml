@@ -1,6 +1,6 @@
-name: ngt_login
+name: ngt_inscription
 type: module
-description: Módulo para customizaación de login
+description: Módulo para inscripción de alumnos a cursos
 core: 8.x
 package: NGT
 dependencies:
