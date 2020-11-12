@@ -60,10 +60,15 @@
             size: 13px;
         }
         color: #fff;
+        &:hover{
+            transition: 0.4s;
+            box-shadow: 0 -60px 0 #019c9a inset;
+        }
         &.disabled{
             background: #bfbfbf;
         }
     }
+
 
     .save{
         height: 34px;
