@@ -60,7 +60,12 @@
             size: 13px;
         }
         color: #fff;
+        &:hover{
+        transition: 0.4s;
+        box-shadow: 0 -60px 0 #019c9a inset;
+        }
     }
+
 
     .save{
         height: 34px;
