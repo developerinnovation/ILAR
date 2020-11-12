@@ -6,7 +6,7 @@
     </nav>
 </div>
 <div class="action">
-    <button class="show-course">Reservar cupo</button>
+    {{ drupal_block('ngt_inscription_inscription_button', {'node' : data, 'uid' : user.id }) }}
     <button class="save">guardar</button>
 </div>
 {{ drupal_block('ngt_social_shared') }}

@@ -60,9 +60,14 @@
             size: 13px;
         }
         color: #fff;
+<<<<<<< HEAD
         &:hover{
         transition: 0.4s;
         box-shadow: 0 -60px 0 #019c9a inset;
+=======
+        &.disabled{
+            background: #bfbfbf;
+>>>>>>> 4cbb7277c80b93617c7158765b2d4320a1a2afed
         }
     }
 

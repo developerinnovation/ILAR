@@ -1,4 +1,4 @@
-myApp.directive('ngNodeRightCourse', ['$http', ngNodeRightCourse]);
+myApp.directive('ngNodeRightCourse', ['$http', '$rootScope',ngNodeRightCourse]);
 
 function ngNodeRightCourse($http){
     
@@ -12,6 +12,12 @@ function ngNodeRightCourse($http){
 
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_node_right_course];
+        scope.config = config;
+        scope.uid = config.uid;
+        scope.nid = config.nid;
+        scope.userRegisterMessage = config.config.userRegister;
+        scope.userAnonimeMessage = config.config.userAnonime;
+
         scope.tabsType = [
             {
                 id: 1,
@@ -58,4 +64,18 @@ function NodeRightCourseController($scope, $http, $rootScope){
                 break;
         }
     });
+
+    $scope.showMessage = function(){
+        if($scope.uid != '0'){
+            var message = $scope.userRegisterMessage;
+            $rootScope.showMessageModal(message);
+        }else{
+            var message = $scope.userAnonimeMessage;
+            var includeBtn = true;
+            var link = '/user/login';
+            var textBtn = $scope.gotoLoginTxt;
+
+            $rootScope.showMessageModal(message, includeBtn, link, textBtn);
+        }
+    }
 }

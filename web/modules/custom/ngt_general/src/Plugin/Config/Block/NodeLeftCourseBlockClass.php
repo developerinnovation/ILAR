@@ -35,10 +35,11 @@ class NodeLeftCourseBlockClass {
      * @param $config
      */
     public function build(NodeLeftCourseBlock &$instance, $configuration){
+        $nid = $configuration['node'];
 
         $build = [
             '#theme' => 'node_left_course',
-            '#node' => 'hola',
+            '#data' => $nid,
         ];
 
         return $build;

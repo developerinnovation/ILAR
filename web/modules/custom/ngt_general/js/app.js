@@ -125,3 +125,27 @@ myApp.service(
         }
     }
 );
+
+myApp.run(['$rootScope', function ($rootScope) {
+
+    $rootScope.messageModal = '';
+    $rootScope.includeBtnModal = false;
+    $rootScope.linkModal = null;
+    $rootScope.textBtnModal = null;
+
+    $rootScope.showMessageModal = function (message, includeBtn = false, link = null, textBtn = null){
+        $rootScope.showModal = true;
+        $rootScope.messageModal = message;
+        $rootScope.includeBtnModal = includeBtn;
+        
+        if(includeBtn){
+            $rootScope.linkModal = link;
+            $rootScope.textBtnModal = textBtn;
+        }
+    }
+
+    $rootScope.close_message = function(){
+        $rootScope.showModal = false;
+    }
+
+}]);

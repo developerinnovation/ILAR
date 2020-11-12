@@ -107,6 +107,7 @@ class CourseMainBlockClass {
                 ],
                 'horas' =>$node->get('field_horas')->getValue()[0]['value'],
                 'rating' => isset($node->get('field_calificacion')->getValue()[0]['rating']) ? $node->get('field_calificacion')->getValue()[0]['rating'] :'',
+                'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']),
             ];
             array_push($courses,$course);
         }
