@@ -24,6 +24,7 @@ function ngInscriptionButton($http) {
         scope.textBtn = config.typeAction == 'reserve' ? scope.txtReserve : scope.txtUnReserve;
         scope.gotoLoginTxt = config.config.gotoLogin;
         scope.typeAction = config.typeAction;
+        scope.disableBtn = config.disableBtn;
 	}
 }
 
@@ -35,7 +36,7 @@ function InscriptionButtonController($scope, $http, $rootScope) {
         if($scope.uid != '0'){
             if(action == 'reserve'){
                 $scope.reserve()
-            }else{
+            }else{$
                 $scope.unReserve();
             }
         }else{
@@ -49,9 +50,10 @@ function InscriptionButtonController($scope, $http, $rootScope) {
     }
 
     $scope.reserve  = function () {
+        $scope.disableBtn = true;
         var params = {
-            'node_id' : scope.nid,
-            'user_id' : scope.uid,
+            'node_id' : $scope.nid,
+            'user_id' : $scope.uid,
         };
         $http.get('/rest/session/token').then(function (resp) {
             $http({
@@ -67,6 +69,8 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                 if (resp.data.status == '200') {
                     $scope.textBtn = $scope.txtUnReserve;
                     $scope.typeAction = 'unReserve';
+                    $scope.id = resp.data.id;
+                    $scope.disableBtn = false;
                 }else{
                     alert($scope.errorMessage);
                 }
@@ -79,10 +83,11 @@ function InscriptionButtonController($scope, $http, $rootScope) {
     }
 
     $scope.unReserve  = function () {
+        $scope.disableBtn = true;
         var params = {
-            'node_id' : scope.nid,
-            'user_id' : scope.uid,
-            'id' : scope.id,
+            'node_id' : $scope.nid,
+            'user_id' : $scope.uid,
+            'id' : $scope.id,
         };
         $http.get('/rest/session/token').then(function (resp) {
             $http({
@@ -98,8 +103,9 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                 if (resp.data.status == '200') {
                     $scope.textBtn = $scope.txtReserve;
                     $scope.typeAction = 'reserve';
+                    $scope.disableBtn = false;
                 }else{
-                    alert(scope.errorMessageUnreserve);
+                    alert($scope.errorMessageUnreserve);
                 }
             });
           }).catch(

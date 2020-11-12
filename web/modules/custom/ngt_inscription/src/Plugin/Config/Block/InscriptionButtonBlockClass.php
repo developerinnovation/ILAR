@@ -76,6 +76,7 @@ class InscriptionButtonBlockClass {
             'uid' => $user_id,
             'nid' => $node_id,
             'id' => $idReserve,
+            'disableBtn' => false,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);

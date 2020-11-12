@@ -60,6 +60,9 @@
             size: 13px;
         }
         color: #fff;
+        &.disabled{
+            background: #bfbfbf;
+        }
     }
 
     .save{

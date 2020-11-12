@@ -102,19 +102,21 @@ class InscriptionRestLogic {
         $node_id = $params['node_id'];
         $id = $params['id'];
 
-        $response = \Drupal::service('ngt_inscription.method_general')->initReserve($user_id, $node_id, $id);
+        $response = \Drupal::service('ngt_inscription.method_general')->deleteReserve($user_id, $node_id, $id);
         
         if($response['status'] == '200') {
             $data = [
                 'status' => '200',
+                'id' => $id,
             ];
         }else{
             $data = [
                 'status' => '500',
+                'id' => $id,
             ];
         }
 
-        return new ResourceResponse($data);
+        return new JsonResponse($data);
     }
   
 }
