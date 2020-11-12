@@ -104,11 +104,18 @@ class InscriptionRestLogic {
 
         $response = \Drupal::service('ngt_inscription.method_general')->deleteReserve($user_id, $node_id, $id);
         
-        if($response['status'] == '200') {
-            $data = [
-                'status' => '200',
-                'id' => $id,
-            ];
+        if($response) {
+            if($response['status'] == '200'){
+                $data = [
+                    'status' => '200',
+                    'id' => $id,
+                ];
+            }else{
+                $data = [
+                    'status' => '500',
+                    'id' => $id,
+                ];
+            }
         }else{
             $data = [
                 'status' => '500',

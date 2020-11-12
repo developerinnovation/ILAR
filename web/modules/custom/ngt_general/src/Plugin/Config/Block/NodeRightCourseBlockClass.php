@@ -44,6 +44,7 @@ class NodeRightCourseBlockClass {
         $instance->setValue('directive', 'data-ng-node-right-course');
         $this->instance->setValue('dataAngular', 'node-right-course-' . $uuid);
 
+        $config = [];
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
@@ -52,13 +53,38 @@ class NodeRightCourseBlockClass {
             'library' => 'ngt_general/node-right-course',
         ];
 
+        $user_id = \Drupal::currentUser()->id();
+        $showUrl = true;
+        
+
+        if($user_id != '0'){
+            $roles = \Drupal::currentUser()->getRoles();
+            $isValidRol = in_array('alumnos',$roles);
+
+            if(\Drupal::hasService('ngt_inscription.method_general') && $isValidRol ){
+                $response = \Drupal::service('ngt_inscription.method_general')->searchReserve($nid, $user_id);
+                if($response == NULL) {
+                    $showUrl = true;
+                }
+            }
+        }else{
+            $showUrl = false;
+        }
+        
         $others = [
             '#dataAngular' => $this->instance->getValue('dataAngular'),
-            '#data' => $this->preparerate($node),
+            '#data' => $this->preparerate($node, $showUrl),
             '#uuid' => $uuid,
         ];
 
+        if(\Drupal::hasService('ngt_inscription.method_general')){
+            $config = \Drupal::config('ngt_inscription.settings')->get('ngt_inscription');
+        }
+
         $other_config = [
+            'uid' => $user_id,
+            'nid' => $nid,
+            'config' => $config,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
@@ -75,7 +101,7 @@ class NodeRightCourseBlockClass {
      * @param  array $node
      * @return array
      */
-    public function preparerate($nodes){
+    public function preparerate($nodes, $showUrl){
         $courses = [];
         
         foreach ($nodes as $node) {
@@ -100,6 +126,7 @@ class NodeRightCourseBlockClass {
                 ],
                 'video' => isset($node->get('field_url_video')->getValue()[0]) ? $node->get('field_url_video')->getValue()[0]['uri'] : '',
                 'modules' => $modules,
+                'showUrl' => $showUrl,
             ];
             array_push($courses,$course);
         }

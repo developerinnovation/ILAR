@@ -95,6 +95,13 @@ class InscriptionForm extends ConfigFormBase {
             '#title' => t('Mensaje informativo usuario anónimo'),   
             '#default_value' => isset($config->get('ngt_inscription')['userAnonime']) ? $config->get('ngt_inscription')['userAnonime'] : t('Para reservar el cupo del presente curso, deberá iniciar sesión en la plataforma o crear una cuenta, por favor haga clic en "Deseo reservar" para redirigirlo al login.'),
             '#required' => true
+        ]; 
+
+        $form['ngt_inscription']['userRegister'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo usuario registrado sin reservar curso'),   
+            '#default_value' => isset($config->get('ngt_inscription')['userRegister']) ? $config->get('ngt_inscription')['userRegister'] : t('Para ver las lecciones del presente curso deberá reservar su cupo.'),
+            '#required' => true
         ];
 
         return parent::buildForm($form, $form_state);

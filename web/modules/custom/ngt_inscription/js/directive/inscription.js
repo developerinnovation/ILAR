@@ -72,12 +72,12 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                     $scope.id = resp.data.id;
                     $scope.disableBtn = false;
                 }else{
-                    alert($scope.errorMessage);
+                    $rootScope.showMessageModal($scope.errorMessage);
                 }
             });
           }).catch(
             function (resp) {
-                alert('Se presentó una falla de comunicación, por favor intente más tarde.');
+                $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
             }
         );
     }
@@ -105,12 +105,12 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                     $scope.typeAction = 'reserve';
                     $scope.disableBtn = false;
                 }else{
-                    alert($scope.errorMessageUnreserve);
+                    $rootScope.showMessageModal($scope.errorMessageUnreserve);
                 }
             });
           }).catch(
             function (resp) {
-                alert('Se presentó una falla de comunicación, por favor intente más tarde.');
+                $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
             }
         );
     }
