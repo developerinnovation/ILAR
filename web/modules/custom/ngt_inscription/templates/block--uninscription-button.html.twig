@@ -1,4 +1,0 @@
-{% set directive_new = directive|replace({'-':'_'}) %}
-<div class="{{ class }}" {{ directive }} ng-cloak ng-init="uuid_{{ directive_new }} = '{{ uuid }}'">
-    <button class="show-course">Cancelar reserva</button>
-</div>

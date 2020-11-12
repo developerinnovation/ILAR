@@ -93,6 +93,16 @@
           {% include '@ngt_theme/footer.html.twig' %}
     <!-- __________________ END FOOTER _______________________ -->
 
+    <!-- ______________________ MODAL _______________________ -->
+      <div id="ngtModal" ng-if="showModal"  class="ngt-modal" ng-click="close_message()">
+        <div class="modal-content">
+          <span class="close" ng-click="close_message()">&times;</span>
+          <p>{[{ messageModal }]}</p>
+          <a ng-if="includeBtnModal" href="{[{ linkModal }]}"> {[{ textBtnModal }]} </a>
+        </div>
+      </div>
+    <!-- __________________ END MODAL _______________________ -->
+
     <js-bottom-placeholder token="{{ placeholder_token }}">
         {% if browser_sync.enabled %}
         <script id="__bs_script__">

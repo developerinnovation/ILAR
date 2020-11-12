@@ -47,48 +47,53 @@ class InscriptionForm extends ConfigFormBase {
             '#default_value' => isset($config->get('ngt_inscription_config')['button']) ? $config->get('ngt_inscription_config')['button'] : 1,
         ]; 
 
-        // inscriptición de cursos
+        // inscripción de cursos
 
         $form['ngt_inscription'] = [  
             '#type' => 'details',
-            '#title' => t('Configuraciones del botón para inscriptión de cursos'),   
+            '#title' => t('Configuraciones del botón para inscripción de cursos'),   
             '#open' => false,  
         ]; 
 
         $form['ngt_inscription']['inscription'] = [  
             '#type' => 'textfield',
-            '#title' => t('Texto del botón de reservar cupo'),   
+            '#title' => t('Texto del botón para reservar cupo'),   
             '#default_value' => isset($config->get('ngt_inscription')['inscription']) ? $config->get('ngt_inscription')['inscription'] : t('Reservar cupo'),
             '#required' => true
         ]; 
 
         $form['ngt_inscription']['uninscription'] = [  
             '#type' => 'textfield',
-            '#title' => t('Texto del botón al reservar cupo'),   
+            '#title' => t('Texto del botón cancelar reserva de cupo'),   
             '#default_value' => isset($config->get('ngt_inscription')['uninscription']) ? $config->get('ngt_inscription')['uninscription'] : t('Cancelar reservar'),
             '#required' => true
         ]; 
 
-
-        // desincriptición de cursos
-
-        $form['ngt_uninscription'] = [  
-            '#type' => 'details',
-            '#title' => t('Configuraciones del botón para desinscriptición de cursos'),   
-            '#open' => false,  
-        ]; 
-
-        $form['ngt_uninscription']['uninscription'] = [  
+        $form['ngt_inscription']['gotoLogin'] = [  
             '#type' => 'textfield',
-            '#title' => t('Texto del botón cancelar reserva de cupo'),   
-            '#default_value' => isset($config->get('ngt_uninscription')['uninscription']) ? $config->get('ngt_uninscription')['uninscription'] : t('Cancelar reserva'),
+            '#title' => t('Texto del botón para redirigir al login'),   
+            '#default_value' => isset($config->get('ngt_inscription')['gotoLogin']) ? $config->get('ngt_inscription')['gotoLogin'] : t('Deseo reservar'),
             '#required' => true
-        ]; 
+        ];
 
-        $form['ngt_uninscription']['inscription'] = [  
-            '#type' => 'textfield',
-            '#title' => t('Texto del botón de reservar cupo'),   
-            '#default_value' => isset($config->get('ngt_uninscription')['inscription']) ? $config->get('ngt_uninscription')['inscription'] : t('Reservar cupo'),
+        $form['ngt_inscription']['errorMessage'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo error al reservar'),   
+            '#default_value' => isset($config->get('ngt_inscription')['errorMessage']) ? $config->get('ngt_inscription')['errorMessage'] : t('Se presentó un error al realizar la reserva, por favor intente nuevamente.'),
+            '#required' => true
+        ];
+
+        $form['ngt_inscription']['errorMessageUnreserve'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo error al cancelar reserva'),   
+            '#default_value' => isset($config->get('ngt_inscription')['errorMessageUnreserve']) ? $config->get('ngt_inscription')['errorMessageUnreserve'] : t('Se presentó un error al realizar cancelar reserva, por favor intente nuevamente.'),
+            '#required' => true
+        ];
+
+        $form['ngt_inscription']['userAnonime'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo usuario anónimo'),   
+            '#default_value' => isset($config->get('ngt_inscription')['userAnonime']) ? $config->get('ngt_inscription')['userAnonime'] : t('Para reservar el cupo del presente curso, deberá iniciar sesión en la plataforma o crear una cuenta, por favor haga clic en "Deseo reservar" para redirigirlo al login.'),
             '#required' => true
         ];
 
@@ -103,7 +108,6 @@ class InscriptionForm extends ConfigFormBase {
 
         $this->config('ngt_inscription.settings')
         ->set('ngt_inscription', $form_state->getValue('ngt_inscription'))  
-        ->set('ngt_uninscription', $form_state->getValue('ngt_uninscription'))
         ->save();   
 
     }  

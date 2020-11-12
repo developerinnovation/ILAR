@@ -1,38 +1,112 @@
-myApp.directive('ngLoginForm', ['$http', ngLoginForm]);
+myApp.directive('ngInscriptionButton', ['$http', '$rootScope', ngInscriptionButton]);
 
-function ngLoginForm($http) {
+function ngInscriptionButton($http) {
 	var directive = {
 		restrict: 'EA',
-		controller: LoginFormController,
+		controller: InscriptionButtonController,
 		link: linkFunc
 	};
 
 	return directive;
 
 	function linkFunc(scope, el, attr, ctrl) {
-
-        scope.validateLoginForm = function () {
-        var user_status = false;
-        var pass_status = false;
-
-        if(typeof scope.user !== 'undefined' && scope.user.length > 0){
-            user_status = true;
-        }
-
-        if(typeof scope.pass !== 'undefined' && scope.pass.length > 0){
-            pass_status = true;
-        }
-
-        if (user_status && pass_status){
-            jQuery('#edit-submit').parent().removeClass('disabled');
-        }else {
-            jQuery('#edit-submit').parent().addClass('disabled');
-        }
-        }
+        var config = drupalSettings.ngtBlock[scope.uuid_data_ng_inscription_button];
+        scope.config = config;
+        scope.uid = config.uid;
+        scope.nid = config.nid;
+        scope.id = config.id;
+        scope.pathReserve = config.pathReserve;
+        scope.txtReserve = config.config.inscription;
+        scope.txtUnReserve = config.config.uninscription;
+        scope.errorMessage = config.config.errorMessage;
+        scope.errorMessageUnreserve = config.config.errorMessageUnreserve;
+        scope.userAnonimeMessage = config.config.userAnonime;
+        scope.textBtn = config.typeAction == 'reserve' ? scope.txtReserve : scope.txtUnReserve;
+        scope.gotoLoginTxt = config.config.gotoLogin;
+        scope.typeAction = config.typeAction;
 	}
 }
 
-LoginFormController.$inject = ['$scope', '$http'];
+InscriptionButtonController.$inject = ['$scope', '$http', '$rootScope'];
 
-function LoginFormController($scope, $http) {
+function InscriptionButtonController($scope, $http, $rootScope) {
+
+    $scope.action = function (action){
+        if($scope.uid != '0'){
+            if(action == 'reserve'){
+                $scope.reserve()
+            }else{
+                $scope.unReserve();
+            }
+        }else{
+            var message = $scope.userAnonimeMessage;
+            var includeBtn = true;
+            var link = '/user/login';
+            var textBtn = $scope.gotoLoginTxt;
+
+            $rootScope.showMessageModal(message, includeBtn, link, textBtn);
+        }
+    }
+
+    $scope.reserve  = function () {
+        var params = {
+            'node_id' : scope.nid,
+            'user_id' : scope.uid,
+        };
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.pathReserve
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    $scope.textBtn = $scope.txtUnReserve;
+                    $scope.typeAction = 'unReserve';
+                }else{
+                    alert($scope.errorMessage);
+                }
+            });
+          }).catch(
+            function (resp) {
+                alert('Se presentó una falla de comunicación, por favor intente más tarde.');
+            }
+        );
+    }
+
+    $scope.unReserve  = function () {
+        var params = {
+            'node_id' : scope.nid,
+            'user_id' : scope.uid,
+            'id' : scope.id,
+        };
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.pathReserve
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    $scope.textBtn = $scope.txtReserve;
+                    $scope.typeAction = 'reserve';
+                }else{
+                    alert(scope.errorMessageUnreserve);
+                }
+            });
+          }).catch(
+            function (resp) {
+                alert('Se presentó una falla de comunicación, por favor intente más tarde.');
+            }
+        );
+    }
+
 }

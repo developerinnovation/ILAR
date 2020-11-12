@@ -59,8 +59,60 @@ class InscriptionRestLogic {
             throw new AccessDeniedHttpException();
         }
 
-        $data = [];
-        $mail = $params['nid'];
+        $user_id = $params['user_id'];
+        $node_id = $params['node_id'];
+
+        $response = \Drupal::service('ngt_inscription.method_general')->initReserve($user_id, $node_id);
+        
+        if($response != NULL) {
+            $data = [
+                'status' => '200',
+                'id' => $response,
+            ];
+        }else{
+            $data = [
+                'status' => '500',
+            ];
+        }
+
+        return new ResourceResponse($data);
+    }
+
+    /**
+     * Responds to DELETE requests.
+     *
+     * Calls delete method.
+     *
+     * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
+     *   current User.
+     * @param array $params
+     *   Data of directive for to know the payment status.
+     *
+     * @return \Drupal\rest\ResourceResponse
+     *   Return response data for logic class.
+     */
+    public function delete(AccountProxyInterface $currentUser, array $params) {
+        \Drupal::service('page_cache_kill_switch')->trigger();
+        $this->currentUser = $currentUser;
+        if (!$this->currentUser->hasPermission('access content')) {
+            throw new AccessDeniedHttpException();
+        }
+        
+        $user_id = $params['user_id'];
+        $node_id = $params['node_id'];
+        $id = $params['id'];
+
+        $response = \Drupal::service('ngt_inscription.method_general')->initReserve($user_id, $node_id, $id);
+        
+        if($response['status'] == '200') {
+            $data = [
+                'status' => '200',
+            ];
+        }else{
+            $data = [
+                'status' => '500',
+            ];
+        }
 
         return new ResourceResponse($data);
     }

@@ -47,19 +47,35 @@ class InscriptionButtonBlockClass {
 
        
         $parameters = [
-            'theme' => 'inscriptiion_button',
+            'theme' => 'inscription_button',
             'library' => 'ngt_inscription/inscription-button',
         ];
 
+        $config = \Drupal::config('ngt_inscription.settings')->get('ngt_inscription');
+        $node_id = $configuration['node'];
+        $user_id = $configuration['uid'];
+        $idReserve = 0;
+
+        if($user_id != '0'){
+            $response = \Drupal::service('ngt_inscription.method_general')->searchReserve($node_id, $user_id);
+            if($response['result'] == 'yes'){
+                $idReserve = $response['id'];
+            }
+        }
+       
         $others = [
             '#dataAngular' => $this->instance->getValue('dataAngular'),
-          
-            '#config' => '',
+            '#config' => $config,
             '#uuid' => $uuid,
         ];
 
         $other_config = [
             'pathReserve' => '/ngt/api/v1/inscription/reserve',
+            'typeAction' => $idReserve != '0' ? 'unReserve' : 'reserve',
+            'config' =>  $config,
+            'uid' => $user_id,
+            'nid' => $node_id,
+            'id' => $idReserve,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
@@ -68,16 +84,6 @@ class InscriptionButtonBlockClass {
 
         
         return $instance->getValue('build');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function blockAccess(AccountInterface $account){
-        if ($account->isAnonymous()) {
-            return AccessResult::allowed();
-        }
-        return AccessResult::forbidden();
     }
 
 }

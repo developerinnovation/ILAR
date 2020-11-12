@@ -54,7 +54,7 @@ class InscriptionButtonBlock extends CardBlockBase implements ContainerFactoryPl
             $configuration,
             $plugin_id,
             $plugin_definition,
-            $container->get('ngt_inscription.InscriptionButton')
+            $container->get('ngt_inscription.inscription_button')
         );
     }
 

@@ -1,4 +1,4 @@
-inscription:
+inscription-button:
   version: 1.x
   js:
     js/directive/inscription.js: {}

@@ -47,6 +47,7 @@ class InscriptionLog extends ContentEntityBase implements ContentEntityInterface
         $fields['changed'] = BaseFieldDefinition::create('changed')
             ->setLabel(t('Changed'))
             ->setDescription(t('The time that the entity was last edited.'));
-          return $fields;
+        
+        return $fields;
     }
 }

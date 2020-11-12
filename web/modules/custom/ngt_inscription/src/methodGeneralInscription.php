@@ -36,16 +36,44 @@ class methodGeneralInscription{
 
         return $id;
     }
+    
+    /**
+     * searchReserve
+     *
+     * @param  mixed $node_id
+     * @param  mixed $user_id
+     * @return array
+     */
+    public function searchReserve($node_id, $user_id){
+        $query = \Drupal::database()->select('ngt_inscription_log', 'ngt');
+        $query->condition('user_id', $user_id);
+        $query->condition('node_id', $node_id);
+        $query->fields('ngt', ['id']);
+        $result = $query->execute();
+        $results = $result->fetchAll();
+        if(count($results) > 0) {
+            return [
+                'result' => 'yes',
+                'id' => $results[0]->id,
+            ];
+        }else{
+            return [
+                'result' => 'not',
+            ];
+        }
+    }
 
     /**
      * elimina una reserva
      * @param $user_id
      * @param $node_id
+     * @param $id
      * @return bool
      */
-    public function deleteReserve($user_id, $node_id){
+    public function deleteReserve($user_id, $node_id, $id){
 
         $query = \Drupal::database()->delete('ngt_inscription_log');
+        $query->condition('id', $id);
         $query->condition('user_id', $user_id);
         $query->condition('node_id', $node_id);
         $result = $query->execute();
