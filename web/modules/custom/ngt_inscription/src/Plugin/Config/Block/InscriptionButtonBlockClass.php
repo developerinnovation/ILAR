@@ -39,6 +39,8 @@ class InscriptionButtonBlockClass {
      */
     public function build(InscriptionButtonBlock &$instance, $configuration){
         $this->configuration = $configuration;
+        $roles = \Drupal::currentUser()->getRoles();
+
         $instance->setValue('config_name', 'InscriptionButtonBlock');
         $instance->setValue('class', 'block-inscription-button');
         $uuid = $instance->uuid('block-inscription-button');
@@ -76,7 +78,7 @@ class InscriptionButtonBlockClass {
             'uid' => $user_id,
             'nid' => $node_id,
             'id' => $idReserve,
-            'disableBtn' => false,
+            'disableBtn' => in_array('alumnos',$roles) == false ? true : false,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
