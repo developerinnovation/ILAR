@@ -276,12 +276,47 @@ p.error-message-input {
     overflow-y: auto;
     
     .modal-content{
-    max-width: 500px;
-    margin: 1.75rem auto;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 5px;
-    z-index: 22;
+        @media only screen and ($desktop){
+           max-width: 500px; 
+        }
+        max-width: 80%;
+        margin: 20% auto;
+        background-color: #fff;
+        padding: 50px;
+        border-radius: 5px;
+        z-index: 22;
+        position: relative;
+
+        .close{
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            background-color: #15cdca;
+            padding: 4px 10px;
+            width: 30px;
+            font-size: larger;
+            height: 30px;
+            color: #fff;
+            border-radius: 100px;
+            cursor: pointer;
+            &:hover{
+                background-color: #10b1ae;
+            }
+        }
+
+        p{color: #747474;}
     	
+    }
+    .ng-binding.ng-scope{
+    margin: 5px 0;
+    display: inline-block;
+    background: #15cdca;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #fff;
+    &:hover{
+            background-color: #10b1ae;
+        }
     }
 }

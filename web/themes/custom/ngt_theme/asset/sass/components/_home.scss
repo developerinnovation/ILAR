@@ -53,6 +53,9 @@ body{
 
 #main{
     &.page-front{
+        .save{
+            background-position: -152px -1px;
+        }
         >.top{
             .destacado{
                 .slider{

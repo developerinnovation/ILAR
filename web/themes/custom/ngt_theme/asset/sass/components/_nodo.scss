@@ -1,4 +1,4 @@
-.section-node, .section-curso, .section-leccion{
+.page-front, .section-node, .section-curso, .section-leccion{
     header{
         background: #0B2152;
         .box{
@@ -699,6 +699,9 @@
                     }
                 }
                 .more{
+                    .save{
+                        background-position: -152px -1px;
+                    }
                     @media only screen and ($desktop){
                         display: flex;
                         position: relative;
