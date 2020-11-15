@@ -78,7 +78,7 @@ class InscriptionButtonBlockClass {
             'uid' => $user_id,
             'nid' => $node_id,
             'id' => $idReserve,
-            'disableBtn' => in_array('alumnos',$roles) == false ? true : false,
+            'disableBtn' => (count(array_intersect($roles, ['anonymous','alumnos'])) > 0) == false ? true : false,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
