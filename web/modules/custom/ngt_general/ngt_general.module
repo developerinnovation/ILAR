@@ -53,7 +53,7 @@ function ngt_general_preprocess_html(&$variables){
     $menuActiveNode = 'active';
   }
 
-// adición angular en page no customizadas
+  // adición angular en page no customizadas
   switch ($routeName) {
     case 'comment.reply':
     case 'entity.user.canonical':

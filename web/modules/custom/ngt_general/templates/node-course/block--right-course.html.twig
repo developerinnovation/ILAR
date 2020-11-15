@@ -4,7 +4,7 @@
         <div class="course-action">
             <select name="courseAction" id="courseAction" ng-model="myTabsType" ng-options="item.name for item in tabsType"></select>
         </div>
-        <figure class="content-video" ng-if="tab != 'contentCommunity'">
+        <figure class="content-video" ng-show="tab != 'contentCommunity'">
             <picture class="cover-video active">
                 <source srcset="{{ data[0].foto_portada.uri | image_style('360x196') }}" 
                     media="(max-width: 767px)" 
@@ -19,7 +19,7 @@
             </video>
         </figure>
         
-        <div class="content-tab presentation" ng-if="tab == 'contentPresentation'">
+        <div class="content-tab presentation" ng-show="tab == 'contentPresentation'">
             <h2>Presentación</h2>
             <div class="description">
                 {{ data[0].body|raw }}
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="content-tab content" ng-if="tab == 'contentMain'">
+        <div class="content-tab content" ng-show="tab == 'contentMain'">
             <div class="list">
                 {% if data[0].modules is not null %}
                     {% for key, module in data[0].modules %}
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="content-tab content" ng-if="tab == 'contentCommunity'">
+        <div class="content-tab content" ng-show="tab == 'contentCommunity'">
             <di class="block-comments">
                 {{ content.comment }}
             </div>
