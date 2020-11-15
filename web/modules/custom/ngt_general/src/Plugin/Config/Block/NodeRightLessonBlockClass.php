@@ -46,6 +46,7 @@ class NodeRightLessonBlockClass {
 
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
+        $content = $configuration['content'];
 
         $parameters = [
             'theme' => 'node_right_lesson',
@@ -58,6 +59,7 @@ class NodeRightLessonBlockClass {
             '#dataAngular' => $this->instance->getValue('dataAngular'),
             '#data' => $data,
             '#uuid' => $uuid,
+            '#content' => $content,
         ];
 
         $other_config = [

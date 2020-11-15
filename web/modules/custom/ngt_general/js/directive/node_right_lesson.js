@@ -23,6 +23,10 @@ function ngNodeRightLesson($http){
             {
                 id: 2,
                 name: 'Contenido',
+            }, 
+            {
+                id: 2,
+                name: 'Comunidad',
             }
         ];
         scope.tab = 'contentMain';
@@ -38,7 +42,6 @@ function NodeRightLessonController($scope, $http, $rootScope){
         switch ($scope.myTabsType.id) {
             case 1:
                     window.location.href = $scope.urlCourse;
-                    
                 break;
             case 2:
                     $scope.tab = 'contentMain'

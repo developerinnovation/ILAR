@@ -188,6 +188,7 @@ function ngt_general_theme() {
         'config' => NULL,
         'class' => NULL,
         'plugin_id' => NULL,
+        'content' => NULL,
       ],
       'template' => 'node-lesson/block--right-lesson',
     ],
