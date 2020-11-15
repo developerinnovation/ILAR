@@ -4,7 +4,7 @@
         <div class="course-action">
             <select name="courseAction" id="courseAction" ng-model="myTabsType" ng-options="item.name for item in tabsType"></select>
         </div>
-        <figure class="content-video">
+        <figure class="content-video" ng-if="tab != 'contentCommunity'">
             <picture class="cover-video active">
                 <source srcset="{{ data[0].foto_portada.uri | image_style('360x196') }}" 
                     media="(max-width: 767px)" 
@@ -81,6 +81,11 @@
             </div>
         </div>
 
+        <div class="content-tab content" ng-if="tab == 'contentCommunity'">
+            <di class="block-comments">
+                {{ content.comment }}
+            </di>
+        </div>
     </div>
     {{ drupal_block('ngt_general_node_more_course', {'node' : node.id }) }}
 </div>

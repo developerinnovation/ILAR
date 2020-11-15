@@ -46,6 +46,7 @@ class NodeRightCourseBlockClass {
 
         $config = [];
         $nid = $configuration['node'];
+        $content = $configuration['content'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
 
         $parameters = [
@@ -75,6 +76,7 @@ class NodeRightCourseBlockClass {
             '#dataAngular' => $this->instance->getValue('dataAngular'),
             '#data' => $this->preparerate($node, $showUrl),
             '#uuid' => $uuid,
+            '#content' => $content,
         ];
 
         if(\Drupal::hasService('ngt_inscription.method_general')){

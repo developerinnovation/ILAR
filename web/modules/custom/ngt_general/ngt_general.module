@@ -26,6 +26,8 @@ function ngt_general_help($route_name, RouteMatchInterface $route_match) {
     }
 }
 
+
+
 /**
  * Implements hook_preprocess().
  * 
@@ -49,6 +51,14 @@ function ngt_general_preprocess_html(&$variables){
 
   if($routeName == 'entity.node.canonical'){
     $menuActiveNode = 'active';
+  }
+
+// adición angular en page no customizadas
+  switch ($routeName) {
+    case 'comment.reply':
+    case 'entity.user.canonical':
+        $variables['#attached']['library'][] = 'ngt_general/angular.ngt';
+      break;
   }
 
   $variables['showHeaderAndFooter'] = $showHeaderAndFooter;
@@ -140,6 +150,7 @@ function ngt_general_theme() {
         'config' => NULL,
         'class' => NULL,
         'plugin_id' => NULL,
+        'content' => NULL,
       ],
       'template' => 'node-course/block--right-course',
     ],

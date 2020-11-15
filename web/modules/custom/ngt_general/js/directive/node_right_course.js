@@ -26,6 +26,10 @@ function ngNodeRightCourse($http){
             {
                 id: 2,
                 name: 'Contenido',
+            },
+            {
+                id: 3,
+                name: 'Comentarios',
             }
         ];
         
