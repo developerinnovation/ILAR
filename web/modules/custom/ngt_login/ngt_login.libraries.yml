@@ -5,6 +5,7 @@ login-form:
   dependencies:
     - core/jquery
     - core/drupalSettings
+    - ngt_general/angular.ngt
 
 recovery-pass:
   version: 1.x
