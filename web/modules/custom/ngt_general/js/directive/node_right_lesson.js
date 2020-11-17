@@ -45,9 +45,11 @@ function NodeRightLessonController($scope, $http, $rootScope){
                 break;
             case 2:
                     $scope.tab = 'contentMain'
+                    jQuery('.body.main.node-lesson').removeClass('noPaddingTop');
                  break;
             case 3:
                     $scope.tab = 'contentCommunity'
+                    jQuery('.body.main.node-lesson').addClass('noPaddingTop');
                 break;
         }
     });

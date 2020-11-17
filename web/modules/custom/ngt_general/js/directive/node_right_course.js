@@ -59,12 +59,15 @@ function NodeRightCourseController($scope, $http, $rootScope){
         switch ($scope.myTabsType.id) {
             case 1:
                     $scope.tab = 'contentPresentation'
+                    jQuery('.body.main.node-course').removeClass('noPaddingTop');
                 break;
             case 2:
                     $scope.tab = 'contentMain'
+                    jQuery('.body.main.node-course').removeClass('noPaddingTop');
                  break;
             case 3:
                     $scope.tab = 'contentCommunity'
+                    jQuery('.body.main.node-course').addClass('noPaddingTop');
                 break;
         }
     });
