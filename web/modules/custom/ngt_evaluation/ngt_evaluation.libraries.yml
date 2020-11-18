@@ -1,0 +1,7 @@
+evaluation-form:
+  version: 1.x
+  js:
+    js/directive/evaluation.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

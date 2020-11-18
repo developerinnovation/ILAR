@@ -1,0 +1,7 @@
+services:
+  ngt_evaluation.evaluation_rest:
+    class: Drupal\ngt_evaluation\Services\Rest\EvaluationRestLogic
+    arguments: []
+  ngt_evaluation.method_general:
+    class: Drupal\ngt_evaluation\methodGeneralEvaluation
+    arguments: []

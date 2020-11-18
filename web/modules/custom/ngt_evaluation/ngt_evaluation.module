@@ -1,0 +1,45 @@
+<?php 
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\UserInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * ngt_evaluation_help
+ *
+ * @param  mixed $route_name
+ * @param  mixed $route_match
+ * @return void
+ */
+function ngt_evaluation_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+      // Main module help for the ngt_evaluation module.
+      case 'help.page.ngt_evaluation':
+          $output = '';
+          $output .= t('<h3>' . 'About') . '</h3>';
+          $output .= t('<p>' . 'Customización para evaluación de cursos y módulos') . '</p>';
+      return $output;
+
+  default:
+  }
+}
+
+/**
+ * Implements hook_theme()
+ */
+function ngt_evaluation_theme() {
+  return [
+    'evaluation_form' => [
+      'variables' => [
+        'dataAngular' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
+      ],
+      'template' => 'block--evaluation-form',
+    ],
+  ];
+}
