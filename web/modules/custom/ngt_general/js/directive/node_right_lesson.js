@@ -25,7 +25,7 @@ function ngNodeRightLesson($http){
                 name: 'Contenido',
             }, 
             {
-                id: 2,
+                id: 3,
                 name: 'Comunidad',
             }
         ];
@@ -44,12 +44,12 @@ function NodeRightLessonController($scope, $http, $rootScope){
                     window.location.href = $scope.urlCourse;
                 break;
             case 2:
-                    $scope.tab = 'contentMain'
-                    jQuery('.body.main.node-lesson').removeClass('noPaddingTop');
+                    $scope.tab = 'contentMain';
+                    jQuery('.body.main.node-leccion').removeClass('noPaddingTop');
                  break;
             case 3:
-                    $scope.tab = 'contentCommunity'
-                    jQuery('.body.main.node-lesson').addClass('noPaddingTop');
+                    $scope.tab = 'contentCommunity';
+                    jQuery('.body.main.node-leccion').addClass('noPaddingTop');
                 break;
         }
     });
