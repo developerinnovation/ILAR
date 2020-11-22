@@ -1060,6 +1060,11 @@
                                 font-size: 13px;
                                 color: #15cdca;
                                 margin-right: 10px;
+                                &:hover{
+                                background-color: #15cdca;
+                                color: #fff;
+                                transition: 0.5s;
+                                }
                             }
                         }
                     }
@@ -1070,6 +1075,8 @@
                             width: 40px;
                             height: 40px;
                             float: left;
+                            margin-bottom: 0px;
+                            
                             img{
                                 width: 100%;
                                 height: auto;
@@ -1083,6 +1090,9 @@
                             padding-left: 50px;
                             padding-top: 5px;
                             line-height: inherit !important;
+                            @media only screen and ($desktop){
+                                padding-top: 12px;
+                            }
                             span{
                                 a{
                                     font-weight: bold;
