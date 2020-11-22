@@ -321,5 +321,8 @@ p.error-message-input {
     }
 }
 .noPaddingTop{
-    padding-top: 0px;
+    padding-top: 0px !important;
+}
+.none{
+    display: none;
 }
