@@ -1171,4 +1171,81 @@
         }
     }
 }
+.section-comment{
+    #block-ngt-theme-content{
+        margin: 50px 30px;
+        text-align: center;
+        .links{
+            display: none;
+        }
+        article{
+            p{
+                color: #535353;
+                padding-top: 5px;
+                line-height: inherit !important;
+                font-size: 15px;
+                font-weight: 300;
+                letter-spacing: 1px;
+                @media only screen and ($desktop){
+                    padding-top: 12px;
+                    }
+                span{
+                    font-size: 13px;
+                    a{
+
+                        font-weight: bold;
+                        color: #535353;
+                    }
+                }
+            }
+        }
+        h3{
+            a{
+               color: #0b2152; 
+            }
+            
+        }
+        img{
+            border-radius: 50px;
+        }
+    }
+
+    label{
+        color:#535353;
+    }
+
+    form.comment-comment-form{
+        padding: 25px;
+        background-color: #F6F6F6;
+        border-radius: 15px;
+
+        .cke_chrome{
+            margin-top: 8px;
+        }
+    }
+    input{
+        width: 100%;
+        margin: 10px 0;
+    }
+    .filter-wrapper{
+        display: none;
+    }
+    .form-actions{
+        input{
+            margin: 15px 0px 0;
+            width: 134px;
+            border: 0;
+            background: #15cdca;
+            height: 34px;
+            padding: 0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #fff;
+        }
+
+    }
+
+}
+
+
 
