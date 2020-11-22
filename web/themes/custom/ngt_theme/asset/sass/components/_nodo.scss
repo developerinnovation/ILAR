@@ -1026,3 +1026,109 @@
 
 }
 
+.block-node-right-lesson, .block-node-right-course{
+    .content-tab{
+        .block-comments{
+            h3{
+                .permalink{
+                    display: none;
+                }
+            }
+            section{
+                margin: 0;
+                h2{
+                    font-size: 17px;
+                    color: #535353;
+                    margin-bottom: 15px;
+                }
+                article{
+                    padding: 20px;
+                    border-radius: 15px;
+                    box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
+                    margin-bottom: 20px;
+                    .links{
+                        display: flex;
+                        padding: 0;
+                        list-style: none;
+                        padding-top: 25px;
+                        border-top: 1px solid #e0e0e0;
+                        li{
+                            a{
+                                border: 1px solid #15cdca;
+                                padding: 5px 15px;
+                                border-radius: 20px;
+                                font-size: 13px;
+                                color: #15cdca;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    footer{
+                        article{
+                            padding: 0 !important;
+                            box-shadow: none !important;
+                            width: 40px;
+                            height: 40px;
+                            float: left;
+                            img{
+                                width: 100%;
+                                height: auto;
+                                border: 2px solid #0b2152;
+                                border-radius: 30px;
+                            }
+                        }
+                        p{
+                            font-size: 13px;
+                            color: #535353;
+                            padding-left: 50px;
+                            padding-top: 5px;
+                            line-height: inherit !important;
+                            span{
+                                a{
+                                    font-weight: bold;
+                                    color: #535353;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            label{
+                color:#535353;
+            }
+
+            form.comment-comment-form{
+                padding: 25px;
+                background-color: #F6F6F6;
+                border-radius: 15px;
+
+                .cke_chrome{
+                    margin-top: 8px;
+                }
+            }
+            input{
+                width: 100%;
+                margin: 10px 0;
+            }
+            .filter-wrapper{
+                display: none;
+            }
+            .form-actions{
+                input{
+                    margin: 15px 0px 0;
+                    width: 134px;
+                    border: 0;
+                    background: #15cdca;
+                    height: 34px;
+                    padding: 0;
+                    border-radius: 20px;
+                    font-size: 13px;
+                    color: #fff;
+                }
+
+            }
+        }
+    }
+}
+
