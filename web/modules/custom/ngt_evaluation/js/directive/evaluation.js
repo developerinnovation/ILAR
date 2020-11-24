@@ -25,6 +25,7 @@ function EvaluationController($scope, $http, $rootScope){
     
     $scope.changeTabs = function (tabs){
         $scope.tabs = tabs;
+        jQuery('li#question_1').addClass('active');
     }
 
     $scope.changeEvaluationNav = function (type){
@@ -33,6 +34,8 @@ function EvaluationController($scope, $http, $rootScope){
         }else{
             $scope.evaluationNav = $scope.evaluationNav + 1;
         }
+        var nav = $scope.evaluationNav;
+        jQuery('li#question_' + nav).addClass('active');
         console.log($scope.evaluationNav);
     }
 
