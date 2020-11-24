@@ -5,3 +5,4 @@ evaluation-form:
   dependencies:
     - core/jquery
     - core/drupalSettings
+    - ngt_general/angular.ngt

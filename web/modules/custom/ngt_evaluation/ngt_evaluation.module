@@ -38,6 +38,7 @@ function ngt_evaluation_theme() {
         'config' => NULL,
         'class' => NULL,
         'plugin_id' => NULL,
+        'data' => NULL,
       ],
       'template' => 'block--evaluation-form',
     ],

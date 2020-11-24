@@ -55,6 +55,7 @@ function ngt_general_preprocess_html(&$variables){
 
   // adición angular en page no customizadas
   switch ($routeName) {
+    case 'entity.node.canonical':
     case 'comment.reply':
     case 'entity.user.canonical':
         $variables['#attached']['library'][] = 'ngt_general/angular.ngt';

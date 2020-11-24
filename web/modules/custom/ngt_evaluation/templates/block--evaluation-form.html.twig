@@ -1,0 +1,133 @@
+{% set directive_new = directive|replace({'-':'_'}) %}
+<div class="{{ class }}" {{ directive }} ng-cloak ng-init="uuid_{{ directive_new }} = '{{ uuid }}'">
+    <div class="main-content">
+        <h1 class="title module">Commodo lígula eget dolor aenean dis parturient montes</h1>
+
+        <div class="presentation evaluation" ng-if="tabs == 'presentation'">
+            <h2>Evaluación Final</h2>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa.</p>
+            </div>
+            <div class="detail">
+                <div class="time">
+                    <i>minute</i>
+                    <time></time>
+                </div>
+                <div class="questions">
+                    <i>question</i>
+                    <span>30 preguntas</span>
+                </div>
+                <div class="average">
+                    <i>average</i>
+                    <span>80% puntaje de aprobación</span>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="start-evaluation" ng-click="changeTabs('evaluation')">Empezar</button>
+                <button class="return">Volver</button>
+            </div>
+        </div>
+
+        <div class="navigation question" ng-show="tabs == 'evaluation'">
+            <h2>Evaluación final</h2>
+            <div class="nav">
+                <ul>
+                    <li id="question_1" ng-class="evaluationNav == '1' ? 'active' : 'no-active'">Pregunta 1</li>
+                    <li id="question_2" ng-class="evaluationNav == '2' ? 'active' : 'no-active'">Pregunta 2</li>
+                    <li id="question_3" ng-class="evaluationNav == '3' ? 'active' : 'no-active'">Pregunta 3</li>
+                 </ul>
+                <span>Pregunta {[{ evaluationNav }]} de {[{ maxNavValue }]}</span>
+            </div>
+            <div class="clock">
+                <span class="time">Tiempo restante:</span>
+                <span>01:10:20</span>
+            </div>
+        </div>
+
+
+        <div class="form-question" ng-show="tabs == 'evaluation'">
+
+            <form action="">
+                <div id="question-1" class="questions multiple" ng-show="evaluationNav == '1'">
+                    <h3>Pregunta 1</h3>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.</p>
+                    <div class="response">
+                        <fieldset>
+                            <div>
+                                <input type="checkbox" name="response_1" id="response_1_1">
+                                <label for="response_1_1">Respuesta 1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="response_2_1" id="response_2_1">
+                                <label for="response_2_1">Respuesta 2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="response_3_1" id="response_3_1">
+                                <label for="response_3_1">Respuesta 3</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="response_4_1" id="response_4_1">
+                                <label for="response_4_1">Respuesta 4</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="response_5_1" id="response_5_1">
+                                <label for="response_5_1">Respuesta 5</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div id="question-2" class="questions correctOption" ng-show="evaluationNav == '2'">
+                    <h3>Pregunta 2</h3>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.</p>
+                    <div class="response">
+                        <fieldset>
+                            <div>
+                                <input type="radio" name="response_1" id="response_1">
+                                <label for="response_1">Respuesta 1</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="response_1" id="response_2">
+                                <label for="response_2">Respuesta 2</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="response_1" id="response_3">
+                                <label for="response_3">Respuesta 3</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="response_1" id="response_4">
+                                <label for="response_4">Respuesta 4</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div id="question-3" class="questions bool" ng-show="evaluationNav == '3'">
+                    <h3>Pregunta 3</h3>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.</p>
+                    <div class="response">
+                        <fieldset>
+                            <div>
+                                <button class="true bool selected">Verdadero</button>
+                            </div>
+                            <div>
+                                <button class="false bool">Falso</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                
+            
+            </form>
+
+            <div class="action evaluation">
+                <button class="return" ng-click="changeEvaluationNav('prev')" ng-disabled="minNavValue == evaluationNav">Anterior</button>
+                <button class="next" ng-click="changeEvaluationNav('next')" ng-disabled="maxNavValue == evaluationNav">Siguiente</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

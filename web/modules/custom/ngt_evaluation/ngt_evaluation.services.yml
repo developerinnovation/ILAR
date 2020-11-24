@@ -5,3 +5,6 @@ services:
   ngt_evaluation.method_general:
     class: Drupal\ngt_evaluation\methodGeneralEvaluation
     arguments: []
+  ngt_evaluation.evaluation_block:
+    class: Drupal\ngt_evaluation\Plugin\Config\Block\EvaluationBlockClass
+    arguments: []
