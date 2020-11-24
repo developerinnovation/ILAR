@@ -1,8 +1,10 @@
 {% set directive_new = directive|replace({'-':'_'}) %}
 <div class="{{ class }}" {{ directive }} ng-cloak ng-init="uuid_{{ directive_new }} = '{{ uuid }}'">
     <div class="main-content">
-        <h1 class="title module">Commodo lígula eget dolor aenean dis parturient montes</h1>
-
+        <div class="top">
+            <h1 class="title module">Commodo lígula eget dolor aenean dis parturient montes</h1>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
         <div class="presentation evaluation" ng-if="tabs == 'presentation'">
             <h2>Evaluación Final</h2>
             <div class="description">
