@@ -52,7 +52,7 @@
                                 
                                 <div class="inner-addon leftaddon">
                                     <i class="icon profesion"></i>
-                                    <select class="select-profession"  name="profession" id="profession">
+                                    <select class="select-profession"  name="profession" id="profession" ng-model="professionSelect">
                                         <option selected disabled>{{ config.profession }}</option>
                                         <option value="{[{ value.tid }]}" ng-repeat="(key, value) in profession">{[{ value.name }]}</option>
                                     </select>

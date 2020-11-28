@@ -47,19 +47,35 @@ RegisterUserController.$inject = ['$scope', '$http', '$rootScope','$interval', '
 function RegisterUserController($scope, $http, $rootScope){
 
     $scope.actionNext = function (){
-        $scope.step += 1; 
+        var emailValid = true; 
+
         if( $scope.step > 4 ){
             $scope.txtBtnNext = $scope.config.config.login_btn;
         }
+
         switch ($scope.step) {
+            case 1:
+                    if($scope().name != '' && $scope().email != '' &&  $scope().date != null && $scope.professionSelect != undefined){
+                        if( !$scope.ValidateEmail($scope().email) ) {
+                            emailValid = false;
+                        }
+
+                        
+                    }
+                break;
+
             case 4:
-                $scope.message = $scope.config.config.message_picture;
+                    $scope.message = $scope.config.config.message_picture;
                 break;
 
             case 5:
-                $scope.txtBtnNext = $scope.config.config.login;
+                    $scope.txtBtnNext = $scope.config.config.login;
                 break;
         }
+    }
+
+    $scope.changeStep = function (){
+        $scope.step += 1; 
     }
 
     $scope.actionReturn = function (){
@@ -76,6 +92,13 @@ function RegisterUserController($scope, $http, $rootScope){
 
     $scope.omitLoadPic = function (){
 
+    }
+
+    $scope.ValidateEmail = function (mail){
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)){
+            return (true)
+        }
+        return (false);
     }
 
 }
