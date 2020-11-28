@@ -1449,6 +1449,11 @@
                 fieldset{
                     border: none;
                     div{
+                        &:hover{
+                            transition: 0.4s;
+                            opacity: 1;
+                        }
+                        opacity: 0.5;
                         margin-bottom: 20px;
                         display: inline-flex;
                         .true{
