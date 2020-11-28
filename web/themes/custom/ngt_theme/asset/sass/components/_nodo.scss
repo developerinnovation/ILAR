@@ -1449,11 +1449,6 @@
                 fieldset{
                     border: none;
                     div{
-                        &:hover{
-                            transition: 0.4s;
-                            opacity: 1;
-                        }
-                        opacity: 0.5;
                         margin-bottom: 20px;
                         display: inline-flex;
                         .true{
@@ -1463,6 +1458,11 @@
                             border-radius: 5px;
                             font-size: 16px;
                             font-weight: 500;
+                            opacity: 0.5;
+                            &:hover{
+                            transition: 0.4s;
+                            opacity: 1 !important;
+                            }
                         }
                         .false{
                             background-color: #CB0C19;
@@ -1471,6 +1471,14 @@
                             border-radius: 5px;
                             font-size: 16px;
                             font-weight: 500;
+                            opacity: 0.5;
+                            &:hover{
+                            transition: 0.4s;
+                            opacity: 1 !important;
+                            }
+                        }
+                        .selected{
+                            opacity: 1;
                         }
                     }
 
