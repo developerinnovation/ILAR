@@ -12,9 +12,10 @@ function ngRegisterUser($http){
 
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_register_user];
+        console.log(config);
         scope.config = config;
         scope.profession = config.profession;
-        scope.step = 4;
+        scope.step = 5;
         scope.message = config.config.message;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
@@ -131,6 +132,10 @@ function RegisterUserController($scope, $http, $rootScope){
 
             case 4:
                     $scope.message = $scope.config.config.message_picture;
+                    $scope.txtBtnNextBkp = $scope.txtBtnNext;
+                    $scope.btnDisabled = true;
+                    $scope.txtBtnNext = 'Procesando...';
+                    $scope.createNewUser();
                 break;
 
             case 5:
@@ -148,7 +153,7 @@ function RegisterUserController($scope, $http, $rootScope){
     }
 
     $scope.actionCancell = function (){
-        // window.location.href = '/user';
+        window.location.href = '/user/login';
     }
     
     $scope.actionLogin= function (){
@@ -156,7 +161,7 @@ function RegisterUserController($scope, $http, $rootScope){
     }
 
     $scope.omitLoadPic = function (){
-
+        $scope.createNewUser();
     }
 
     $scope.checkTermConditions = function (){
@@ -268,10 +273,52 @@ function RegisterUserController($scope, $http, $rootScope){
             reader.onload = function(e) {
                 $scope.picUser = e.target.result;
                 jQuery('#previewImgLoadPic').attr('src', e.target.result);
+                $scope.messageStatusLoadPic = $scope.config.message_picture;
                 $scope.form.pic = e.target.result;
             }
             reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }else{
+            $scope.messageStatusLoadPic = $scope.config.message_picture_load_failed;
         }
+    }
+
+    $scope.createNewUser = function(){
+        var params = $scope.form;
+
+        $scope.disableBtn = true;
+
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.config.pathNewUser,
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    // cuenta creada
+                    $scope.status_register = true;
+                    $scope.status_register_label = $scope.config.ready;
+                    $scope.messageStatusRegister = $scope.config.message_new_user_success;
+                    $scope.labelStatusRegister = $scope.config.message_new_user_welcome;
+                    $scope.disableBtn = false;
+                }else{
+                    // error crear usuario
+                    $scope.status_register_label = $scope.config.ready;
+                    $scope.messageStatusRegister = $scope.config.message_new_user_failed;
+                    $scope.labelStatusRegister = $scope.config.failed;
+                    $scope.status_register = false;
+                }
+                $scope.state = 5;
+            });
+          }).catch(
+            function (resp) {
+                $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
+            }
+        );
     }
 
     setInterval(function(){ 
