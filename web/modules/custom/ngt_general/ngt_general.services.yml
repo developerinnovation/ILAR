@@ -56,4 +56,7 @@ services:
   ngt_general.methodGeneral:
     class: Drupal\ngt_general\methodGeneral
     arguments: []
+  ngt_general.load_term_parent_id_logic:
+    class: Drupal\ngt_general\Services\Rest\LoadTermByParentIdRestLogic
+    arguments: []
     

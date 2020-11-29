@@ -78,7 +78,7 @@ class methodGeneral{
      * @param  string $name
      * @return array
      */
-    public function loadTermByCategory($name){
+    public function loadTermByCategory($name, $parent = 0){
         
         $term = [];
         
@@ -89,10 +89,12 @@ class methodGeneral{
         if($tids){
             $terms = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
             foreach ($terms as $value) {
-                array_push($term,[
-                    'tid' => $value->tid->value,
-                    'name' => $value->name->value
-                ]); 
+                if($value->get('parent')->getValue()[0]['target_id'] == $parent){
+                    array_push($term,[
+                        'tid' => $value->tid->value,
+                        'name' => $value->name->value
+                    ]);
+                }
             }
         }
         

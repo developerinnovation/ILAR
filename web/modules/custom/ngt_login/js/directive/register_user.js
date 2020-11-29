@@ -12,10 +12,9 @@ function ngRegisterUser($http){
 
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_register_user];
-        console.log(config);
         scope.config = config;
         scope.profession = config.profession;
-        scope.step = 1;
+        scope.step = 4;
         scope.message = config.config.message;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
@@ -25,13 +24,13 @@ function ngRegisterUser($http){
         scope.messageStatusRecovery = config.config.new_pass_success;
         scope.pass_criteriar = config.pass_criteriar;
         scope.btnDisabled = false;
-        scope.country = [];
+        scope.country = config.country;
         scope.state = [];
         scope.city = [];
 
         scope.enableCountry = false;
-        scope.enableState = false;
-        scope.enableCity = false;
+        scope.enableState = true;
+        scope.enableCity = true;
 
         scope.status_register = true;
         scope.status_register_label = config.config.ready;
@@ -39,6 +38,30 @@ function ngRegisterUser($http){
         scope.labelStatusRegister = config.config.message_new_user_welcome;
         scope.messageStatusLoadPic = config.config.message_picture_load_success;
         scope.txtBtnOmit = config.config.omit;
+        scope.passValidate = false;
+        scope.bundleForCountry = config.bundleForCountry;
+        scope.picUser = config.icon_load_pic;
+        scope.setInterval = false;
+
+        // scope.form = {
+        //     name : '',
+        //     email : '',
+        //     date : null,
+        //     professionSelect : undefined,
+        // }
+
+        scope.form = {
+            name : 'David Martinez',
+            email : 'davidmartinezbolivar@gmail.com',
+            date : '2020-11-06',
+            professionSelect : '10',
+            countrySelect : '',
+            stateSelect : '',
+            pass: 'Pawel312#',
+            repeat_pass: 'Pawel312#',
+            termsCondition: false,
+            pic: '',
+        }
     }
 
 }
@@ -55,13 +78,55 @@ function RegisterUserController($scope, $http, $rootScope){
 
         switch ($scope.step) {
             case 1:
-                    if($scope().name != '' && $scope().email != '' &&  $scope().date != null && $scope.professionSelect != undefined){
-                        if( !$scope.ValidateEmail($scope().email) ) {
-                            emailValid = false;
+                    if($scope.form.name != '' && $scope.form.email != '' &&  $scope.form.date != null && $scope.form.professionSelect != undefined){
+                        var verify = $scope.ValidateEmail($scope.form.email);
+                        if( !verify ) {
+                            var message = 'Debe ingresar un correo válido, recuerde que el correo ingresado será su usuario en la plataforma.';
+                            $rootScope.showMessageModal(message);
+                        }else{
+                            $scope.changeStep();
                         }
-
-                        
+                    }else {
+                        var message = 'Debe ingresar todos los datos solicitados para continuar';
+                        $rootScope.showMessageModal(message);
                     }
+                break;
+
+            case 2:
+                    if( $scope.form.countrySelect != undefined && $scope.form.stateSelect != undefined && $scope.form.citySelect != undefined){
+                        $scope.changeStep();
+                    }else {
+                        var message = 'Para continuar, es necesario nos confirmes tu ubicación geográfica';
+                        $rootScope.showMessageModal(message);
+                    }
+                break;
+
+            case 3:
+                    if($scope.form.pass != '' && $scope.form.repeat_pass != ''){
+                        if($scope.form.pass == $scope.form.repeat_pass) {
+                            if($scope.passValidate){
+                                if($scope.form.termsCondition){
+                                    $scope.changeStep();
+                                }else{
+                                    var message = 'Para continuar, debe aceptar los términos y condiciones';
+                                    $rootScope.showMessageModal(message);
+                                }
+                            }else{
+                                var message = 'La contraseña ingresada no cumple con el nivel de seguridad requerido';
+                                $rootScope.showMessageModal(message);
+                            }
+                        }else{
+                            var message = 'Las contraseñas ingresadas no coinciden';
+                            $rootScope.showMessageModal(message);
+                        }
+                    }else{
+                        var message = 'Debe asignar una contraseña que cumpla con el nivel de seguridad requerido';
+                        $rootScope.showMessageModal(message);
+                    }
+                   
+                    var value = jQuery('#pass').val();
+                    $scope.validCriteriarPass(value);
+                    
                 break;
 
             case 4:
@@ -83,7 +148,7 @@ function RegisterUserController($scope, $http, $rootScope){
     }
 
     $scope.actionCancell = function (){
-        // window.location.href = '/';
+        // window.location.href = '/user';
     }
     
     $scope.actionLogin= function (){
@@ -94,11 +159,135 @@ function RegisterUserController($scope, $http, $rootScope){
 
     }
 
+    $scope.checkTermConditions = function (){
+        $scope.form.termsCondition = true;
+    }
+
     $scope.ValidateEmail = function (mail){
-        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)){
+        emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        if (emailRegex.test(mail)){
             return (true)
         }
         return (false);
+    }    
+
+    $scope.getMoreTerms = function(type){
+        var parentId = '';
+        switch (type) {
+            case 'state':
+                parentId = $scope.form.countrySelect
+                break;
+
+            case 'city':
+                parentId = $scope.form.stateSelect;
+            break;
+        }
+        var parameters = {};
+        
+        var config_data = {
+            params: parameters,
+            headers: { 'Accept': 'application/json' }
+        };
+
+        var path = $scope.config.pathMoreTerms;
+        path = path.replace('{vocabularyBundle}', $scope.bundleForCountry); 
+        path = path.replace('{parentId}', parentId);  
+
+        $http.get(path, config_data).then(function (resp) {
+            if(resp.data){
+                switch (type) {
+                    case 'state':
+                            $scope.state = resp.data;
+                            $scope.enableState = false;
+                        break;
+                
+                    case 'city':
+                            $scope.city = resp.data;
+                            $scope.enableCity = false;
+                        break;
+                }
+            }
+        }, function (error) {
+            var message = 'Se presentó un error de comunicación al tratar de cargar el servicio de ubicación geográfica, por favor intente más tarde realizar el regitro. ';
+            $rootScope.showMessageModal(message);
+        });
     }
+
+    $scope.validCriteriarPass = function(value){
+        var longMin = new RegExp('(?=.{8,})');
+        var characterSpecialContain = new RegExp('(?=.*[!@#$%^&*])');
+        var uppercaseContain = new RegExp('(?=.*[!@#$%^&*])');
+        var numberContain = new RegExp('(?=.*[0-9])');
+        var longMinCheck = false;
+        var characterSpecialContainCheck = false;
+        var uppercaseContainCheck = false;
+        var numberContainCheck = false;
+        if(longMin.test(value)){
+            longMinCheck = true;
+            jQuery('.criteriar-pass.criteriar-0').addClass('validate');
+        }else{
+            jQuery('.criteriar-pass.criteriar-0').removeClass('validate');
+        }
+
+        if(numberContain.test(value)){
+            numberContainCheck = true;
+            jQuery('.criteriar-pass.criteriar-1').addClass('validate');
+        }else{
+            jQuery('.criteriar-pass.criteriar-1').removeClass('validate');
+        }
+
+        if(uppercaseContain.test(value)){
+            uppercaseContainCheck = true;
+            jQuery('.criteriar-pass.criteriar-2').addClass('validate');
+        }else{
+            jQuery('.criteriar-pass.criteriar-2').removeClass('validate');
+        }
+
+        if(characterSpecialContain.test(value)){
+            characterSpecialContainCheck = true;
+            jQuery('.criteriar-pass.criteriar-3').addClass('validate');
+        }else{
+            jQuery('.criteriar-pass.criteriar-3').removeClass('validate');
+        }
+
+        if(longMinCheck && characterSpecialContainCheck && uppercaseContainCheck && numberContainCheck) {
+            $scope.passValidate = true;
+        }else{
+            $scope.passValidate = false;
+        }
+    }
+
+    $scope.imgLoadPic = function(){
+        jQuery("#imgLoadPic").click();
+    }
+
+    $scope.readURL = function(input){
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $scope.picUser = e.target.result;
+                jQuery('#previewImgLoadPic').attr('src', e.target.result);
+                $scope.form.pic = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    setInterval(function(){ 
+        jQuery("#imgLoadPic").change(function() {
+            $scope.readURL(this);
+        });
+    }, 600);
+
+    // eventos jQuery para inputs
+    setTimeout(function(){
+        jQuery('#pass').on('keyup keypress change', function () {
+            var value = jQuery(this).val();
+            $scope.validCriteriarPass(value);
+        });
+        
+    }, 600);
+
 
 }

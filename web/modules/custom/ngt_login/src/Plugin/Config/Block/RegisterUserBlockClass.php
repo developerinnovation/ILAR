@@ -63,6 +63,7 @@ class RegisterUserBlockClass {
         $terms_text = str_replace('<a>', $url_terms_text, $terms_text);
 
         $profession = \Drupal::service('ngt_general.methodGeneral')->loadTermByCategory('profesiones');
+        $country = \Drupal::service('ngt_general.methodGeneral')->loadTermByCategory('ubicacion_geografica');
 
         $parameters = [
             'theme' => 'register_user',
@@ -83,6 +84,10 @@ class RegisterUserBlockClass {
             'config' => $config->get('ngt_new_user'),
             'pass_criteriar' => explode(PHP_EOL, $config->get('ngt_new_user')['help_text_new_pass']),
             'profession' => $profession,
+            'country' => $country,
+            'bundleForCountry' => 'ubicacion_geografica',
+            'pathMoreTerms' => '/ngt/api/v1/terms/load/parent/{parentId}/vocabulary/{vocabularyBundle}',
+            'icon_load_pic' => '../../../modules/custom/ngt_login/asset/image/load-pic.png',
         ];
 
         $url = '/api/v1/';
@@ -90,12 +95,12 @@ class RegisterUserBlockClass {
         $instance->cardBuilVarBuild($parameters, $others);
         $instance->cardBuildAddConfigDirective($config_block);
 
-        
-
-        // $cid = 'config:block' . $uuid;
-        // $data = $this->configuration;
-        // \Drupal::cache()->set($cid, $data);
+    
         return $instance->getValue('build');
+    }
+
+    public function loadCountry(){
+
     }
 
     /**

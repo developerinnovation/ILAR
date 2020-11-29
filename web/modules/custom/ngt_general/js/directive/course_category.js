@@ -20,32 +20,10 @@ function ngCourseCategory($http){
             start : 0,
             stop : 4,
         };
-        // retrieveInformation(scope, config);
-
-        // scope.apiIsLoading = function () {
-        //     return $http.pendingRequests.length > 0;
-        // };
 
     }
 
-    // function retrieveInformation(scope, config, el){
 
-      
-    //     var parameters = {};
-        
-    //     var config_data = {
-    //         params: parameters,
-    //         headers: { 'Accept': 'application/json' }
-    //     };
-
-    //     $http.get(config.url, config_data).then(function (resp) {
-    //         if(resp.data){
-
-    //         }
-    //     }, function (error) {
-    //         console.log(error);
-    //     });
-    // }
 
 }
 
@@ -64,50 +42,6 @@ function CourseCategoryController($scope, $http, $rootScope){
 
         var url = `/ngt/api/v1/course/${tid}/${rangeInitial}/${rangeStop}`;
         var config_data = {};
-
-        // var config_data = {};
-        // 
-        // $http.get(url, config_data).then(function (resp) {
-        //     if (resp.data !== undefined && resp.data !== '' && resp.data.length > 0) {
-        //         loading = false;
-        //         updaRating();
-        //         $scope.CourseCategory = CourseCategory.concat(resp.data);
-        //     }else{
-        //         $scope.showMore = false;
-        //     }
-        //     $scope.loading = false;
-        // }, function (error) {
-        //     console.log("error")
-        // });
-
-
-        // var params = {};
-        // $http.get('/rest/session/token').then(function (resp) {
-        //     $http({
-        //       method: 'POST',
-        //       headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'X-CSRF-Token': resp.data
-        //       },
-        //       data: params,
-        //       url: `/ngt/api/v1/course/${tid}/${rangeInitial}/${rangeStop}`
-        //     }).then(function (resp) {
-        //         if (resp.data !== undefined && resp.data !== '' && resp.data.length > 0) {
-        //             loading = false;
-        //             $scope.updaRating();
-        //             $scope.CourseCategory = CourseCategory.concat(resp.data);
-        //         }else{
-        //             $scope.showMore = false;
-        //         }
-        //         $scope.loading = false;
-        //     });
-        //   }).catch(
-        //     function (resp) {
-        //         console.log("error");
-        //         console.log(resp);
-        //     }
-        // );
 
         $http.get(url, config_data).then(function (resp) {
             if (resp.data !== undefined && resp.data !== '' && resp.data.length > 0) {
@@ -131,7 +65,6 @@ function CourseCategoryController($scope, $http, $rootScope){
 
 
     $scope.alert_message = function (message, type = 'success') {
-        // type = 'danger' or 'success'
         jQuery(".messages-only .text-alert").append('<div class="txt-message"><p>' + message + '</p></div>');
         var $html_message = jQuery('.messages-only').html();
         jQuery('.main-top').append('<div class="messages clearfix messages--'+ type +' alert alert-'+ type +'" role="contentinfo" aria-label="">' + $html_message + '</div>');
