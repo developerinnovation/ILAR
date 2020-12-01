@@ -158,14 +158,14 @@ i.icon{
         width: 60px;
         height: 60px;
         right: 0;
-        margin: 10px auto;
+        margin: 27px auto;
     }
     &.failed{
         background-position: -284px 2px;
         width: 60px;
         height: 60px;
         right: 0;
-        margin: 10px auto;
+        margin: 27px auto;
     }
     &.play{
         background-image: url(../img/sprite-icon-varios.svg);
@@ -318,6 +318,11 @@ p.error-message-input {
     &:hover{
             background-color: #10b1ae;
         }
+    }
+}
+.register-user-form__top{
+    .nav-step{
+        margin: 80px auto 15px;
     }
 }
 .noPaddingTop{
