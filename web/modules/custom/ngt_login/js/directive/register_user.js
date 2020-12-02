@@ -15,7 +15,7 @@ function ngRegisterUser($http){
         console.log(config);
         scope.config = config;
         scope.profession = config.profession;
-        scope.step = 5;
+        scope.step = 1;
         scope.message = config.config.message;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
@@ -58,6 +58,7 @@ function ngRegisterUser($http){
             professionSelect : '10',
             countrySelect : '',
             stateSelect : '',
+            citySelect : '',
             pass: 'Pawel312#',
             repeat_pass: 'Pawel312#',
             termsCondition: false,

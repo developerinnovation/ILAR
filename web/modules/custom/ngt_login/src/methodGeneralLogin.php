@@ -5,6 +5,7 @@ namespace Drupal\ngt_login;
 use Drupal\file\Entity\File;
 use Drupal\rest\ResourceResponse;
 use Drupal\user\Entity\User;
+use Drupal\ngt_general\Base64Image;
 
 class methodGeneralLogin{
 
@@ -154,4 +155,90 @@ class methodGeneralLogin{
         return $data;
     }
 
+    
+    /**
+     * setNewUser
+     *
+     * @param  mixed $params
+     * @return void
+     */
+    public function setNewUser($params){
+
+        $file = $this->preparate_image_profile($params);
+        $fid = $file->id();
+        
+        $mail = $params['email'];
+        $pass = $params['repeat_pass'];
+
+        $name = $params['name'];
+        $name = explode(' ', $name);
+        $count_name = count($name);
+
+        switch ($count_name) {
+            case 3:
+                    $field_nombre =  $name[0] . ' ' . $name[1];
+                    $field_apellidos =  $name[2];
+                break;
+            
+            case 4:
+                    $field_nombre =  $name[0] . ' ' . $name[1];
+                    $field_apellidos =  $name[2] . ' ' . $name[3];
+                break;
+            default:
+                    $field_nombre =  $name[0];
+                    $field_apellidos =  $name[1];
+                break;
+        }
+
+
+        $field_ubicacion_geografica =  $params['citySelect'];
+        $field_profesion =  $params['professionSelect'];
+        $field_fecha_nacimiento =  $params['date'];
+
+        $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+        $user = \Drupal\user\Entity\User::create();
+
+        $user->setPassword($pass);
+        $user->enforceIsNew();
+        $user->setEmail($mail);
+        $user->setUsername($mail);
+      
+        $user->set('field_ubicacion_geografica', $field_ubicacion_geografica);
+        $user->set('field_profesion', $field_profesion);
+        $user->set('field_nombre', $field_nombre);
+        $user->set('field_apellidos', $field_apellidos);
+        $user->set('field_fecha_nacimiento', $field_fecha_nacimiento);
+
+        $user->set('user_picture', $fid);
+      
+        $user->set('init', 'email');
+        $user->set('langcode', $language);
+        $user->set('preferred_langcode', $language);
+        $user->set('preferred_admin_langcode', $language);
+        $user->addRole('alumnos');
+        $user->activate();
+        $user->save();
+
+
+        \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid);
+    }
+    
+    /**
+     * preparate_image_profile
+     *
+     * @param  mixed $params
+     * @return void
+     */
+    public function preparate_image_profile($params){
+        
+        $path = 'pictures/' . date('Y'). '/'. date('m'). '/'. date('d');
+        $img = new Base64Image($params['pic']);
+        $upload_location = 's3://file-project';
+        $img->setFileDirectory($path, $upload_location);
+        $file = file_save_data($img->getFileData(), 'public://' . $path . '/' . $img->getFileName() , FILE_EXISTS_REPLACE);
+        // $img->setImageStyleImages($path);
+        
+        return $file->id();
+
+    }
 }
