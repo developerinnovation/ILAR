@@ -164,9 +164,12 @@ class methodGeneralLogin{
      */
     public function setNewUser($params){
 
-        $file = $this->preparate_image_profile($params);
-        $fid = $file->id();
-        
+        $havePic = ($params['pic'] != '') ? true : false;
+        if($havePic){
+            // $file = $this->preparate_image_profile($params);
+            // $fid = $file->id();
+        }
+
         $mail = $params['email'];
         $pass = $params['repeat_pass'];
 
@@ -209,8 +212,12 @@ class methodGeneralLogin{
         $user->set('field_apellidos', $field_apellidos);
         $user->set('field_fecha_nacimiento', $field_fecha_nacimiento);
 
-        $user->set('user_picture', $fid);
-      
+        if($havePic){
+            if($fid != 0){
+                $user->set('user_picture', $fid);
+            }
+        }        
+
         $user->set('init', 'email');
         $user->set('langcode', $language);
         $user->set('preferred_langcode', $language);
@@ -219,8 +226,10 @@ class methodGeneralLogin{
         $user->activate();
         $user->save();
 
-
-        \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid);
+        return [
+            'status' => '200',
+            'data' => $user,
+        ];
     }
     
     /**
@@ -233,12 +242,25 @@ class methodGeneralLogin{
         
         $path = 'pictures/' . date('Y'). '/'. date('m'). '/'. date('d');
         $img = new Base64Image($params['pic']);
-        $upload_location = 's3://file-project';
+        $upload_location = '://';
         $img->setFileDirectory($path, $upload_location);
-        $file = file_save_data($img->getFileData(), 'public://' . $path . '/' . $img->getFileName() , FILE_EXISTS_REPLACE);
+        $file = file_save_data($img->getFileData(), 's3://pictures/' . $path . '/' . $img->getFileName() , FILE_EXISTS_REPLACE);
         // $img->setImageStyleImages($path);
-        
-        return $file->id();
+        if($file){
+            return $file->id();
+        }
+        return 0;
+
+    
+    // $test_base_url = 'http://www.example.com/cdn';
+    // $this->setSetting('file_public_base_url', $test_base_url);
+    // $filepath = \Drupal::service('file_system')->createFilename('test.txt', '');
+    // $directory_uri = 'public://' . dirname($filepath);
+    // \Drupal::service('file_system')->prepareDirectory($directory_uri, FileSystemInterface::CREATE_DIRECTORY);
+    // $file = $this->createFile($filepath, NULL, 'public');
+    // $url = file_create_url($file->getFileUri());
+    // $expected_url = $test_base_url . '/' . basename($filepath);
+    // $this->assertSame($url, $expected_url);
 
     }
 }

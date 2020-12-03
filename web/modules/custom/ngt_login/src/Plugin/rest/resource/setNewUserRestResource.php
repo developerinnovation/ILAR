@@ -82,7 +82,7 @@ class setNewUserRestResource extends ResourceBase {
      *   Return response data for logic class.
      */
     public function post(array $params) {
-        return \Drupal::service('ngt_login.set_new_user')->post($params);
+        return \Drupal::service('ngt_login.set_new_user')->post($this->currentUser, $params);
     }
 
 } 

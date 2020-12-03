@@ -13,8 +13,8 @@
                     <h3 ng-if="step < 4">{{ config.title }}</h3>
                     <h3 ng-show="step == 4">{{ config.title_picture }}</h3>
 
-                    <div ng-show="step == 5">
-                        <div class="inner-addon leftaddon">
+                    <div ng-show="step == 6">
+                        <div class="inner-addon leftaddon" ng-style="(status_register == false) ? style : ''">
                             <i ng-class="(status_register == true) ? 'icon ready' : 'icon failed'"></i>
                         </div>
                         <div class="mensaje">
@@ -28,10 +28,11 @@
                         <li ng-class="(step == 3) ? 'active' : ''">step3</li>
                         <li ng-class="(step == 4) ? 'active' : ''">step4</li>
                         <li ng-class="(step == 5) ? 'active' : ''">step5</li>
+                        <li ng-class="(step == 6) ? 'active' : ''">step6</li>
                     </ul>
                     
                     <div class="input-form">
-                        <p ng-if="step != 5" class="message_login">{[{ message }]}</p>
+                        <p ng-if="step < 5" class="message_login">{[{ message }]}</p>
                         
                         <div class="cards" ng-show="step == 1">
                             <div>
@@ -130,6 +131,13 @@
 
                         <div class="cards" ng-show="step == 5">
                             <div>
+                                <img id="previewImgLoadPic" class="icon camera" src="../../../modules/custom/ngt_login/asset/image/loading.gif" width="72"; height="72" alt="">
+                                <h4>{[{ labelStatusRegister }]}</h4>
+                            </div>
+                        </div>
+
+                        <div class="cards" ng-show="step == 6">
+                            <div>
                                 <p class="message_status_register" ng-class="(status_register == true) ? 'icon check' : 'icon fall'" >{[{ messageStatusRegister }]}</p>
                                 <h4>{[{ labelStatusRegister }]}</h4>
                             </div>
@@ -138,16 +146,20 @@
                     </div>
 
                     <div class="register-user-form__submit">
-                        <div class="action-next">
+                        <div class="action-next" ng-if="!userExist">
                             <button 
                                 ng-click="actionNext()"
                                 ng-disabled="btnDisabled">{[{ txtBtnNext }]}</button>
                         </div>
                         <div class="action-return">
                             <button 
-                                ng-if="step <= 4"
+                                ng-if="step <= 5"
                                 ng-click="(step <= 3) ? actionCancell() : actionReturn()"
                                 ng-disabled="btnDisabled">{[{ txtBtnReturn }]}</button>
+                        </div>
+                        <div class="action-return" ng-if="userExist">
+                            <button 
+                                ng-click="gotoPasswordRecovery()">{[{ txtBtnReturn }]}</button>
                         </div>
                     </div>
                 </div>

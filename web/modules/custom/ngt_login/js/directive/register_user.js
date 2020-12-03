@@ -15,7 +15,7 @@ function ngRegisterUser($http){
         console.log(config);
         scope.config = config;
         scope.profession = config.profession;
-        scope.step = 1;
+        scope.step = 4;
         scope.message = config.config.message;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
@@ -37,12 +37,16 @@ function ngRegisterUser($http){
         scope.status_register_label = config.config.ready;
         scope.messageStatusRegister = config.config.message_new_user_success;
         scope.labelStatusRegister = config.config.message_new_user_welcome;
-        scope.messageStatusLoadPic = config.config.message_picture_load_success;
+        scope.messageStatusLoadPic = config.config.message_picture;
         scope.txtBtnOmit = config.config.omit;
         scope.passValidate = false;
         scope.bundleForCountry = config.bundleForCountry;
         scope.picUser = config.icon_load_pic;
         scope.setInterval = false;
+        scope.userExist = false;
+        scope.style = {
+            'padding' : '20px',
+        };
 
         // scope.form = {
         //     name : '',
@@ -53,7 +57,7 @@ function ngRegisterUser($http){
 
         scope.form = {
             name : 'David Martinez',
-            email : 'davidmartinezbolivar@gmail.com',
+            email : 'davidmartinezbolivar1@gmail.com',
             date : '2020-11-06',
             professionSelect : '10',
             countrySelect : '',
@@ -73,6 +77,10 @@ function RegisterUserController($scope, $http, $rootScope){
 
     $scope.actionNext = function (){
         var emailValid = true; 
+
+        if($scope.step > 6){
+            window.location.href = '/user/login';
+        }
 
         if( $scope.step > 4 ){
             $scope.txtBtnNext = $scope.config.config.login_btn;
@@ -135,11 +143,14 @@ function RegisterUserController($scope, $http, $rootScope){
                     $scope.message = $scope.config.config.message_picture;
                     $scope.txtBtnNextBkp = $scope.txtBtnNext;
                     $scope.btnDisabled = true;
-                    $scope.txtBtnNext = 'Procesando...';
+                    $scope.txtBtnNext = 'Procesando ...';
+                    $scope.labelStatusRegister = 'Realizando el registro';
+                    $scope.message = '¡Estamos procesando tu registro, pronto podrás utilizar nuestra plataforma!';
+                    $scope.changeStep();
                     $scope.createNewUser();
                 break;
 
-            case 5:
+            case 6:
                     $scope.txtBtnNext = $scope.config.config.login;
                 break;
         }
@@ -157,11 +168,20 @@ function RegisterUserController($scope, $http, $rootScope){
         window.location.href = '/user/login';
     }
     
-    $scope.actionLogin= function (){
+    $scope.actionLogin = function (){
         window.location.href = '/user/login';
     }
 
+    $scope.gotoPasswordRecovery = function (){
+        window.location.href = '/recovery/pass';
+    }
+
     $scope.omitLoadPic = function (){
+        $scope.txtBtnNext = 'Procesando ...';
+        $scope.btnDisabled = true;
+        $scope.labelStatusRegister = 'Realizando el registro';
+        $scope.message = '¡Estamos procesando tu registro, pronto podrás utilizar nuestra plataforma!';
+        $scope.changeStep();
         $scope.createNewUser();
     }
 
@@ -277,6 +297,9 @@ function RegisterUserController($scope, $http, $rootScope){
                 $scope.messageStatusLoadPic = $scope.config.message_picture;
                 $scope.form.pic = e.target.result;
             }
+            var file = jQuery('#imgLoadPic').val();
+            var path = (window.URL || window.webkitURL).createObjectURL(file);
+            console.log('path', path);
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }else{
             $scope.messageStatusLoadPic = $scope.config.message_picture_load_failed;
@@ -302,18 +325,24 @@ function RegisterUserController($scope, $http, $rootScope){
                 if (resp.data.status == '200') {
                     // cuenta creada
                     $scope.status_register = true;
-                    $scope.status_register_label = $scope.config.ready;
-                    $scope.messageStatusRegister = $scope.config.message_new_user_success;
-                    $scope.labelStatusRegister = $scope.config.message_new_user_welcome;
-                    $scope.disableBtn = false;
+                    $scope.status_register_label = $scope.config.config.ready;
+                    $scope.messageStatusRegister = $scope.config.config.message_new_user_success;
+                    $scope.labelStatusRegister = $scope.config.config.message_new_user_welcome;
+                    $scope.btnDisabled = false;
+                    $scope.txtBtnNext = $scope.config.config.login;
                 }else{
                     // error crear usuario
+                    var messageCustom = 'Detectamos que ya te encuentras registrado en nuestra plataforma, sino recuerdas la contraseña puede  registar una nueva con nuestro proceso de recuperación.';
                     $scope.status_register_label = $scope.config.ready;
-                    $scope.messageStatusRegister = $scope.config.message_new_user_failed;
+                    $scope.messageStatusRegister = resp.data.error == 'Usuario existente' ? messageCustom : $scope.config.config.message_new_user_failed;
                     $scope.labelStatusRegister = $scope.config.failed;
                     $scope.status_register = false;
+                    $scope.txtBtnReturn = resp.data.error == 'Usuario existente' ? 'Recuperar contraseña' : $scope.txtBtnReturn;
+                    $scope.userExist = resp.data.error == 'Usuario existente' ? true : false;
+                    $scope.message = '';
+                    $scope.txtBtnNext = $scope.config.config.login;
                 }
-                $scope.state = 5;
+                $scope.changeStep();
             });
           }).catch(
             function (resp) {

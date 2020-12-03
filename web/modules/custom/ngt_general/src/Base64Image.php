@@ -73,8 +73,9 @@ class Base64Image {
      */
     public function setFileDirectory($path, $upload_location) {
         $this->directory = \Drupal::service('file_system')->realpath(file_default_scheme() . $upload_location);
-        $this->directory .= '/' . $path;
-        file_prepare_directory($this->directory, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
+        $this->directory .= 's3://' . $path;
+        \Drupal\Core\File\FileSystemInterface::prepareDirectory($this->directory, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
+        // file_prepare_directory($this->directory, FILE_MODIFY_PERMISSIONS | FILE_CREATE_DIRECTORY);
     }
 
     /**

@@ -17,3 +17,6 @@ services:
   ngt_login.set_new_pass:
     class: Drupal\ngt_login\Services\Rest\SetNewPassRestLogic
     arguments: []
+  ngt_login.set_new_user:
+    class: Drupal\ngt_login\Services\Rest\SetNewUserRestLogic
+    arguments: []

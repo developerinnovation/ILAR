@@ -88,7 +88,7 @@ class RegisterUserBlockClass {
             'bundleForCountry' => 'ubicacion_geografica',
             'pathMoreTerms' => '/ngt/api/v1/terms/load/parent/{parentId}/vocabulary/{vocabularyBundle}',
             'icon_load_pic' => '../../../modules/custom/ngt_login/asset/image/load-pic.png',
-            'pathNewUser' => '/ngt/api/v1/user/register',
+            'pathNewUser' => '/ngt/api/v1/login/user/create/set/new',
         ];
 
         $url = '/api/v1/';
