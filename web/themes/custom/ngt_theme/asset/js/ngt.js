@@ -41,6 +41,11 @@
                 items: 1.5,
             });
             $(".main.node-course .right .other-course .more").addClass('owl-carousel');
+
+            $('#menu-live').click(function() {
+                $(this).toggleClass('active');
+                $('.left.menu-live').toggleClass('active');
+            });
             
         }
         
