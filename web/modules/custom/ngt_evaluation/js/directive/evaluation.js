@@ -14,7 +14,7 @@ function ngEvaluation($http){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_evaluation];
         scope.tabs = 'presentation';
         scope.evaluationNav = 1;
-        scope.maxNavValue = 3;
+        scope.maxNavValue = config.total_questions;
         scope.minNavValue = 1;
     }
 
