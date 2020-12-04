@@ -76,7 +76,7 @@
   <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
 
   <footer>
-    {{ user_picture }}
+    {{ drupal_field('user_picture', 'user', user.id) }}
     <p>{{ submitted }}</p>
 
     {#
