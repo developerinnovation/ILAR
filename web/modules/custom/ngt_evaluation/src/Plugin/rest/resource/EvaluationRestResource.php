@@ -12,15 +12,15 @@ use Drupal\Core\Session\AccountProxyInterface;
  * Provides a resource to get view modes by entity and bundle.
  *
  * @RestResource(
- *   id = "course_category_rest_resource",
- *   label = @Translation("Get courses by category"),
+ *   id = "evaluation_answer_rest_resource",
+ *   label = @Translation("Answer evaluation"),
  *   uri_paths = {
  *     "canonical" = "/ngt/api/v1/evaluation/{module}",
  *     "https://www.drupal.org/link-relations/create" = "/ngt/api/v1/evaluation/response",
  *   }
  * )
  */
-class CourseCategoryRestResource extends ResourceBase { 
+class EvaluationRestResource extends ResourceBase { 
 
     /**
      * Constructs a Drupal\rest\Plugin\ResourceBase object.
