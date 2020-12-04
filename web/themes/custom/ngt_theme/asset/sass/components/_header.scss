@@ -1,5 +1,11 @@
 header.mobile{
         display: block;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        .right{
+            color: white;
+        }
         @media only screen and ($desktop){
             display: none;
         }
