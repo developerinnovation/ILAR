@@ -1558,16 +1558,23 @@
 
 .section-user{
     article{
-        display: flex;
         max-width: 1200px;
         margin: 30px auto;
+        @media only screen and ($desktop){
+            display: flex;
+        }
         .izq{
+            display: none;
             padding: 20px;
             border-radius: 6px;
             box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
             margin-bottom: 20px;
             margin-right: 40px;
             width: 370px;
+            overflow: hidden;
+            @media only screen and ($desktop){
+                    display: block;
+                }
             .top{
                 display: flex;
                 align-items: center;
@@ -1612,14 +1619,27 @@
                     margin-bottom: 30px;
                     border-bottom: 1px solid #cccccc8f;
                     li{
-                        margin-bottom: 30px;
+                        margin-bottom: 10px;
                         position: relative;
+                        width: 100%;
+                        &:hover{
+                                margin-left: 23px;
+                                transition: 0.4s;
+                            }
                         
                         a{
                             font-size: 15px;
                             font-family: "Asap",sans-serif;
                             color: #535353;
                             width: 100%;
+                            padding: 10px;
+                            display: block;
+                            border-radius: 5px;
+                            &:hover{
+                                background-color: #0b2152;
+                                color: white;
+                                transition: 0.4s;
+                            }
 
                             i.row{
                             background-image: url(../img/sprite-icon-varios.svg);
@@ -1666,29 +1686,38 @@
             }
         }
         .der{
-            display: flex;
             padding: 40px 20px;
             border-radius: 6px;
-            box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
             margin-bottom: 20px;
             width: 100%;
+            @media only screen and ($desktop){
+                display: flex;
+                box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
+            }
             div{
                 width: 100%;
             }
             .left{
                 text-align: center;
-                border-right: 1px solid #cccccc8f;
-                    margin-right: 40px;
+                margin-right: 40px;
+                @media only screen and ($desktop){
+                    border-right: 1px solid #cccccc8f;
+                }
                 .picture{
                     figure{
                         img{
-                            border: 8px solid #3E54D3;
+                            border: 4px solid #3E54D3;
                             border-radius: 100%;
                             margin-right: 0;
-                            width: 200px;
-                            height: 200px;
+                            width: 100px;
+                            height: 100px;
                             color: transparent;
                             margin: 0 auto;
+                            @media only screen and ($desktop){
+                                width: 200px;
+                                height: 200px;
+                                border: 8px solid #3E54D3;
+                            }
                         }
                     }
                 }
@@ -1712,20 +1741,27 @@
 
                 }
                 .location{
-                    
-                    span{
-                        display: flex;
-                        justify-content: center;
-                        padding: 10px;
-                        color: #535353;
+                    h3{
+                        font-family: "Roboto",serif;
+                        margin-left: 10px;
+                        font-size: 15px;
+                        font-weight: 400;
                         position: relative;
-                        h3{
-                            font-family: "Roboto",serif;
-                            margin-left: 5px;
-                            font-size: 16px;
-                            font-weight: 400;
-                        }
-                        
+                        display: inline-block;
+                        margin-top: 6px;
+                        color: #535353;
+                    }
+                }
+                .action{
+                    a{
+                        padding: 15px;
+                        border-radius: 10px;
+                        background: #15cdca;
+                        font-family: "Asap",sans-serif;
+                        font-size: 14px;
+                        color: #fff;
+                        margin-top: 20px;
+                        display: inline-block;
                     }
                 }
             }
@@ -1734,6 +1770,10 @@
                 color: #535353;
                 font-weight: 300;
                 line-height: 22px;
+                margin-top: 40px;
+                @media only screen and ($desktop){
+                    margin-top: 0px;
+                }
 
                 h3{
                     font-family: "Roboto",serif;
@@ -1756,9 +1796,9 @@ i.location{
     background-repeat: no-repeat;
     background-position: -114px -12px;
     position: absolute;
-    left: 0;
-    margin: 10px;
-    pointer-events: none;
+    left: -25px;
+    top: -5px;
+    font-size: 0px;
 }
 
 
