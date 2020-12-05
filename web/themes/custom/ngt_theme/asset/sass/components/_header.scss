@@ -2,13 +2,38 @@ header.mobile{
         display: block;
         display: flex;
         align-items: center;
-        padding: 10px;
-        .right{
-            color: white;
-        }
+        padding: 0 10px;
+        margin-top: 40px;
         @media only screen and ($desktop){
             display: none;
         }
+        .left{
+            figure{
+                width: 50%;
+                img{
+                }
+            }
+        }
+        .right{
+            color: white;
+
+            #menu-live{
+                content: "";
+                display: block;
+                margin: 5px auto;
+                width: 40px;
+                height: 30px;
+                background-image: url(../img/sprite-icon-varios.svg);
+                background-size: 520px;
+                font-size: 0;
+                background-repeat: no-repeat;
+                background-position: -130px -22px;
+                &.active{
+                    background-position: -130px -60px !important;
+                }
+            }
+        }
+        
     }
 
 header{
