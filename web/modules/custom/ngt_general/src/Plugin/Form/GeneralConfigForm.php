@@ -185,6 +185,23 @@ class GeneralConfigForm extends ConfigFormBase {
             '#default_value' => t('He leido y acepto la <a>Política de Privacidad y Tratamiento de Datos.</a>'),
         ];
 
+
+        // terminos y condiciones
+
+        $form['script_settings'] = [  
+            '#type' => 'details',
+            '#title' => t('Configuraciones de script o códigos externos'),   
+            '#open' => false,  
+        ]; 
+
+        $form['script_settings']['external'] = [  
+            '#type' => 'textarea',  
+            '#title' => t('Script externos'),  
+            '#description' => t('Script adicione auqí totos los códigos o script externos'),  
+            '#default_value' => isset($config->get('script_settings')['external']) ? $config->get('script_settings')['external'] : '',    
+            '#required' => true
+        ]; 
+
         return parent::buildForm($form, $form_state);
     } 
 
@@ -199,6 +216,7 @@ class GeneralConfigForm extends ConfigFormBase {
             ->set('general_settings', $form_state->getValue('general_settings'))  
             ->set('general_terms_conditions', $form_state->getValue('general_terms_conditions'))  
             ->set('other_settings', $form_state->getValue('other_settings'))  
+            ->set('script_settings', $form_state->getValue('script_settings'))
             ->save();  
             
         $fid_logo_general_settings = $form_state->getValue('general_settings')['img_logo'];

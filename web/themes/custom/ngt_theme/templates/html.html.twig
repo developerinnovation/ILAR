@@ -17,7 +17,10 @@
     <js-placeholder token="{{ placeholder_token }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" media="all" href="/{{ directory }}/asset/css/style.css?temp={{ " now "|date("m/d/Y/H/i/s ") }}">                   
+    <link rel="stylesheet" media="all" href="/{{ directory }}/asset/css/style.css?temp={{ " now "|date("m/d/Y/H/i/s ") }}">            
+    <!-- Script external -->
+    {{ script_external|raw }}       
+    <!-- End script external -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   {% set classes = [] %}

@@ -90,11 +90,14 @@ function ngt_general_preprocess_html(&$variables){
 
   $activate_img_logo_second = $config->get('general_settings')['activate_img_logo_second'];
 
+  $script_external = $config->get('script_settings')['external'];
+
   $variables['logo_general_url'] = $logo_general_url;
   $variables['logo_mobile_url'] = $logo_mobile_url;
   $variables['logo_second_url'] = $logo_second_url;
   $variables['logo_design_url'] = $logo_design_url;
   $variables['activate_img_logo_second'] = $activate_img_logo_second;
+  $variables['script_external'] = $script_external;
 }
 
 /**
