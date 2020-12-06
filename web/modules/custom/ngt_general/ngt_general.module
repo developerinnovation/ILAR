@@ -76,9 +76,9 @@ function ngt_general_preprocess_html(&$variables){
   $logo_general_file = File::load($logo_general_fid);
   $logo_general_url = isset($logo_general_file) ? $logo_general_file->getFileUri() : '';
 
-  // $logo_mobile_fid = reset($config->get('general_settings')['img_logo_mobile']);
-  // $logo_mobile_file = File::load($logo_mobile_fid);
-  // $logo_mobile_url = isset($logo_mobile_file) ? $logo_mobile_file->getFileUri() : '';
+  $logo_mobile_fid = reset($config->get('general_settings')['img_logo_mobile']);
+  $logo_mobile_file = File::load($logo_mobile_fid);
+  $logo_mobile_url = isset($logo_mobile_file) ? $logo_mobile_file->getFileUri() : '';
 
   $logo_second_fid = reset($config->get('general_settings')['img_logo_second']);
   $logo_second_file = File::load($logo_second_fid);
@@ -91,7 +91,7 @@ function ngt_general_preprocess_html(&$variables){
   $activate_img_logo_second = $config->get('general_settings')['activate_img_logo_second'];
 
   $variables['logo_general_url'] = $logo_general_url;
-  // $variables['logo_mobile_url'] = $logo_mobile_url;
+  $variables['logo_mobile_url'] = $logo_mobile_url;
   $variables['logo_second_url'] = $logo_second_url;
   $variables['logo_design_url'] = $logo_design_url;
   $variables['activate_img_logo_second'] = $activate_img_logo_second;
