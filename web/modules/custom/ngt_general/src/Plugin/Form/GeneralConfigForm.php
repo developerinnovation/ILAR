@@ -52,6 +52,18 @@ class GeneralConfigForm extends ConfigFormBase {
             '#required' => true
         ]; 
 
+        $form['general_settings']['img_logo_mobile'] = [  
+            '#type' => 'managed_file',
+            '#upload_location' => 's3://file-project',
+            '#title' => t('Logo mobile'),
+            '#upload_validators' => [
+                'file_validate_extensions' => ['png svg']
+            ],
+            '#default_value' => $config->get('general_settings')['img_logo_mobile'],  
+            '#description' => t('Logo dispositivos móvil de la plataforma'),
+            '#required' => true
+        ]; 
+
         $form['general_settings']['activate_img_logo_second'] = [  
             '#type' => 'checkbox',
             '#title' => t('Utilizar logo secundario'),   
@@ -190,6 +202,7 @@ class GeneralConfigForm extends ConfigFormBase {
             ->save();  
             
         $fid_logo_general_settings = $form_state->getValue('general_settings')['img_logo'];
+        $fid_logo_mobile_settings = $form_state->getValue('general_settings')['img_logo_mobile'];
         $fid_logo_second = $form_state->getValue('general_settings')['img_logo_second'];
         $fid_logo_design = $form_state->getValue('general_settings')['img_logo_design_by'];
         if ($fid_logo_general_settings) {
@@ -199,6 +212,9 @@ class GeneralConfigForm extends ConfigFormBase {
             \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_second);
         }
         if ($fid_logo_design) {
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_design);
+        }
+        if ($fid_logo_mobile_settings) {
             \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_logo_design);
         }
     }  
