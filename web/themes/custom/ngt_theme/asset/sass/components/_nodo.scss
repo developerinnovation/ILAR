@@ -1526,6 +1526,24 @@
                     border-radius: 20px;
                     font-size: 13px;
                     color: #fff;
+                    &:disabled {
+                        background:#92dcdb!important;
+                    }
+                    
+                }
+                .send{
+                    margin: 15px 0;
+                    width: 134px;
+                    border: 0;
+                    background: #6213b9;
+                    height: 34px;
+                    padding: 0;
+                    border-radius: 20px;
+                    font-size: 13px;
+                    color: #fff;
+                    &:disabled {
+                        background:#9b6ece!important;
+                    }
                 }
                 .return{
                     background: #0b2152;
@@ -1535,7 +1553,9 @@
                     border-radius: 5px;
                     position: relative;
                     margin: 20px 0;
-
+                    &:disabled {
+                        background:#8197ca!important;
+                    }
                     &:before{
                         content: "";
                         width: 30px;

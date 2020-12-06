@@ -57,11 +57,18 @@ class EvaluationBlockClass {
             '#uuid' => $uuid,
         ];
 
+
+        $questions = [];
+        foreach ($data['questions'] as $question) {
+            array_push($questions, '');
+        }
+
         $other_config = [
             'urlCourse' => '',
             'total_questions' => $data['count_question'],
             'minute' => $data['minute'],
             'nid' => $nid,
+            'data' => $questions,
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
@@ -100,10 +107,27 @@ class EvaluationBlockClass {
         $paragraphArray = $paragraph;
         foreach ( $paragraphArray as $element ) {
             $question = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
+            $type = $question->get('field_tipo_de_pregunta')->getValue()[0]['value'];
+            switch ($type) {
+                case 'multiple':
+                    $typeDetail = 'Opción múltiple';
+                    break;
+
+                case 'correctOption':
+                    $typeDetail = 'Marque la opción correcta';
+                    break;
+                
+                case 'bool':
+                    $typeDetail = 'Verdadero o Falso';
+                    break;
+                
+            }
+            
             array_push($questions, [
                 'nidCourse' => $question->get('parent_id')->getValue()[0]['value'],
                 'title' => $question->get('field_titulo_pregunta')->getValue()[0]['value'],
-                'type' => $question->get('field_tipo_de_pregunta')->getValue()[0]['value'],
+                'type' => $type,
+                'typeDetail' => $typeDetail ,
                 'answer' => $question->get('field_respuesta_correcta')->getValue()[0]['value'],
                 'possibleAnswers' => $question->get('field_posibles_respuestas')->getValue(),
             ]);

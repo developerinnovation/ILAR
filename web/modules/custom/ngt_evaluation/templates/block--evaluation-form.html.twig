@@ -40,10 +40,10 @@
                  </ul>
                 <span>Pregunta {[{ evaluationNav }]} de {[{ maxNavValue }]}</span>
             </div>
-            <div class="clock">
+            <!--<div class="clock">
                 <span class="time">Tiempo restante:</span>
                 <span>01:10:20</span>
-            </div>
+            </div>-->
         </div>
 
 
@@ -52,7 +52,9 @@
             <form action="">
                 {% for key, question in data.questions %}
                     <div id="question-{{ key + 1 }}" class="questions {{ question.type }}" ng-show="evaluationNav == '{{ key + 1 }}'">
+                        
                         <h3>Pregunta {{ key + 1  }}</h3>
+                        <p class="description">Tipo de pregunta: {{ question.typeDetail  }}</p>
                         <p class="description">{{ question.title }}</p>
                         <div class="response">
                             <fieldset>
@@ -61,8 +63,8 @@
                                     
                                     {% for i, possibleAnswers in question.possibleAnswers %} 
                                         <div>
-                                            <input type="radio" name="response_{{ key + 1 }}" id="response_{{ key + 1 }}">
-                                            <label for="response_1">{{ possibleAnswers.value }}</label>
+                                            <input type="radio" name="response_{{ key + 1 }}" id="response_{{ key + 1 }}_{{ i + 1 }}"  ng-click="checkAnswer({{ key }}, {{ i + 1 }}, '{{ question.type }}')">
+                                            <label for="response_{{ key + 1 }}_{{ i + 1 }}">{{ possibleAnswers.value }}</label>
                                         </div>
                                     {% endfor %}
 
@@ -70,8 +72,8 @@
 
                                     {% for i, possibleAnswers in question.possibleAnswers %} 
                                         <div>
-                                            <input type="radio" name="response_{{ key + 1 }}_{{ i + 1 }}" id="response_{{ key + 1 }}_{{ i + 1 }}">
-                                            <label for="response_1">{{ possibleAnswers.value }}</label>
+                                            <input type="radio" name="response_{{ key + 1 }}_{{ i + 1 }}" id="response_{{ key + 1 }}_{{ i + 1 }}" ng-click="checkAnswer({{ key }}, {{ i + 1 }}, '{{ question.type }}')">
+                                            <label for="response_{{ key + 1 }}_{{ i + 1 }}">{{ possibleAnswers.value }}</label>
                                         </div>
                                     {% endfor %}
 
@@ -79,7 +81,9 @@
                                     {% for i, possibleAnswers in question.possibleAnswers %} 
                                         {% set typeBool = possibleAnswers.value|lower %}
                                         <div>
-                                            <button class="{% if typeBool == 'verdadero' %}{{ 'true' }}{% else %}{{ 'false' }}{% endif %} bool">{{ possibleAnswers.value }}</button>
+                                            <button id="response_{{ key + 1 }}_{{ i + 1 }}" 
+                                                ng-click="checkAnswer({{ key }}, '{{ typeBool }}', '{{ question.type }}'); changeClassBool({{ key }}, '{{ possibleAnswers.value }}', 'response_{{ key + 1 }}_{{ i + 1 }}', 'response_{{ key + 1 }}')" 
+                                                class="{% if typeBool == 'verdadero' %}{{ 'true' }}{% else %}{{ 'false' }}{% endif %} bool response_{{ key + 1 }}">{{ possibleAnswers.value }}</button>
                                         </div>
                                     {% endfor %}
                                 {% endif %}
@@ -95,7 +99,8 @@
 
             <div class="action evaluation">
                 <button class="return" ng-click="changeEvaluationNav('prev')" ng-disabled="minNavValue == evaluationNav">Anterior</button>
-                <button class="next" ng-click="changeEvaluationNav('next')" ng-disabled="maxNavValue == evaluationNav">Siguiente</button>
+                <button class="next" ng-click="changeEvaluationNav('next')" ng-show="maxNavValue != evaluationNav" ng-disabled="isDisabledNext">Siguiente</button>
+                <button class="send" ng-click="sendAnswers()" ng-show="maxNavValue == evaluationNav" ng-disabled="isDisabledSendAnswers">Enviar respuestas</button>
             </div>
         </div>
 
