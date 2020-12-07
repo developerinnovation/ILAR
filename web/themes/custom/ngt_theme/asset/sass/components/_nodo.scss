@@ -1,7 +1,6 @@
 .page-front, .section-node, .section-curso, .section-leccion, .section-examen, .section-user{
     header{
-        background: #ffffff;
-        box-shadow: 0 3px 6px rgba(0,0,0,.16);
+        background: $turqui;
         .box{
             justify-content: normal;
             width: 90%;
