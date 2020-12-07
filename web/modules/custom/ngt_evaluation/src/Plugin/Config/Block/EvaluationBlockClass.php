@@ -50,6 +50,10 @@ class EvaluationBlockClass {
         ];
 
         $data = $this->preparate_data($node);
+        $token = \Drupal::request()->query->get('token');
+        $token= explode('-', $token);
+        $idModule = $token[0];
+        $idCourse = $token[2];
 
         $others = [
             '#dataAngular' => $this->instance->getValue('dataAngular'),
@@ -66,9 +70,14 @@ class EvaluationBlockClass {
         $other_config = [
             'urlCourse' => '',
             'total_questions' => $data['count_question'],
+            'average' => $data['average'],
             'minute' => $data['minute'],
             'nid' => $nid,
             'data' => $questions,
+            'idModule' => $idModule,
+            'idCourse' => $idCourse,
+            'pathAnswers' => '',
+            'pathAnswersStart' => '',
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
@@ -122,7 +131,7 @@ class EvaluationBlockClass {
                     break;
                 
             }
-            
+
             array_push($questions, [
                 'nidCourse' => $question->get('parent_id')->getValue()[0]['value'],
                 'title' => $question->get('field_titulo_pregunta')->getValue()[0]['value'],

@@ -1,8 +1,8 @@
 evaluation.evaluation_form:
   path: '/admin/config/ngt/evaluation/module'
   defaults:
-    _form: '\Drupal\ngt_evaluation\Plugin\Form\EvaluationtionForm'
-    _title: 'Configuraciones para evaluaci{on de módulos y cursos'
+    _form: '\Drupal\ngt_evaluation\Plugin\Form\EvaluationForm'
+    _title: 'Configuraciones para las evaluaciones'
   requirements:
     _permission: 'access administration pages'
   option:

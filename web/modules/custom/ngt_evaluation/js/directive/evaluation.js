@@ -13,6 +13,8 @@ function ngEvaluation($http){
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_evaluation];
         scope.tabs = 'presentation';
+        scope.idModule = condig.idModule;
+        scope.nid = config.nid;
         scope.evaluationNav = 1;
         scope.maxNavValue = config.total_questions;
         scope.minNavValue = 1;
@@ -20,6 +22,11 @@ function ngEvaluation($http){
         scope.countAnswer = 0;
         scope.isDisabledNext = true;
         scope.isDisabledSendAnswers = true;
+        scope.idEvaluation = null;
+        scope.pathAnswers = config.pathAnswers;
+        scope.average = config.average;
+        scope.idCourse = config.idCourse;
+        scope.pathAnswersStart = config.pathAnswersStart;
     }
 
 }
@@ -82,11 +89,77 @@ function EvaluationController($scope, $http, $rootScope){
     }
 
     $scope.startEvaluation = function(){
-        console.log($scope.answers);
+        var params = {
+            'answer' : $scope.answers,
+            'average' : $scope.average,
+            'moduleId' : $scope.moduleId,
+            'nid' : $scope.nid,
+            'idCourse' : $scope.idCourse,
+            'maxNavValue' : scope.maxNavValue,
+        };
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.pathAnswersStart
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    $scope.idEvaluation = resp.data.id;
+                }else{
+                    var errorMessage = 'Se presentó un error al inciar el examen, por favor recarga la página e e intenta nuevamente, si el error continua por favor repórtalo al equipo de soporte.';
+                    $rootScope.showMessageModal(errorMessage);
+                }
+            });
+          }).catch(
+            function (resp) {
+                $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
+            }
+        );
     }
 
     $scope.sendAnswers = function(){
-        console.log($scope.answers);
+        var params = {
+            'answer' : $scope.answers,
+            'average' : $scope.average,
+            'moduleId' : $scope.moduleId,
+            'nid' : $scope.nid,
+            'idCourse' : $scope.idCourse,
+            'idEvaluation' : $scope.idEvaluation,
+        };
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.pathAnswers
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    if(resp.data.approved){
+                        var errorMessage = 'Se presentó un error enviar las respuestas del examen, por favor comunícate con el equipo de soporte.';
+                        $rootScope.showMessageModal(errorMessage);
+                    }else{
+                        var errorMessage = 'Se presentó un error enviar las respuestas del examen, por favor comunícate con el equipo de soporte.';
+                        $rootScope.showMessageModal(errorMessage);
+                    }
+                }else{
+                    var errorMessage = 'Se presentó un error enviar las respuestas del examen, por favor comunícate con el equipo de soporte.';
+                    $rootScope.showMessageModal(errorMessage);
+                }
+            });
+          }).catch(
+            function (resp) {
+                $rootScope.showMessageModal('Se presentó una falla de comunicación al tratar de enviar las respuestas, por favor comunícate con el equipo de soporte.');
+            }
+        );
     }
  
 }

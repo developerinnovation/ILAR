@@ -13,17 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class EvaluationRestLogic {
 
-    /**
-     * @return \Drupal\rest\ResourceResponse
-     */
-    public function get() {
-        // Remove cache.
-        \Drupal::service('page_cache_kill_switch')->trigger();
-        $data = [];
-       
-
-        return new ModifiedResourceResponse($data);
-    }
 
     /**
      * @return \Drupal\rest\ResourceResponse
@@ -33,6 +22,16 @@ class EvaluationRestLogic {
         \Drupal::service('page_cache_kill_switch')->trigger();
         $data = [];
        
+        $fields = [
+            'user_id' =>  \Drupal::currentUser()->Id(),
+            'node_id' => $params['nid'],
+            'module_id' => $params['moduleId'],
+            'type_evaluation' => $params['module'],
+            'attempts' => $params['1'],
+            'total_question' => $params['maxNavValue'],
+        ];
+
+        \Drupal::service('ngt_evaluation.method_general')->initEvaluation($fields);
 
         return new ResourceResponse($data);
     }
@@ -40,11 +39,11 @@ class EvaluationRestLogic {
     /**
      * @return \Drupal\rest\ResourceResponse
      */
-    public function update($params) {
+    public function put($params) {
         // Remove cache.
         \Drupal::service('page_cache_kill_switch')->trigger();
-        $data = [];
-       
+        
+        \Drupal::service('ngt_evaluation.method_general')->updateDataTransaction($id, $fields);
 
         return new JsonResponse($data);
     }

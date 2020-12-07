@@ -203,17 +203,21 @@ class methodGeneral{
         foreach ( $paragraphArray as $element ) {
             $module = \Drupal\paragraphs\Entity\Paragraph::load( $element['target_id'] );
             $lessons = isset($module->get('field_leccion')->getValue()[0]['target_id']) ? $this->load_lesson_module($module->get('field_leccion')->getValue()) : NULL;
+            $nid = $module->get('parent_id')->getValue()[0]['value'];
+            $quiz = isset($module->get('field_examen')->getValue()[0]['target_id']) ? $this->load_quiz($module->get('field_examen')->getValue(), $i, $nid) : NULL;
             array_push($modules, [
-                'nidModule' => $module->get('parent_id')->getValue()[0]['value'],
+                'nidModule' => $nid,
                 'numModule' => $i,
                 'moduleId' => 'Módulo '. $i,
                 'titleModule' => $module->get('field_titulo_del_modulo')->getValue()[0]['value'],
                 'lessons' => $lessons,
+                'quiz' => $quiz,
             ]);
             $i++;
         }
         return $modules;
     }
+
     
     /**
      * load_lesson_module
@@ -230,12 +234,37 @@ class methodGeneral{
                 array_push($lessonByModule, [
                     'title' => $node->get('title')->getValue()[0]['value'],
                     'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
-                    'url' => \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']),
+                    'url' => $url,
                     'nid' => $node->get('nid')->getValue()[0]['value'],
                 ]);
             }
         }
         return $lessonByModule;
+    }
+    
+    /**
+     * load_quiz
+     *
+     * @param  mixed $quiz
+     * @return void
+     */
+    public function load_quiz($quiz, $idModule, $nid){
+        $quizByModuleCourse = [];
+        $quizArray = $quiz;
+        if($quiz != NULL){
+            foreach ($quizArray as $key => $data) {
+                $node = \Drupal\node\Entity\Node::load($data['target_id']);
+                $url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']);
+                $time = time();
+                $url = $url . '?token='. $idModule .'-'.md5($time) . '-'. $nid;
+                array_push($quizByModuleCourse, [
+                    'title' => $node->get('title')->getValue()[0]['value'],
+                    'url' => $url,
+                    'nid' => $node->get('nid')->getValue()[0]['value'],
+                ]);
+            }
+        }
+        return $quizByModuleCourse;
     }
     
     /**

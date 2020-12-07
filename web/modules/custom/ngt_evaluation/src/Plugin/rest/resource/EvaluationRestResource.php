@@ -15,8 +15,8 @@ use Drupal\Core\Session\AccountProxyInterface;
  *   id = "evaluation_answer_rest_resource",
  *   label = @Translation("Answer evaluation"),
  *   uri_paths = {
- *     "canonical" = "/ngt/api/v1/evaluation/{module}",
- *     "https://www.drupal.org/link-relations/create" = "/ngt/api/v1/evaluation/response",
+ *     "canonical" = "/ngt/api/v1/evaluation/asnwers",
+ *     "https://www.drupal.org/link-relations/create" = "/ngt/api/v1/evaluation/asnwers",
  *   }
  * )
  */
@@ -59,19 +59,6 @@ class EvaluationRestResource extends ResourceBase {
     }
 
     /**
-     * Responds to GET requests.
-     *
-     * Returns a list of bundles for specified entity.
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *   Throws exception expected.
-     */
-    public function get() {
-        \Drupal::service('page_cache_kill_switch')->trigger();
-        return \Drupal::service('ngt_evaluation.evaluation_logic')->get();
-    }
-
-    /**
      * Responds to POST requests.
      *
      * Calls post method.
@@ -98,7 +85,7 @@ class EvaluationRestResource extends ResourceBase {
      * @return \Drupal\rest\ResourceResponse
      *   Return response data for logic class.
      */
-    public function update(array $params) {
+    public function put(array $params) {
         \Drupal::service('page_cache_kill_switch')->trigger();
         return \Drupal::service('ngt_evaluation.evaluation_logic')->update($params);
     }
