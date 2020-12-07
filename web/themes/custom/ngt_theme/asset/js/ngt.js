@@ -48,7 +48,8 @@
             });
             
         }
-        
+        $('#ngtModal').removeClass('none');
     
     });
+   
 })(jQuery);

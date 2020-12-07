@@ -12,10 +12,9 @@ function ngRegisterUser($http){
 
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_register_user];
-        console.log(config);
         scope.config = config;
         scope.profession = config.profession;
-        scope.step = 4;
+        scope.step = 1;
         scope.message = config.config.message;
         scope.txtBtnNext = config.config.continue;
         scope.txtBtnReturn = config.config.cancell;
@@ -48,23 +47,17 @@ function ngRegisterUser($http){
             'padding' : '20px',
         };
 
-        // scope.form = {
-        //     name : '',
-        //     email : '',
-        //     date : null,
-        //     professionSelect : undefined,
-        // }
-
+      
         scope.form = {
-            name : 'David Martinez',
-            email : 'davidmartinezbolivar1@gmail.com',
-            date : '2020-11-06',
-            professionSelect : '10',
+            name : '',
+            email : '',
+            date : '',
+            professionSelect : '',
             countrySelect : '',
             stateSelect : '',
             citySelect : '',
-            pass: 'Pawel312#',
-            repeat_pass: 'Pawel312#',
+            pass: '',
+            repeat_pass: '',
             termsCondition: false,
             pic: '',
         }

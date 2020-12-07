@@ -132,6 +132,7 @@ myApp.run(['$rootScope', function ($rootScope) {
     $rootScope.includeBtnModal = false;
     $rootScope.linkModal = null;
     $rootScope.textBtnModal = null;
+    $rootScope.showModal = false;
 
     $rootScope.showMessageModal = function (message, includeBtn = false, link = null, textBtn = null){
         $rootScope.showModal = true;
