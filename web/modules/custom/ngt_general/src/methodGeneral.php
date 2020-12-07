@@ -248,7 +248,7 @@ class methodGeneral{
      * @param  mixed $quiz
      * @return void
      */
-    public function load_quiz($quiz, $idModule, $nid){
+    public function load_quiz($quiz, $idModule, $nidCourse){
         $quizByModuleCourse = [];
         $quizArray = $quiz;
         if($quiz != NULL){
@@ -256,7 +256,7 @@ class methodGeneral{
                 $node = \Drupal\node\Entity\Node::load($data['target_id']);
                 $url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']);
                 $time = time();
-                $url = $url . '?token='. $idModule .'-'.md5($time) . '-'. $nid;
+                $url = $url . '?token='. $idModule .'-'.md5($time) . '-'. $nidCourse;
                 array_push($quizByModuleCourse, [
                     'title' => $node->get('title')->getValue()[0]['value'],
                     'url' => $url,
