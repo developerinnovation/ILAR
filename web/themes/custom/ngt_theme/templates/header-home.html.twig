@@ -2,7 +2,7 @@
     <div class="box">
         <div class="elements">
             <div class="left">
-                <div class="menu">
+                <!--<div class="menu">
                 {# Get menu items #}
                     {% set items = simplify_menu('menu-header') %}
                     {# Iterate menu tree #}
@@ -13,21 +13,26 @@
                             </li>
                         {% endfor %}
                     </nav>
-                </div>
+                </div>-->
             </div>
             <div class="right">
-                <div class="search">
+                <!--<div class="search">
                     <form action="">
                         <labe class="form-control input header">
                             <img src="" alt="" class="class-ico-search">
                             <input type="search" name="search" id="search" placeholder="Buscar">
                         </labe>
                     </form>
-                </div>
+                </div>-->
                 <div class="login">
-                    <a href="/user/login" class="link-sign-in">Iniciar sesión</a>
-                    <a href="/register/user" class="link-sign-up">Registrarte</a>
+                    {% if logged_in %}
+                        <a href="/user/logout" class="link-sign-in">Cerrar sesión</a>
+                    {% else %}
+                        <a href="/user/login" class="link-sign-in">Iniciar sesión</a>
+                        <a href="/register/user" class="link-sign-up">Registrarte</a>
+                    {% endif %}
                 </div>
+                
             </div>
         </div>
     </div>
