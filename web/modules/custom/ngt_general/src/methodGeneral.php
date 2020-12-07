@@ -231,6 +231,7 @@ class methodGeneral{
         if($lessons != NULL){
             foreach ($lessonsArray as $key => $lesson) {
                 $node = \Drupal\node\Entity\Node::load($lesson['target_id']);
+                $url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $node->get('nid')->getValue()[0]['value']);
                 array_push($lessonByModule, [
                     'title' => $node->get('title')->getValue()[0]['value'],
                     'body' => isset($node->get('body')->getValue()[0]['value']) ? $node->get('body')->getValue()[0]['value'] : '',
