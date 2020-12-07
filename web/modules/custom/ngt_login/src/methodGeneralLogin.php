@@ -226,6 +226,15 @@ class methodGeneralLogin{
         $user->activate();
         $user->save();
 
+
+        $tokens['email'] = $mail;
+        $tokens = [
+            'email' => $mail,
+            'link' => \Drupal::request()->getHost() .'/user/login',
+        ];
+        $template = 'notification_new_user';
+        \Drupal::service('ngt.send')->send_notification($tokens, $template, $user);
+
         return [
             'status' => '200',
             'data' => $user,
