@@ -1600,6 +1600,8 @@
             overflow: hidden;
             @media only screen and ($desktop){
                 display: block;
+                position: relative;
+                margin-left: 0px;
                 width: 370px;
                 box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
             }
