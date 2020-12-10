@@ -44,7 +44,7 @@
 
             $('#menu-live').click(function() {
                 $(this).toggleClass('active');
-                $('.left.menu-live').toggleClass('active');
+                $('.izq.menu-live').toggleClass('active');
             });
             
         }

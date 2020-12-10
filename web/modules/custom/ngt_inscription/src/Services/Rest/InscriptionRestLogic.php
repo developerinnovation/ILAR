@@ -109,6 +109,7 @@ class InscriptionRestLogic {
                 $data = [
                     'status' => '200',
                     'id' => $id,
+                    'deleted' => 'completed'
                 ];
             }else{
                 $data = [
