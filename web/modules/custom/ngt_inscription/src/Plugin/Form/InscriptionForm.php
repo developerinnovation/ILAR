@@ -76,6 +76,20 @@ class InscriptionForm extends ConfigFormBase {
             '#required' => true
         ];
 
+        $form['ngt_inscription']['messageReserve'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo reserva correcta'),   
+            '#default_value' => isset($config->get('ngt_inscription')['messageReserve']) ? $config->get('ngt_inscription')['messageReserve'] : t('Se ha realizado la inscripción de forma correcta.'),
+            '#required' => true
+        ];
+
+        $form['ngt_inscription']['messageUnReserve'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Mensaje informativo al cancelar reserva'),   
+            '#default_value' => isset($config->get('ngt_inscription')['messageUnReserve']) ? $config->get('ngt_inscription')['messageUnReserve'] : t('Se canceló la inscripción de forma correcta.'),
+            '#required' => true
+        ];
+
         $form['ngt_inscription']['errorMessage'] = [  
             '#type' => 'textarea',
             '#title' => t('Mensaje informativo error al reservar'),   

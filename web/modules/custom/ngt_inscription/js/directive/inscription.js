@@ -18,6 +18,8 @@ function ngInscriptionButton($http) {
         scope.pathReserve = config.pathReserve;
         scope.txtReserve = config.config.inscription;
         scope.txtUnReserve = config.config.uninscription;
+        scope.messageReserve = config.config.inscriptionMessage;
+        scope.messageUnReserve = config.config.uninscriptionMessage;
         scope.errorMessage = config.config.errorMessage;
         scope.errorMessageUnreserve = config.config.errorMessageUnreserve;
         scope.userAnonimeMessage = config.config.userAnonime;
@@ -71,6 +73,7 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                     $scope.typeAction = 'unReserve';
                     $scope.id = resp.data.id;
                     $scope.disableBtn = false;
+                    $rootScope.showMessageModal($scope.messageReserve);
                 }else{
                     $rootScope.showMessageModal($scope.errorMessage);
                 }
@@ -104,6 +107,7 @@ function InscriptionButtonController($scope, $http, $rootScope) {
                     $scope.textBtn = $scope.txtReserve;
                     $scope.typeAction = 'reserve';
                     $scope.disableBtn = false;
+                    $rootScope.showMessageModal($scope.messageUnReserve);
                 }else{
                     $rootScope.showMessageModal($scope.errorMessageUnreserve);
                 }
