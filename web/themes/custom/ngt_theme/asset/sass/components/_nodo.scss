@@ -1579,22 +1579,33 @@
 .section-user{
     article{
         max-width: 1200px;
-        margin: 30px auto;
+        margin: 20px auto;
         @media only screen and ($desktop){
             display: flex;
         }
+        .menu-live.active{
+            margin-left: 0px !important;
+            transition: 0.4s;
+        }
         .izq{
-            display: none;
             padding: 20px;
             border-radius: 6px;
-            box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
             margin-bottom: 20px;
             margin-right: 40px;
-            width: 370px;
+            width: 100%;
             overflow: hidden;
+            background-color: white;
+            z-index: 1;
+            position: absolute;
+            margin-left: -400px;
             @media only screen and ($desktop){
-                    display: block;
-                }
+                display: block;
+                width: 370px;
+                position: relative;
+                margin-left: 0px;
+                box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
+            }
+
             .top{
                 display: flex;
                 align-items: center;
@@ -1608,7 +1619,7 @@
                             border-radius: 100%;
                             margin-right: 0;
                             width: 78px;
-                            height: auto;
+                            height: 78px;
                             color: transparent;
                         }
                     }
