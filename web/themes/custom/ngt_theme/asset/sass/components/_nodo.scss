@@ -1,4 +1,4 @@
-.page-front, .section-node, .section-curso, .section-leccion, .section-examen, .section-user{
+.page-front, .section-node, .section-curso, .section-leccion, .section-examen, .section-user, .section-authenticated{
     header{
         background: $turqui;
         .box{
@@ -1576,16 +1576,16 @@
     }
 }
 
-.section-user{
+.section-user, .section-authenticated{
     article{
         max-width: 1200px;
-        margin: 20px auto;
+        margin: 30px auto;
         @media only screen and ($desktop){
             display: flex;
         }
         .menu-live.active{
-            margin-left: 0px !important;
-            transition: 0.4s;
+            margin-left: 0px;
+            transition: 0.5s;
         }
         .izq{
             padding: 20px;
@@ -1593,19 +1593,16 @@
             margin-bottom: 20px;
             margin-right: 40px;
             width: 100%;
-            overflow: hidden;
-            background-color: white;
+            position: fixed;
+            background-color: #fff;
+            margin-left: -420px;
             z-index: 1;
-            position: absolute;
-            margin-left: -400px;
+            overflow: hidden;
             @media only screen and ($desktop){
                 display: block;
                 width: 370px;
-                position: relative;
-                margin-left: 0px;
                 box-shadow: 0 0 0.5rem rgba(0,0,0,.15);
             }
-
             .top{
                 display: flex;
                 align-items: center;
@@ -1619,7 +1616,7 @@
                             border-radius: 100%;
                             margin-right: 0;
                             width: 78px;
-                            height: 78px;
+                            height: auto;
                             color: transparent;
                         }
                     }
