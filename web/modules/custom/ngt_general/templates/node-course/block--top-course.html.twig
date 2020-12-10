@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="action">
-        <button class="show-course">Reservar cupo</button>
-        <button class="save">guardar</button>
+        {{ drupal_block('ngt_inscription_inscription_button', {'node' : data[0].nid, 'uid' : user.id }) }}
+        <!--<button class="save">guardar</button>-->
     </div>
 </div>
