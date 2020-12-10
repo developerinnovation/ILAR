@@ -18,8 +18,8 @@ function ngInscriptionButton($http) {
         scope.pathReserve = config.pathReserve;
         scope.txtReserve = config.config.inscription;
         scope.txtUnReserve = config.config.uninscription;
-        scope.messageReserve = config.config.inscriptionMessage;
-        scope.messageUnReserve = config.config.uninscriptionMessage;
+        scope.messageReserve = config.config.messageReserve;
+        scope.messageUnReserve = config.config.messageUnReserve;
         scope.errorMessage = config.config.errorMessage;
         scope.errorMessageUnreserve = config.config.errorMessageUnreserve;
         scope.userAnonimeMessage = config.config.userAnonime;
