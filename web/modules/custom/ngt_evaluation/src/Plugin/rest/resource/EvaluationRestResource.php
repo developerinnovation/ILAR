@@ -71,7 +71,7 @@ class EvaluationRestResource extends ResourceBase {
      */
     public function post(array $params) {
         \Drupal::service('page_cache_kill_switch')->trigger();
-        return \Drupal::service('ngt_evaluation.evaluation_logic')->get($params);
+        return \Drupal::service('ngt_evaluation.evaluation_rest')->post($params);
     }
 
      /**
@@ -87,7 +87,7 @@ class EvaluationRestResource extends ResourceBase {
      */
     public function put(array $params) {
         \Drupal::service('page_cache_kill_switch')->trigger();
-        return \Drupal::service('ngt_evaluation.evaluation_logic')->update($params);
+        return \Drupal::service('ngt_evaluation.evaluation_rest')->put($params);
     }
 
 

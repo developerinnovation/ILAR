@@ -34,6 +34,8 @@ class EvaluationBlockClass {
      * @param $config
      */
     public function build(EvaluationBlock &$instance, $configuration){
+        $idModule = '';
+        $idCourse = '';
         $this->configuration = $configuration;
         $instance->setValue('config_name', 'EvaluationBlock');
         $instance->setValue('class', 'block-evaluation');
@@ -51,9 +53,13 @@ class EvaluationBlockClass {
 
         $data = $this->preparate_data($node);
         $token = \Drupal::request()->query->get('token');
-        $token= explode('-', $token);
-        $idModule = $token[0];
-        $idCourse = $token[2];
+        
+        if($token){
+            $token= explode('-', $token);
+            $idModule = $token[0];
+            $idCourse = $token[2];
+        }
+        
 
         $others = [
             '#dataAngular' => $this->instance->getValue('dataAngular'),
@@ -76,8 +82,8 @@ class EvaluationBlockClass {
             'data' => $questions,
             'idModule' => $idModule,
             'idCourse' => $idCourse,
-            'pathAnswers' => '',
-            'pathAnswersStart' => '',
+            'pathAnswers' => '/ngt/api/v1/evaluation/asnwers?_format=json',
+            'pathAnswersStart' => '/ngt/api/v1/evaluation/asnwers?_format=json',
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);
