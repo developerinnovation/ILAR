@@ -1244,6 +1244,26 @@
 }
 
 .node-examen{
+    i.icon.ready{
+        background-image: url(../img/sprite-icon-varios.svg);
+        width: 60px;
+        height: 60px;
+        background-size: 800%;
+        margin: 5px auto;
+        position: relative;
+        background-position: -245px -3px;
+        display: flex;
+    }
+    i.icon.failed{
+        background-image: url(../img/sprite-icon-varios.svg);
+        width: 60px;
+        height: 60px;
+        background-size: 800%;
+        margin: 5px auto;
+        position: relative;
+        background-position: -309px -3px;
+        display: flex;
+    }
     .block-evaluation{
         margin: 40px 30px;
         .top{
@@ -1447,6 +1467,20 @@
             .response{
                 fieldset{
                     border: none;
+                    .result-evaluation{
+                        display: inline-flex;
+                        align-items: center;
+                        flex-flow: row-reverse;
+
+                        span.ready{
+                            color: #15cdca;
+                            font-weight: 500;
+                        }
+                        span.failed{
+                            color: #d40f10;;
+                            font-weight: 500;
+                        }
+                    }
                     div{
                         margin-bottom: 20px;
                         text-align: left;
@@ -1517,13 +1551,13 @@
                 }
                 .next{
                     margin: 15px 0;
-                    width: 134px;
                     border: 0;
                     background: #15cdca;
                     height: 34px;
-                    padding: 0;
+                    padding: 0 14px;
                     border-radius: 20px;
                     font-size: 13px;
+                    display: inline-block;
                     color: #fff;
                     &:disabled {
                         background:#92dcdb!important;
@@ -1596,6 +1630,7 @@
             position: fixed;
             background-color: #fff;
             margin-left: -420px;
+            transition: 0.5s;
             z-index: 1;
             overflow: hidden;
             @media only screen and ($desktop){
