@@ -73,6 +73,8 @@ class EvaluationBlockClass {
             array_push($questions, '');
         }
 
+        $config = \Drupal::config('ngt_evaluation.settings');  
+
         $other_config = [
             'urlCourse' => '',
             'total_questions' => $data['count_question'],
@@ -84,6 +86,7 @@ class EvaluationBlockClass {
             'idCourse' => $idCourse,
             'pathAnswers' => '/ngt/api/v1/evaluation/asnwers?_format=json',
             'pathAnswersStart' => '/ngt/api/v1/evaluation/asnwers?_format=json',
+            'evaluation_config' => $config->get('ngt_evaluation'),
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);

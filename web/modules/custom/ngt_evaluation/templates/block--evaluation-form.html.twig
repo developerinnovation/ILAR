@@ -51,7 +51,7 @@
 
             <form action="">
                 {% for key, question in data.questions %}
-                    <div id="question-{{ key + 1 }}" class="questions {{ question.type }}" ng-show="evaluationNav == '{{ key + 1 }}'">
+                    <div id="question-{{ key + 1 }}" class="questions {{ question.type }}" ng-show="evaluationNav == '{{ key + 1 }}' && !result">
                         
                         <h3>Pregunta {{ key + 1  }}</h3>
                         <p class="description">Tipo de pregunta: {{ question.typeDetail  }}</p>
@@ -94,14 +94,43 @@
                     </div>
                 
                 {% endfor %}
+
+                <div id="question-last" class="questions result" ng-show="result">
+                        
+                    <h3>Puntaje</h3>
+                    <p class="description">{[{ messageGeneral }]}</p>
+                    
+                    <div class="response">
+                        <fieldset>
+                        
+                        <div class="inner-addon leftaddon result-evaluation">
+                            <i ng-class="(status_evaluation == true) ? 'icon ready' : 'icon failed'"></i>
+                            <span>{[{ averageFinal }]}%</span>
+                        </div>
+
+                        <h4>{[{ titleMessageFinal }]}</h4>
+                        <p class="description message bold" ng-show="showMessageFinalResul">{[{ messageFinalResul }]}</p>
+                        
+                            
+                        </fieldset>
+                    </div>
+                </div>
+
+               
                 
             </form>
 
-            <div class="action evaluation">
+            <div class="action evaluation" ng-show="!result">
                 <button class="return" ng-click="changeEvaluationNav('prev')" ng-disabled="minNavValue == evaluationNav">Anterior</button>
                 <button class="next" ng-click="changeEvaluationNav('next')" ng-show="maxNavValue != evaluationNav" ng-disabled="isDisabledNext">Siguiente</button>
                 <button class="send" ng-click="sendAnswers()" ng-show="maxNavValue == evaluationNav" ng-disabled="isDisabledSendAnswers">Enviar respuestas</button>
             </div>
+
+            <div class="action evaluation result final" ng-show="result">
+                <button class="return" ng-click="returnToCourse()" >{[{ returnToCourse }]}</button>
+                <button class="next" ng-click="actionAfterResult()">{[{ textBtnFinal }]}</button>
+            </div>
+        
         </div>
 
 

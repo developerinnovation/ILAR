@@ -49,13 +49,13 @@ class EvaluationRestLogic {
         $answerSend = $params['answer'];
         $idCourse = $params['idCourse'];
 
+        $data = \Drupal::service('ngt_evaluation.method_general')->check_answers_by_evaluation($nidExamen, $answerSend, $averageMin);
+
         $fields = [
             'total_question_answered' => $data['countCorrectly'],
         ];
-
-        $data = \Drupal::service('ngt_evaluation.method_general')->check_answers_by_evaluation($nidExamen, $answerSend, $averageMin);
         
-        // \Drupal::service('ngt_evaluation.method_general')->updateDataTransaction($id, $fields);
+        \Drupal::service('ngt_evaluation.method_general')->updateDataTransaction($idEvaluation, $fields);
 
         return new JsonResponse($data);
     }

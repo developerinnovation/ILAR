@@ -13,7 +13,7 @@ function ngEvaluation($http){
     function linkFunc(scope, el, attr, ctrl){
         var config = drupalSettings.ngtBlock[scope.uuid_data_ng_evaluation];
         scope.tabs = 'presentation';
-        scope.idModule = config.idModule;
+        scope.moduleId = config.idModule;
         scope.nid = config.nid;
         scope.evaluationNav = 1;
         scope.maxNavValue = config.total_questions;
@@ -27,6 +27,17 @@ function ngEvaluation($http){
         scope.average = config.average;
         scope.idCourse = config.idCourse;
         scope.pathAnswersStart = config.pathAnswersStart;
+        
+        scope.evaluation_config = config.evaluation_config;
+        scope.result = true; // cambiar a false en prod
+        scope.averageFinal = 100; // cambiar a 0 en prod
+        scope.titleMessageFinal = config.evaluation_config.success; // cambiar en prod a ''
+        scope.messageFinalResul = config.evaluation_config.success_message; // cambiar en prod a ''
+        scope.textBtnFinal = 'Descargar certificado';
+        scope.returnToCourse = 'Volver al curso';
+        scope.showMessageFinalResul = true; // cambiar a false en prod
+        scope.messageGeneral = config.evaluation_config.message_approved;
+        scope.status_evaluation = false;
     }
 
 }
@@ -97,7 +108,7 @@ function EvaluationController($scope, $http, $rootScope){
             'idCourse' : $scope.idCourse,
             'maxNavValue' : $scope.maxNavValue,
         };
-        $scope.idEvaluation = 1; // eliminar al conectar el flujo
+        // $scope.idEvaluation = 1; // eliminar al conectar el flujo
         // $http.get('/rest/session/token').then(function (resp) {
         //     $http({
         //       method: 'POST',
@@ -146,12 +157,19 @@ function EvaluationController($scope, $http, $rootScope){
             }).then(function (resp) {
                 if (resp.data.status == '200') {
                     if(resp.data.evaluation != 'bad' && resp.data.countCorrectly >= resp.data.totalAnswersMin){
-                        var errorMessage = 'Examen aprobado satisfactoriamente.';
-                        $rootScope.showMessageModal(errorMessage);
+                        $scope.titleMessageFinal = $scope.evaluation_config.success;
+                        $scope.messageFinalResul = $scope.evaluation_config.success_message;
+                        $scope.messageGeneral = $scope.evaluation_config.message_approved;
+                        $scope.status_evaluation = true;
                     }else{
-                        var errorMessage = 'Examen reprobado.';
-                        $rootScope.showMessageModal(errorMessage);
+                        
+                        $scope.titleMessageFinal = $scope.evaluation_config.faild;
+                        $scope.messageFinalResul = $scope.evaluation_config.attempets;
+                        $scope.messageGeneral = $scope.evaluation_config.faild_message;
+                        $scope.status_evaluation = false;
                     }
+                    $scope.averageFinal = resp.data.averageObtained;
+                    $scope.showMessageFinalResul = true;
                 }else{
                     var errorMessage = 'Se presentó un error al procesar las respuestas del examen, por favor comunícate con el equipo de soporte.';
                     $rootScope.showMessageModal(errorMessage);

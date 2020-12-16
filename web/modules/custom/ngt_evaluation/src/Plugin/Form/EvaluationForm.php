@@ -88,13 +88,12 @@ class EvaluationForm extends ConfigFormBase {
             '#title' => t('Texto mensaje evaluación aprobada'),   
             '#default_value' => isset($config->get('ngt_evaluation')['success_message']) ? $config->get('ngt_evaluation')['success_message'] : t('Has aprobado la evaluación final'),
             '#required' => true
-        ]; 
-
+        ];  
 
         $form['ngt_evaluation']['faild'] = [  
             '#type' => 'textfield',
             '#title' => t('Título evaluación no aprobada'),   
-            '#default_value' => isset($config->get('ngt_evaluation')['success']) ? $config->get('ngt_evaluation')['success'] : t('No has aprobado la evaluación final'),
+            '#default_value' => isset($config->get('ngt_evaluation')['faild']) ? $config->get('ngt_evaluation')['faild'] : t('No has aprobado la evaluación final'),
             '#required' => true
         ]; 
 
@@ -134,10 +133,10 @@ class EvaluationForm extends ConfigFormBase {
             '#required' => true
         ]; 
 
-        $form['ngt_evaluation']['faild_message_approved'] = [  
+        $form['ngt_evaluation']['message_approved'] = [  
             '#type' => 'textarea',
             '#title' => t('Texto final a mostrar en la evaluación aprobada'),   
-            '#default_value' => isset($config->get('ngt_evaluation')['faild_message_approved']) ? $config->get('ngt_evaluation')['faild_message_approved'] : t('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'),
+            '#default_value' => isset($config->get('ngt_evaluation')['message_approved']) ? $config->get('ngt_evaluation')['message_approved'] : t('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'),
             '#required' => true
         ]; 
 
