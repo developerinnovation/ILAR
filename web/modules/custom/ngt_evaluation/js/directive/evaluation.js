@@ -37,7 +37,7 @@ function ngEvaluation($http){
         scope.returnToCourse = 'Volver al curso';
         scope.showMessageFinalResul = true; // cambiar a false en prod
         scope.messageGeneral = config.evaluation_config.message_approved;
-        scope.status_evaluation = false;
+        scope.status_evaluation = true;
     }
 
 }

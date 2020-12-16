@@ -105,7 +105,7 @@
                         
                         <div class="inner-addon leftaddon result-evaluation">
                             <i ng-class="(status_evaluation == true) ? 'icon ready' : 'icon failed'"></i>
-                            <span>{[{ averageFinal }]}%</span>
+                            <span ng-class="(status_evaluation == true) ? 'ready' : 'failed'">{[{ averageFinal }]}%</span>
                         </div>
 
                         <h4>{[{ titleMessageFinal }]}</h4>
