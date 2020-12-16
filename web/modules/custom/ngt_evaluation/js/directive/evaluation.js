@@ -29,7 +29,7 @@ function ngEvaluation($http){
         scope.pathAnswersStart = config.pathAnswersStart;
         
         scope.evaluation_config = config.evaluation_config;
-        scope.result = false; // cambiar a false en prod
+        scope.result = true; // cambiar a false en prod
         scope.averageFinal = 100; // cambiar a 0 en prod
         scope.titleMessageFinal = config.evaluation_config.success; // cambiar en prod a ''
         scope.messageFinalResul = config.evaluation_config.success_message; // cambiar en prod a ''
