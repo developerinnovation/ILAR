@@ -1249,7 +1249,7 @@
         width: 60px;
         height: 60px;
         background-size: 800%;
-        margin: 5px auto;
+        margin: 0 auto;
         position: relative;
         background-position: -245px -3px;
         display: flex;
@@ -1259,7 +1259,7 @@
         width: 60px;
         height: 60px;
         background-size: 800%;
-        margin: 5px auto;
+        margin: 0 auto;
         position: relative;
         background-position: -309px -3px;
         display: flex;
@@ -1470,7 +1470,6 @@
                     .result-evaluation{
                         display: inline-flex;
                         align-items: center;
-                        flex-flow: row-reverse;
 
                         span.ready{
                             color: #15cdca;
