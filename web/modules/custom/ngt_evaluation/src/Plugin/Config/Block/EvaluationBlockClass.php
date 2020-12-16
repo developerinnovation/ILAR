@@ -143,7 +143,7 @@ class EvaluationBlockClass {
 
             array_push($questions, [
                 'nidCourse' => $question->get('parent_id')->getValue()[0]['value'],
-                'title' => $question->get('field_titulo_pregunta')->getValue()[0]['value'],
+                'title' => isset($question->get('field_titulo_de_pregunta')->getValue()[0]['value']) ? $question->get('field_titulo_de_pregunta')->getValue()[0]['value'] : '',
                 'type' => $type,
                 'typeDetail' => $typeDetail ,
                 'answer' => $question->get('field_respuesta_correcta')->getValue()[0]['value'],
