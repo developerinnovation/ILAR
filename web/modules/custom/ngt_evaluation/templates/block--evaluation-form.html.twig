@@ -2,7 +2,7 @@
 <div class="{{ class }}" {{ directive }} ng-cloak ng-init="uuid_{{ directive_new }} = '{{ uuid }}'">
     <div class="main-content">
         <div class="top">
-            <h1 class="title module">Commodo lígula eget dolor aenean dis parturient montes</h1>
+            <!-- <h1 class="title module">Commodo lígula eget dolor aenean dis parturient montes</h1> -->
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
         </div>
         <div class="presentation evaluation" ng-if="tabs == 'presentation'">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button class="start-evaluation" ng-click="changeTabs('evaluation')">Empezar</button>
+                <button class="start-evaluation" ng-click="changeTabs('evaluation')" ng-disabled="isDisabledStart">Empezar</button>
                 <button class="return" ng-click="returnPrevPage()">Volver</button>
             </div>
         </div>

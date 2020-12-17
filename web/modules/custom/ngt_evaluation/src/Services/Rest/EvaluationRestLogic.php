@@ -52,8 +52,7 @@ class EvaluationRestLogic {
 
         $data = \Drupal::service('ngt_evaluation.method_general')->check_answers_by_evaluation($nidExamen, $answerSend, $averageMin);
 
-        $ctnAnswers = explode(',', $answerSend);
-        $total_question_answered = count($ctnAnswers);
+        $total_question_answered = count($answerSend);
 
         $token = md5(uniqid(rand(), true));
         $token = substr($token, 0 , 20);

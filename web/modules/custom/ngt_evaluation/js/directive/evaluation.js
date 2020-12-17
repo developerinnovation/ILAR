@@ -40,6 +40,13 @@ function ngEvaluation($http){
         scope.status_evaluation = true;
         scope.tokenApprovedEvaluation = '';
         scope.urlCourse = '';
+        scope.isDisabledStart = false;
+
+        var isValidEvaluation = window.location.search.split('-');
+        if(isValidEvaluation.length != 3){
+            scope.isDisabledStart = true;
+            alert('Acceso denegado, parece que est{a ingresando a una url errónea');
+        }
     }
 
 }
@@ -57,7 +64,7 @@ function EvaluationController($scope, $http, $rootScope){
     }
 
     $scope.downloadCertificate = function (){
-        var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo elecrónico.';
+        var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico.';
         $rootScope.showMessageModal(messageCertificate);
     }
 
@@ -159,6 +166,7 @@ function EvaluationController($scope, $http, $rootScope){
     }
 
     $scope.sendAnswers = function(){
+        $scope.isDisabledSendAnswers = true;
         var params = {
             'answer' : $scope.answers,
             'average' : $scope.average,
@@ -184,18 +192,19 @@ function EvaluationController($scope, $http, $rootScope){
                         $scope.titleMessageFinal = $scope.evaluation_config.success;
                         $scope.messageFinalResul = $scope.evaluation_config.success_message;
                         $scope.messageGeneral = $scope.evaluation_config.message_approved;
-                        scope.tokenApprovedEvaluation = resp.data.token;
+                        $scope.tokenApprovedEvaluation = resp.data.token;
                         $scope.status_evaluation = true;
                     }else{
                         $scope.titleMessageFinal = $scope.evaluation_config.faild;
                         $scope.messageFinalResul = $scope.evaluation_config.attempets;
                         $scope.messageGeneral = $scope.evaluation_config.faild_message;
-                        scope.textBtnFinal = 'Repetir evaluación';
+                        $scope.textBtnFinal = 'Repetir evaluación';
                         $scope.status_evaluation = false;
                     }
                     $scope.averageFinal = resp.data.averageObtained;
                     $scope.showMessageFinalResul = true;
                     $scope.urlCourse = resp.data.urlCourse;
+                    $scope.result = true;
                 }else{
                     var errorMessage = 'Se presentó un error al procesar las respuestas del examen, por favor comunícate con el equipo de soporte.';
                     $rootScope.showMessageModal(errorMessage);
