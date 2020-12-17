@@ -202,6 +202,7 @@ class EvaluationForm extends ConfigFormBase {
 
         $this->config('ngt_evaluation.settings')
         ->set('ngt_evaluation_config', $form_state->getValue('ngt_evaluation_config'))  
+        ->set('ngt_evaluation_certificate', $form_state->getValue('ngt_evaluation_certificate'))  
         ->set('ngt_evaluation', $form_state->getValue('ngt_evaluation'))  
         ->save();   
 
