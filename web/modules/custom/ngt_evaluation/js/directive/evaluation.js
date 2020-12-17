@@ -66,10 +66,10 @@ function EvaluationController($scope, $http, $rootScope){
 
     $scope.downloadCertificate = function (){
         var urlCertificate = '/render/certificate/'+ $scope.idCourse +'/'+ $scope.nid +'/'+ $scope.moduleId +'/'+ scope.uid +'/' + $scope.tokenApprovedEvaluation + '/' + $scope.idEvaluation;
-
         // var urlCertificate = '/render/certificate/43/45/1/1/fae68d471801ed2193ce/7';
         var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico.';
         $rootScope.showMessageModal(messageCertificate);
+        window.open(urlCertificate, '_blank');
     }
 
     $scope.returnToCourseLink = function (){
