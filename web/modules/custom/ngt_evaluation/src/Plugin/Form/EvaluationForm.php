@@ -82,6 +82,14 @@ class EvaluationForm extends ConfigFormBase {
             '#required' => true
         ]; 
 
+        $form['ngt_evaluation_certificate']['body'] = [
+            '#type' => 'text_format',
+            '#title' => t('Plantilla del certificado'),
+            '#format' => 'full_html',
+            '#default_value' => $config->get('ngt_evaluation_certificate')['body']['value'],
+            '#description' => t('plantilla en formato HTMl.'),
+        ];
+
         // configuración general 
 
         $form['ngt_evaluation'] = [  

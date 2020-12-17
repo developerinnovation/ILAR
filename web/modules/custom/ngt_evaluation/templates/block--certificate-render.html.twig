@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Navajos</title>
+  <title>CERTIFICADO</title>
 </head>
 <style type="text/css">
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
   body{font-family: 'Roboto', sans-serif;color: #fff;}
-  .back{background-image: url(back.jpg);background-repeat: no-repeat;margin: 0 auto;width: 1000px;background-size: cover;height: 720px;text-align: center;padding: 30px;}
+  .back{background-image: url({{ file_url(background) }});background-repeat: no-repeat;margin: 0 auto;width: 1000px;background-size: cover;height: 720px;text-align: center;padding: 30px;}
     header{padding: 100px;padding-bottom: 0;}
     header .Text{color: #fff;font-size: 25px;padding: 100px;padding-bottom: 40px;}
     .logo-Panlar img{width: 250px;margin: 0 auto;}
@@ -19,35 +19,35 @@
   <div class="back">
     <header>
       <div class="logo-Panlar">
-        <img src="logo-panlar.svg" alt="Logo Panlar">
+        <img src="[logo]" alt="Logo Panlar">
       </div>
       <div class="Text">
-        Panlar certifica la asistencia del <strong>3 Congreso Panamericano de Pacientes con Enfermedades Reumáticas</strong>
+        {{ message }} <strong>[type_approved]</strong>
       </div>
       
     </header>
 
     <div class="container">
-      <h2 class="nombre">Juan Arzuza</h2>
-      <strong class="date">16 de septiembre de 2020</strong>
+      <h2 class="nombre">{{ name_user }}</h2>
+      <strong class="date">{{ date|format_date('certificado') }}</strong>
     </div>
 
     <div class="container">
-      <strong class="date">Certificado número: xxxxx-xxxxx-xxx</strong>
+      <strong class="date">Certificado número: {{ token|upper }}</strong>
     </div>
 
     <footer>
       <div>
-        <img src="firma.png" alt="firma01">
+        <img src="{{ file_url(signature_president) }}" alt="presidente">
+      </div>
+
+      <!--<div>
+        <img src="{{ file_url(signture_coordinator_1) }}" alt="coordinador">
       </div>
 
       <div>
-        <img src="firma.png" alt="firma02">
-      </div>
-
-      <div>
-        <img src="firma.png" alt="firma03">
-      </div>
+        <img src="{{ file_url(signture_coordinator_2) }}" alt="coordinador">
+      </div>-->
     </footer>
   </div>
 

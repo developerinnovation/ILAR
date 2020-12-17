@@ -8,7 +8,7 @@ evaluation.evaluation_form:
   option:
     _admin_route: TRUE
 evaluation.render_certificate:
-  path: 'render/certificate/{courserId}/{evaluationId}/{moduleId}/{userId}/{tokenId}'
+  path: 'render/certificate/{courserId}/{evaluationId}/{moduleId}/{userId}/{tokenId}/{logId}'
   defaults:
       _controller: '\Drupal\ngt_evaluation\Controller\CertificateRenderController::render_certificate'
       _title: ''

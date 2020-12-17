@@ -87,6 +87,7 @@ class EvaluationBlockClass {
             'pathAnswers' => '/ngt/api/v1/evaluation/asnwers?_format=json',
             'pathAnswersStart' => '/ngt/api/v1/evaluation/asnwers?_format=json',
             'evaluation_config' => $config->get('ngt_evaluation'),
+            'uid' => \Drupal::currentUser()->id(),
         ];
 
         $config_block = $instance->cardBuildConfigBlock(NULL, $other_config);

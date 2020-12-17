@@ -15,6 +15,7 @@ function ngEvaluation($http){
         scope.tabs = 'presentation';
         scope.moduleId = config.idModule;
         scope.nid = config.nid;
+        scope.uid = config.uid;
         scope.evaluationNav = 1;
         scope.maxNavValue = config.total_questions;
         scope.minNavValue = 1;
@@ -64,11 +65,14 @@ function EvaluationController($scope, $http, $rootScope){
     }
 
     $scope.downloadCertificate = function (){
+        var urlCertificate = '/render/certificate/'+ $scope.idCourse +'/'+ $scope.nid +'/'+ $scope.moduleId +'/'+ scope.uid +'/' + $scope.tokenApprovedEvaluation + '/' + $scope.idEvaluation;
+
+        // var urlCertificate = '/render/certificate/43/45/1/1/fae68d471801ed2193ce/7';
         var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico.';
         $rootScope.showMessageModal(messageCertificate);
     }
 
-    $scope.returnToCourse = function (){
+    $scope.returnToCourseLink = function (){
         window.location.href = $scope.urlCourse;
     }
 
