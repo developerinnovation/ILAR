@@ -205,6 +205,20 @@ class EvaluationForm extends ConfigFormBase {
         ->set('ngt_evaluation', $form_state->getValue('ngt_evaluation'))  
         ->save();   
 
+
+        $fid_1 = $form_state->getValue('ngt_evaluation_certificate')['backgound'];
+        $fid_2 = $form_state->getValue('ngt_evaluation_certificate')['signature_president'];
+        $fid_3 = $form_state->getValue('ngt_evaluation_certificate')['img_logo_certificate'];
+        if ($fid_logo_general_settings) {
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_1);
+        }
+        if ($fid_logo_second) {
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_2);
+        }
+        if ($fid_logo_design) {
+            \Drupal::service('ngt_general.methodGeneral')->setFileAsPermanent($fid_3);
+        }
+
     }  
 
     /**  
