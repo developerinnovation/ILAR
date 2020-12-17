@@ -83,6 +83,7 @@ class methodGeneralEvaluation{
             $totalAnswersMin = $totalQuestions * $averageMin / 100;
             $averageObtained = $countCorrectly / $totalQuestions * 100;
 
+            
             $data = [
                 'status' => 200,
                 'totalAnswersMin' => $totalAnswersMin,
@@ -90,6 +91,8 @@ class methodGeneralEvaluation{
                 'countCorrectly' => $countCorrectly,
                 'averageObtained' => $averageObtained,
                 'evaluation' => '',
+                'token' => '',
+                'urlCourse' => '',
             ];
 
             if($countCorrectly >= $totalAnswersMin){

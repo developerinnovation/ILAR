@@ -40,6 +40,10 @@ class EvaluationLog extends ContentEntityBase implements ContentEntityInterface 
             ->setLabel(t('node_id'))
             ->setDescription(t('The node_id.'));
 
+        $fields['course_id'] = BaseFieldDefinition::create('integer')
+            ->setLabel(t('course_id'))
+            ->setDescription(t('The course_id.'));
+
         $fields['module_id'] = BaseFieldDefinition::create('integer')
             ->setLabel(t('module_id'))
             ->setDescription(t('The id of paragraph module from node course.'));
@@ -56,18 +60,29 @@ class EvaluationLog extends ContentEntityBase implements ContentEntityInterface 
             ->setLabel(t('attempts'))
             ->setDescription(t('The attempts for an module or course evaluation.'));
 
+        $fields['total_question'] = BaseFieldDefinition::create('integer')
+            ->setLabel(t('total_question'))
+            ->setDescription(t('The total question for  module or course evaluation.'));
+
         $fields['total_question_answered'] = BaseFieldDefinition::create('integer')
             ->setLabel(t('total_question_answered'))
             ->setDescription(t('Total questions answered'));   
 
-        $fields['total_question'] = BaseFieldDefinition::create('integer')
-            ->setLabel(t('total_question'))
-            ->setDescription(t('The total question for  module or course evaluation.'));
-        
+        $fields['total_corrrectly_answered'] = BaseFieldDefinition::create('integer')
+            ->setLabel(t('total_corrrectly_answered'))
+            ->setDescription(t('Total corrrectly answered'));  
         
         $fields['minutes'] = BaseFieldDefinition::create('integer')
             ->setLabel(t('minutes'))
             ->setDescription(t('The minutes used in evaluation'));
+
+        $fields['approved'] = BaseFieldDefinition::create('boolean')
+            ->setLabel(t('approved'))
+            ->setDescription(t('approved evaluation'));
+
+        $fields['token'] = BaseFieldDefinition::create('string')
+            ->setLabel(t('token'))
+            ->setDescription(t('token for evaluation'));
 
         $fields['created'] = BaseFieldDefinition::create('created')
             ->setLabel(t('Created'))

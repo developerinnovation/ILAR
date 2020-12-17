@@ -33,12 +33,61 @@ class EvaluationForm extends ConfigFormBase {
 
         $form['#tree'] = true;
 
+
+        $form['ngt_evaluation_certificate'] = [  
+            '#type' => 'details',
+            '#title' => t('Configuraciones para los certificados'),   
+            '#open' => false,  
+        ]; 
+
+        $form['ngt_evaluation_certificate']['backgound'] = [  
+            '#type' => 'managed_file',
+            '#upload_location' => 's3://file-project',
+            '#title' => t('Fondo del certificado'),
+            '#upload_validators' => [
+                'file_validate_extensions' => ['png svg jpg']
+            ],
+            '#default_value' => $config->get('ngt_evaluation_certificate')['backgound'],  
+            '#required' => true
+        ];
+
+        $form['ngt_evaluation_certificate']['signature_president'] = [  
+            '#type' => 'managed_file',
+            '#upload_location' => 's3://file-project',
+            '#title' => t('Firma del presidente'),
+            '#upload_validators' => [
+                'file_validate_extensions' => ['png svg']
+            ],
+            '#default_value' => $config->get('ngt_evaluation_certificate')['signature_president'],  
+            '#description' => t('firma del presidente'),
+            '#required' => true
+        ];
+
+        $form['ngt_evaluation_certificate']['img_logo_certificate'] = [  
+            '#type' => 'managed_file',
+            '#upload_location' => 's3://file-project',
+            '#title' => t('Logo para el certificado'),
+            '#upload_validators' => [
+                'file_validate_extensions' => ['png svg']
+            ],
+            '#default_value' => $config->get('ngt_evaluation_certificate')['img_logo_certificate'],  
+            '#description' => t('Logo a insertar en el certificado'),
+            '#required' => true
+        ];
+
+        $form['ngt_evaluation_certificate']['message'] = [  
+            '#type' => 'textarea',
+            '#title' => t('Texto superior del certificado'),   
+            '#default_value' => isset($config->get('ngt_evaluation_certificate')['message']) ? $config->get('ngt_evaluation_certificate')['message'] : t('Se certifica'),
+            '#required' => true
+        ]; 
+
         // configuración general 
 
         $form['ngt_evaluation'] = [  
             '#type' => 'details',
             '#title' => t('Configuraciones para las evaluaciones'),   
-            '#open' => true,  
+            '#open' => false,  
         ]; 
 
         $form['ngt_evaluation']['activate'] = [  

@@ -77,7 +77,6 @@ class NodeMoreCourseBlockClass {
         foreach ($nodes as $node) {
             $date = new DrupalDateTime($node->get('field_fecha_de_inicio')->getValue()[0]['value']);
             $formatted_date = \Drupal::service('date.formatter')->format($date->getTimestamp(), 'custom', 'M d, Y');
-            // print "<pre>".print_r($node->get('field_modulo')->getValue(),1).print "</pre>"; exit();
             $course = [
                 'nid' => $node->get('nid')->getValue()[0]['value'],
                 'title' => $node->get('title')->getValue()[0]['value'],

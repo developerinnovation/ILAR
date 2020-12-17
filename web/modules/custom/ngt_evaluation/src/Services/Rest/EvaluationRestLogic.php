@@ -21,7 +21,7 @@ class EvaluationRestLogic {
         // Remove cache.
         \Drupal::service('page_cache_kill_switch')->trigger();
         $data = [];
-       
+
         $fields = [
             'user_id' =>  \Drupal::currentUser()->Id(),
             'node_id' => $params['nid'],
@@ -29,6 +29,7 @@ class EvaluationRestLogic {
             'type_evaluation' => 'module',
             'attempts' => '1',
             'total_question' => $params['maxNavValue'],
+            'course_id' => $params['idCourse'],
         ];
 
         $data = \Drupal::service('ngt_evaluation.method_general')->initEvaluation($fields);
@@ -51,9 +52,25 @@ class EvaluationRestLogic {
 
         $data = \Drupal::service('ngt_evaluation.method_general')->check_answers_by_evaluation($nidExamen, $answerSend, $averageMin);
 
+        $ctnAnswers = explode(',', $answerSend);
+        $total_question_answered = count($ctnAnswers);
+
+        $token = md5(uniqid(rand(), true));
+        $token = substr($token, 0 , 20);
+
         $fields = [
-            'total_question_answered' => $data['countCorrectly'],
+            'total_question_answered' => $total_question_answered,
+            'total_corrrectly_answered' => $data['countCorrectly'],
+            'calification' => $data['averageObtained'],
+            'approved' => $data['evaluation'] == 'god' ?  true : false,
+            'token' => $data['evaluation'] == 'god' ?  $token : '',
         ];
+
+        if($data['evaluation'] == 'god'){
+            $data['token'] = $token;
+        }
+
+        $data['urlCourse'] = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'. $idCourse);
         
         \Drupal::service('ngt_evaluation.method_general')->updateDataTransaction($idEvaluation, $fields);
 

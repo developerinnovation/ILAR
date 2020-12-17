@@ -29,21 +29,45 @@ function ngEvaluation($http){
         scope.pathAnswersStart = config.pathAnswersStart;
         
         scope.evaluation_config = config.evaluation_config;
-        scope.result = true; // cambiar a false en prod
-        scope.averageFinal = 100; // cambiar a 0 en prod
-        scope.titleMessageFinal = config.evaluation_config.success; // cambiar en prod a ''
-        scope.messageFinalResul = config.evaluation_config.success_message; // cambiar en prod a ''
+        scope.result = false; // cambiar a false en prod
+        scope.averageFinal = 0; // cambiar a 0 en prod
+        scope.titleMessageFinal = ''; // cambiar en prod a ''
+        scope.messageFinalResul = ''; // cambiar en prod a ''
         scope.textBtnFinal = 'Descargar certificado';
         scope.returnToCourse = 'Volver al curso';
-        scope.showMessageFinalResul = true; // cambiar a false en prod
+        scope.showMessageFinalResul = false; // cambiar a false en prod
         scope.messageGeneral = config.evaluation_config.message_approved;
         scope.status_evaluation = true;
+        scope.tokenApprovedEvaluation = '';
+        scope.urlCourse = '';
     }
 
 }
 
 EvaluationController.$inject = ['$scope', '$http', '$rootScope','$interval', '$window'];
 function EvaluationController($scope, $http, $rootScope){
+
+
+    $scope.actionAfterResult = function (){
+        if($scope.status_evaluation){
+            $scope.downloadCertificate();
+        }else{
+            location.reload();
+        }
+    }
+
+    $scope.downloadCertificate = function (){
+        var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo elecrónico.';
+        $rootScope.showMessageModal(messageCertificate);
+    }
+
+    $scope.returnToCourse = function (){
+        window.location.href = $scope.urlCourse;
+    }
+
+    $scope.returnPrevPage = function (){
+        window.location.href = document.referrer;;
+    }
     
     $scope.changeTabs = function (tabs){
         if(tabs == 'evaluation') {
@@ -108,30 +132,30 @@ function EvaluationController($scope, $http, $rootScope){
             'idCourse' : $scope.idCourse,
             'maxNavValue' : $scope.maxNavValue,
         };
-        // $scope.idEvaluation = 1; // eliminar al conectar el flujo
-        // $http.get('/rest/session/token').then(function (resp) {
-        //     $http({
-        //       method: 'POST',
-        //       headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'X-CSRF-Token': resp.data
-        //       },
-        //       data: params,
-        //       url: $scope.pathAnswersStart
-        //     }).then(function (resp) {
-        //         if (resp.data.status == '200') {
-        //             $scope.idEvaluation = resp.data.id;
-        //         }else{
-        //             var errorMessage = 'Se presentó un error al inciar el examen, por favor recarga la página e intenta nuevamente, si el error continua por favor repórtalo al equipo de soporte.';
-        //             $rootScope.showMessageModal(errorMessage);
-        //         }
-        //     });
-        //   }).catch(
-        //     function (resp) {
-        //         $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
-        //     }
-        // );
+        $scope.idEvaluation = 1; // eliminar al conectar el flujo
+        $http.get('/rest/session/token').then(function (resp) {
+            $http({
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': resp.data
+              },
+              data: params,
+              url: $scope.pathAnswersStart
+            }).then(function (resp) {
+                if (resp.data.status == '200') {
+                    $scope.idEvaluation = resp.data.id;
+                }else{
+                    var errorMessage = 'Se presentó un error al inciar el examen, por favor recarga la página e intenta nuevamente, si el error continua por favor repórtalo al equipo de soporte.';
+                    $rootScope.showMessageModal(errorMessage);
+                }
+            });
+          }).catch(
+            function (resp) {
+                $rootScope.showMessageModal('Se presentó una falla de comunicación, por favor intente más tarde.');
+            }
+        );
     }
 
     $scope.sendAnswers = function(){
@@ -160,16 +184,18 @@ function EvaluationController($scope, $http, $rootScope){
                         $scope.titleMessageFinal = $scope.evaluation_config.success;
                         $scope.messageFinalResul = $scope.evaluation_config.success_message;
                         $scope.messageGeneral = $scope.evaluation_config.message_approved;
+                        scope.tokenApprovedEvaluation = resp.data.token;
                         $scope.status_evaluation = true;
                     }else{
-                        
                         $scope.titleMessageFinal = $scope.evaluation_config.faild;
                         $scope.messageFinalResul = $scope.evaluation_config.attempets;
                         $scope.messageGeneral = $scope.evaluation_config.faild_message;
+                        scope.textBtnFinal = 'Repetir evaluación';
                         $scope.status_evaluation = false;
                     }
                     $scope.averageFinal = resp.data.averageObtained;
                     $scope.showMessageFinalResul = true;
+                    $scope.urlCourse = resp.data.urlCourse;
                 }else{
                     var errorMessage = 'Se presentó un error al procesar las respuestas del examen, por favor comunícate con el equipo de soporte.';
                     $rootScope.showMessageModal(errorMessage);
