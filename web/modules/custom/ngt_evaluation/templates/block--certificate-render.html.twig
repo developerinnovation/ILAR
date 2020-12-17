@@ -19,10 +19,10 @@
   <div class="back">
     <header>
       <div class="logo-Panlar">
-        <img src="[logo]" alt="Logo Panlar">
+        <img src="{{ file_url(logo) }}" alt="Logo Panlar">
       </div>
       <div class="Text">
-        {{ message }} <strong>[type_approved]</strong>
+        {{ message }} <strong>{{ type_approved }}</strong>
       </div>
       
     </header>
@@ -38,7 +38,7 @@
 
     <footer>
       <div>
-        <img src="{{ file_url(signature_president) }}" alt="presidente">
+        <img src="{{ file_url(signature_president) }}" alt="presidente" style="width: 200;">
       </div>
 
       <!--<div>
