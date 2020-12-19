@@ -26,7 +26,9 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function initEvaluation($fields = []) {
-
+        return [
+            'status' => '600',
+        ];
         $evaluation = EvaluationLog::create();
             foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
