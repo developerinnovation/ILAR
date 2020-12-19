@@ -16,7 +16,7 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function getEvaluationById($id) {
-        $evaluation = EvaluationLog::load($id);
+        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
         return $evaluation;
     }
 
@@ -26,10 +26,8 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function initEvaluation($fields = []) {
-        return [
-            'status' => '600',
-        ];
-        $evaluation = EvaluationLog::create();
+        
+        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::create();
             foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
         }
@@ -54,7 +52,7 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function updateDataTransaction($id, $fields = []) {
-        $evaluation = EvaluationLog::load($id);
+        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
             foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
         }
