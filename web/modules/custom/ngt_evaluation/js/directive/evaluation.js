@@ -65,11 +65,11 @@ function EvaluationController($scope, $http, $rootScope){
     }
 
     $scope.downloadCertificate = function (){
-        var urlCertificate = '/render/certificate/'+ $scope.idCourse +'/'+ $scope.nid +'/'+ $scope.moduleId +'/'+ scope.uid +'/' + $scope.tokenApprovedEvaluation + '/' + $scope.idEvaluation;
-        // var urlCertificate = '/render/certificate/43/45/1/1/fae68d471801ed2193ce/7';
-        var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico.';
+        var urlCertificate = '/render/certificate/'+ $scope.idCourse +'/'+ $scope.nid +'/'+ $scope.moduleId +'/'+ $scope.uid +'/' + $scope.tokenApprovedEvaluation + '/' + $scope.idEvaluation;
+        var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico, por lo pronto podrá previsualizarlo en la siguiente página que se abrirá en 10 segundos.';
         $rootScope.showMessageModal(messageCertificate);
-        window.open(urlCertificate, '_blank');
+        setTimeout(function(){ window.open(urlCertificate, '_blank'); }, 10000);
+        
     }
 
     $scope.returnToCourseLink = function (){
