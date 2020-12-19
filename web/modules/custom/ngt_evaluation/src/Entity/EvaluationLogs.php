@@ -8,21 +8,21 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
- * Defines the ngt_evaluation_log.
+ * Defines the ngt_evaluation_log.s
  *
- * @ingroup ngt_evaluation_log
+ * @ingroup ngt_evaluation_logs
  *
  * @ContentEntityType(
- *   id = "ngt_evaluation_log",
- *   label = @Translation("Evaluation"),
- *   base_table = "ngt_evaluation_log",
+ *   id = "ngt_evaluation_logs",
+ *   label = @Translation("Evaluations"),
+ *   base_table = "ngt_evaluation_logs",
  *   entity_keys = {
  *     "id" = "id",
  *   },
  * )
  */
 
-class EvaluationLog extends ContentEntityBase implements ContentEntityInterface  {
+class EvaluationLogs extends ContentEntityBase implements ContentEntityInterface  {
 
     public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
 

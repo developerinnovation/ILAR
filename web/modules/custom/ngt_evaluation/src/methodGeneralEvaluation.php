@@ -6,29 +6,29 @@ use Drupal\file\Entity\File;
 use Drupal\rest\ResourceResponse;
 use Drupal\user\Entity\User;
 use Drupal\Core\Database\DatabaseExceptionWrapper;
-use Drupal\ngt_evaluation\Entity\EvaluationLog;
+use Drupal\ngt_evaluation\Entity\EvaluationLogs;
 
 class methodGeneralEvaluation{
 
     /**
      * Obtiene un registro desde el id
      * @param $id
-     * @return entity EvaluationLog
+     * @return entity EvaluationLogs
      */
     public function getEvaluationById($id) {
         \Drupal::service('page_cache_kill_switch')->trigger();
-        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
+        $evaluation = EvaluationLogs::load($id);
         return $evaluation;
     }
 
     /**
      * registra el inicio de euna evaluación
      * @param $fields array
-     * @return entity EvaluationLog
+     * @return entity EvaluationLogs
      */
     public function initEvaluation($fields = []) {
         \Drupal::service('page_cache_kill_switch')->trigger();
-        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::create();
+        $evaluation = EvaluationLogs::create();
         foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
         }
@@ -50,11 +50,11 @@ class methodGeneralEvaluation{
      * Actualiza los datos de la evaluación
      * @param $id
      * @param $fields array
-     * @return entity EvaluationLog
+     * @return entity EvaluationLogs
      */
     public function updateDataTransaction($id, $fields = []) {
         \Drupal::service('page_cache_kill_switch')->trigger();
-        $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
+        $evaluation = EvaluationLogs::load($id);
             foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
         }
