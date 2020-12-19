@@ -5,6 +5,7 @@ namespace Drupal\ngt_evaluation\Services\Rest;
 use Drupal\rest\ResourceResponse;
 use Drupal\rest\ModifiedResourceResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\ngt_evaluation\Entity\EvaluationLog;
 
 /**
  * Class class EvaluationRestLogic.
