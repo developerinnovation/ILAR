@@ -16,6 +16,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\user\Entity\User;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\ngt_evaluation\Entity\EvaluationLog;
 
 class CertificateRenderController extends ControllerBase{ 
 
@@ -34,7 +35,7 @@ class CertificateRenderController extends ControllerBase{
         $title_course = $course->get('title')->getValue()[0]['value'];
 
 
-        $result_log = \Drupal::service('ngt_evaluation.method_general')->getEvaluationById($logId);
+        $result_log = EvaluationLog::load($logId);
 
         $created = $result_log->get('created')->getValue()[0]['value'];
         $type_evaluation = $result_log->get('type_evaluation')->getValue()[0]['value'];
