@@ -28,7 +28,7 @@ class methodGeneralEvaluation{
     public function initEvaluation($fields = []) {
         
         $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::create();
-            foreach ($fields as $key => $value) {
+        foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
         }
         $evaluation->save();

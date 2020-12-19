@@ -3,7 +3,7 @@ type: theme
 description: 'Tema NGT E-Learning'
 version: '1.01'
 core: 8.x
-
+base theme: bootstrap_barrio
 libraries:
   - core/normalize
   - ngt_theme/global-styling
