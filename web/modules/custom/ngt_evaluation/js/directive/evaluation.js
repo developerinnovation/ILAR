@@ -69,7 +69,6 @@ function EvaluationController($scope, $http, $rootScope){
         var messageCertificate = 'Estamos generando su certificado, pronto lo enviaremos a su dirección de correo electrónico, por lo pronto podrá previsualizarlo en la siguiente página que se abrirá en 10 segundos.';
         $rootScope.showMessageModal(messageCertificate);
         setTimeout(function(){ window.open(urlCertificate, '_blank'); }, 10000);
-        
     }
 
     $scope.returnToCourseLink = function (){
