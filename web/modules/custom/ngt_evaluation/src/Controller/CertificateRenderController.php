@@ -20,7 +20,6 @@ use Drupal\file\Entity\File;
 class CertificateRenderController extends ControllerBase{ 
 
     public function render_certificate(Request $request, $courserId, $evaluationId, $moduleId, $userId, $tokenId, $logId){
-        print $courserId;
         
         $user = \Drupal\user\Entity\User::load($userId);
         $nombre = $user->get('field_nombre')->getValue()[0]['value'];

@@ -16,6 +16,8 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function getEvaluationById($id) {
+        opcache_reset();
+        \Drupal::service('page_cache_kill_switch')->trigger();
         $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
         return $evaluation;
     }
@@ -26,7 +28,8 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function initEvaluation($fields = []) {
-        
+        opcache_reset();
+        \Drupal::service('page_cache_kill_switch')->trigger();
         $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::create();
         foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
@@ -52,6 +55,8 @@ class methodGeneralEvaluation{
      * @return entity EvaluationLog
      */
     public function updateDataTransaction($id, $fields = []) {
+        opcache_reset();
+        \Drupal::service('page_cache_kill_switch')->trigger();
         $evaluation = \Drupal\ngt_evaluation\Entity\EvaluationLog::load($id);
             foreach ($fields as $key => $value) {
             $evaluation->set($key, $value);
@@ -68,7 +73,7 @@ class methodGeneralEvaluation{
      * @return void
      */
     public function check_answers_by_evaluation($nid, $answers, $averageMin){
-
+        \Drupal::service('page_cache_kill_switch')->trigger();
         $node = \Drupal\node\Entity\Node::load($nid);
         $questions = $node->field_pregunta->getValue();
         $correctly = [];
