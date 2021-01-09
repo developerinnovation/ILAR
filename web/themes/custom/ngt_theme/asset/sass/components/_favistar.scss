@@ -1,6 +1,6 @@
 .rating{
     margin: 0 0 15px;
-    .form-item{
+    .form-item, .js-form-type-fivestar{
         display: flex;
         .fivestar-widget{
             margin: 0 10px 0 0;
@@ -12,7 +12,7 @@
                     display: block;
                     width: 18px;
                     height: 16px;
-                    background:{
+                    background: {
                         image: url(../img/sprite-icon-generales.svg);
                         size: 240px;
                         position: -126px -37px;
