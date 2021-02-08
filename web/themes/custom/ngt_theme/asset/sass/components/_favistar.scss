@@ -1,6 +1,6 @@
 .rating{
     margin: 0 0 15px;
-    .form-item, .js-form-type-fivestar{
+    .field--name-field-calificacion{
         display: flex;
         .fivestar-widget{
             margin: 0 10px 0 0;
@@ -51,6 +51,15 @@
                     color: #747474;
                 }
             }
+        }
+    }
+
+    .fivestar-basic{
+        fieldset{
+            border: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
         }
     }
 }

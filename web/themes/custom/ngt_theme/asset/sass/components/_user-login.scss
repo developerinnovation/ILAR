@@ -4,8 +4,8 @@
         justify-content: end !important;
         }
     }        
-
     .user-login-form{
+
         .main-form-login{
             position: relative;
             
@@ -39,7 +39,7 @@
                 position: relative;
 
                 &:before {
-                    content: '';
+                    content:'';
                     position: absolute;
                     width: 100%;
                     height: 100%;
@@ -90,8 +90,16 @@
                     border-color: transparent #fff transparent transparent;
                     }
                 }
-                .form-actions input{
-                    background: $aqua !important;
+                .form-actions{
+                    margin: 40px auto 50px;
+                    width: 140px;
+                    height: 40px;
+                    padding: 0;
+                    border: 0;
+                    line-height: 35px;
+                    border-radius: 20px;
+                    text-align: center;
+                    background: #15cdca !important;
                     color: #fff;
                 }
                 .login-form__help_actions{
@@ -149,8 +157,10 @@
                         .description{
                             display: none;
                         }
-                        .form-item{
+                        .js-form-item{
                             margin: 0 0 20px;
+                            padding: 0;
+                            border: none;
                             input{
                                 -webkit-appearance: none;
                                 display: block;
