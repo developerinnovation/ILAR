@@ -82,7 +82,7 @@
                                         {% set typeBool = possibleAnswers.value|lower %}
                                         <div>
                                             <button id="response_{{ key + 1 }}_{{ i + 1 }}" 
-                                                ng-click="checkAnswer({{ key }}, '{{ typeBool }}', '{{ question.type }}'); changeClassBool({{ key }}, '{{ possibleAnswers.value }}', 'response_{{ key + 1 }}_{{ i + 1 }}', 'response_{{ key + 1 }}')" 
+                                                ng-click="checkAnswer({{ key }}, '{{ typeBool|lower }}', '{{ question.type }}'); changeClassBool({{ key }}, '{{ possibleAnswers.value }}', 'response_{{ key + 1 }}_{{ i + 1 }}', 'response_{{ key + 1 }}')" 
                                                 class="{% if typeBool == 'verdadero' %}{{ 'true' }}{% else %}{{ 'false' }}{% endif %} bool response_{{ key + 1 }}">{{ possibleAnswers.value }}</button>
                                         </div>
                                     {% endfor %}

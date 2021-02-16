@@ -58,6 +58,8 @@ function ngt_general_preprocess_html(&$variables){
     case 'entity.node.canonical':
     case 'comment.reply':
     case 'entity.user.canonical':
+    case 'progress.my_progress':
+    case 'inscription.render_my_courses':
         $variables['#attached']['library'][] = 'ngt_general/angular.ngt';
       break;
   }

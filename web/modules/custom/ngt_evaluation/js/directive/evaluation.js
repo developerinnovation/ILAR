@@ -46,7 +46,7 @@ function ngEvaluation($http){
         var isValidEvaluation = window.location.search.split('-');
         if(isValidEvaluation.length != 3){
             scope.isDisabledStart = true;
-            alert('Acceso denegado, parece que est{a ingresando a una url errónea');
+            alert('Acceso denegado, parece que está ingresando a una url errónea');
         }
     }
 

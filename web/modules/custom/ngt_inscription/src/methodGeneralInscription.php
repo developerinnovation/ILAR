@@ -90,6 +90,28 @@ class methodGeneralInscription{
 
     }
 
-
+    /**
+     * loadCourseByUserId
+     *
+     * @return array
+     */
+    public function loadCourseByUserId(){
+        $user_id = \Drupal::currentUser()->Id();
+        $query = \Drupal::database()->select('ngt_inscription_log', 'ngt');
+        $query->condition('user_id', $user_id);
+        $query->fields('ngt', ['id','user_id','node_id','created']);
+        $result = $query->execute();
+        $results = $result->fetchAll();
+        if(count($results) > 0) {
+            return [
+                'result' => 'yes',
+                'data' => $results,
+            ];
+        }else{
+            return [
+                'result' => 'not',
+            ];
+        }
+    }
 
 }
