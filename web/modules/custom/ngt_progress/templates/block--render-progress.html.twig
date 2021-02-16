@@ -39,7 +39,7 @@
                 <div class="scroll">
                     {% for item in data %}
                         <div class="name item">
-                            <span>{{ drupal_field('title', 'node', item.node_id) }}</span>
+                            <span><a href="#">{{ drupal_field('title', 'node', item.node_id) }}</a></span>
                             <h3>{% if item.type == 'curso' %} {{ 'Curso' }} {% else %} {{ 'Lección' }} {% endif %}</h3>
                         </div>
                     {% endfor %}

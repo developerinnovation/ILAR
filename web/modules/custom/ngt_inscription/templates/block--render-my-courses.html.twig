@@ -39,7 +39,7 @@
                 <div class="scroll">
                     {% for item in data %}
                         <div class="name item">
-                            <h3>{{ drupal_field('title', 'node', item.node_id) }}</h3>
+                            <h3><a href="#">{{ drupal_field('title', 'node', item.node_id) }}</a></h3>
                         </div>
                     {% endfor %}
                 </div>
