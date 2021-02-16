@@ -1,4 +1,4 @@
-.page-front, .section-node, .section-curso, .section-leccion, .section-examen, .section-user, .section-authenticated{
+.page-front, .section-node, .section-curso, .section-leccion, .section-examen, .section-user, .section-authenticated, .section-my{
     header{
         background: $turqui;
         .box{
@@ -1609,7 +1609,7 @@
     }
 }
 
-.section-user, .section-authenticated{
+.section-user, .section-authenticated, .section-my{
     article{
         max-width: 1200px;
         margin: 30px auto;
@@ -1837,6 +1837,13 @@
                 margin-top: 40px;
                 @media only screen and ($desktop){
                     margin-top: 0px;
+                }
+
+                .scroll{
+                    overflow: auto;
+                    scroll-behavior: smooth;
+                    height: 330px;
+                    position: inherit;
                 }
 
                 h3{
