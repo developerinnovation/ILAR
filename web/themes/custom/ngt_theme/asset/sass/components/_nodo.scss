@@ -1609,17 +1609,7 @@
     }
 }
 
-.section-my{
-    .rigth{
-        .scroll{
-            .name{
-                h3{
-                color: #0b2152;
-                }
-            }  
-        }  
-    }
-}
+
 
 
 .section-user, .section-authenticated, .section-my{
@@ -1870,6 +1860,25 @@
                 }
             }
         }
+    }
+}
+
+.section-my{
+    .rigth{
+        .name.title{
+                h3{
+                color: #0b2152;
+                font-weight: bold;
+                font-size: large;
+                }
+            }
+        .scroll{
+            .name{
+                h3{
+                color: #0b2152;
+                }
+            }  
+        }  
     }
 }
 i.location{
