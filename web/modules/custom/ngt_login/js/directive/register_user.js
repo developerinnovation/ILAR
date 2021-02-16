@@ -96,7 +96,7 @@ function RegisterUserController($scope, $http, $rootScope){
                 break;
 
             case 2:
-                    if( $scope.form.countrySelect != undefined && $scope.form.stateSelect != undefined && $scope.form.citySelect != undefined){
+                    if( $scope.form.countrySelect != undefined){
                         $scope.changeStep();
                     }else {
                         var message = 'Para continuar, es necesario nos confirmes tu ubicación geográfica';

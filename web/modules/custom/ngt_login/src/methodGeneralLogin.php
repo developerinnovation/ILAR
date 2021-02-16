@@ -194,7 +194,7 @@ class methodGeneralLogin{
         }
 
 
-        $field_ubicacion_geografica =  $params['citySelect'];
+        $field_ubicacion_geografica =  $params['countrySelect'];
         $field_profesion =  $params['professionSelect'];
         $field_fecha_nacimiento =  $params['date'];
 

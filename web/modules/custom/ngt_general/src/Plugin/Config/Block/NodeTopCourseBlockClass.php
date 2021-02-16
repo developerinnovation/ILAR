@@ -42,7 +42,7 @@ class NodeTopCourseBlockClass {
     public function build(NodeTopCourseBlock &$instance, $configuration){
         $nid = $configuration['node'];
         $node = \Drupal\node\Entity\Node::loadMultiple(array($nid));
-
+        $progressId = \Drupal::service('ngt_progress.method_general')->initProgress($nid, 'curso');
         $build = [
             '#theme' => 'node_top_course',
             '#data' => $this->preparerate($node),

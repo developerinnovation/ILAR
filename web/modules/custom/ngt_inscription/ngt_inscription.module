@@ -52,5 +52,17 @@ function ngt_inscription_theme() {
       ],
       'template' => 'block--uninscription-button',
     ],
+    'render_my_courses' => [
+      'variables' => [
+        'dataAngular' => NULL,
+        'directive'  => NULL,
+        'uuid' => NULL,
+        'config' => NULL,
+        'class' => NULL,
+        'plugin_id' => NULL,
+        'data' => NULL,
+      ],
+      'template' => 'block--render-my-courses',
+    ],
   ];
 }
