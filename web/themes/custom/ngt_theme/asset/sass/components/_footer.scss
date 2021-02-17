@@ -116,10 +116,17 @@ footer{
         }
         nav{
             margin: 40px 0;
+            @media only screen and ($desktop){
+                display: flex;
+            }
+            
             li{
                 list-style: none;
                 text-align: center;
                 margin: 0 0 15px;
+                    @media only screen and ($desktop){
+                    width: 100%;
+                    }
                 a{
                     font: {
                         family: 'Asap', sans-serif;
