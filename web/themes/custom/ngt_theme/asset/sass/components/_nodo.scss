@@ -1874,8 +1874,13 @@
             }
         .scroll{
             .name{
-                h3{
+                a{
                 color: #0b2152;
+                font-weight: bold;
+                    :hover{
+                    color: $aqua;
+                    transition: 0.4s;
+                    }
                 }
             }  
         }  
